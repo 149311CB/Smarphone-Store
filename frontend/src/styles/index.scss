@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 2.03125rem;
+}
+.h2,
+h2 {
+  font-size: 1.625rem;
+}
+.h3,
+h3 {
+  font-size: 1.421875rem;
+}
+.h4,
+h4 {
+  font-size: 1.21875rem;
+}
+.h5,
+h5 {
+  font-size: 1.015625rem;
+}
+.h6,
+h6 {
+  font-size: 0.8125rem;
+}
+
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* HEADER */
+header {
+  @include flex(space-between, center, row);
+  min-height: 10vh;
+  padding: 0 1.2rem;
+}
+
+nav {
+  @include flex(initial, center, row);
+  font-family: "Nunito", serif;
+}
+
+.header-funtions {
+  width: 100%;
+  @include flex(space-between, center, row);
+}
+
+.header-searchbar {
+  display: flex;
+  flex-grow: 1;
+  padding-left: 0.6rem;
+  .search-form {
+    width: 50%;
+    input {
+      border-radius: 0.1rem 0 0 0.1rem;
+      width: 100%;
+    }
+  }
+}
+
+.header-options {
+  @include flex(space-between, center, row);
+  font-size: 0.75rem;
+  a {
+    padding-left: 0.6rem;
+  }
+}
