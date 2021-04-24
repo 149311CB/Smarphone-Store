@@ -1,0 +1,338 @@
+[
+  {
+    "_id": { "$oid": "60780679a8881f578735c21c" },
+    "id": "APFS20HD01",
+    "rom": {
+      "ref": "roms",
+      "_id": { "$oid": "6080deaf5cdf0a0d727267ad" }
+    },
+    "ram": {
+      "ref": "rams",
+      "_id": { "$oid": "6080df1a5cdf0a0d727267b0" }
+    },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "iPhone 12 Pro Max 128GB",
+    "model": "A2411",
+    "manufactor": "Apple",
+    "make": "China",
+    "backCam": "12 MP, f/1.6, 26mm (wide), 1.4µm, dual pixel PDAF, OIS; 12 MP, f/2.0, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom; 12 MP, f/2.4, 120˚, 13mm (ultrawide), 1/3.6\" TOF 3D LiDAR scanner (depth)",
+    "frontCam": "12 MP, f/2.2, 23mm (wide), 1/3.6\" SL 3D, (depth/biometrics sensor)",
+    "display": "Super Retina XDR OLED, HDR10, Dolby Vision, Wide color gamut, True-tone",
+    "resolution": "1284 x 2778",
+    "size": { "$numberDouble": "6.7" },
+    "chipset": "Apple A14 Bionic (5 nm)",
+    "gpu": "Apple GPU 4 nhân",
+    "charger": "Lightning",
+    "battery": "Li-Ion",
+    "simNumber": { "$numberInt": "1" },
+    "price": 29959000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c21d" },
+    "id": "APFS20HD02",
+    "rom": {
+      "ref": "roms",
+      "_id": { "$oid": "6080deaf5cdf0a0d727267ae" }
+    },
+    "ram": {
+      "ref": "rams",
+      "_id": { "$oid": "6080df1a5cdf0a0d727267b2" }
+    },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "iPhone 12 Pro Max 256GB",
+    "model": "A2411",
+    "manufactor": "Apple",
+    "make": "China",
+    "backCam": "12 MP, f/1.6, 26mm (wide), 1.4µm, dual pixel PDAF, OIS; 12 MP, f/2.0, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom; 12 MP, f/2.4, 120˚, 13mm (ultrawide), 1/3.6\" TOF 3D LiDAR scanner (depth)",
+    "frontCam": "12 MP, f/2.2, 23mm (wide), 1/3.6\" SL 3D, (depth/biometrics sensor)",
+    "display": "Super Retina XDR OLED, HDR10, Dolby Vision, Wide color gamut, True-tone",
+    "resolution": "1284 x 2778",
+    "size": { "$numberDouble": "6.7" },
+    "chipset": "Apple A14 Bionic (5 nm)",
+    "gpu": "Apple GPU 4 nhân",
+    "charger": "Lightning",
+    "battery": "Li-Ion",
+    "simNumber": { "$numberInt": "1" },
+    "price": { "$numberInt": "32490000" },
+    "image": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c21e" },
+    "id": "APFS20DH03",
+    "rom": {
+      "ref": "roms",
+      "_id": { "$oid": "6080deaf5cdf0a0d727267ac" }
+    },
+    "ram": {
+      "ref": "rams",
+      "_id": {
+        "$oid": "6080df1a5cdf0a0d727267b2"
+      }
+    },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "iPhone 12 64GB",
+    "model": "A2403",
+    "manufactor": "Apple",
+    "make": "China",
+    "backCam": "12 MP + 12 MP",
+    "frontCam": "12 MP",
+    "display": "Super Retina XDR OLED, HDR10, Dolby Vision, Wide color gamut, True-tone",
+    "resolution": "1170 x 2532",
+    "size": { "$numberDouble": "6.1" },
+    "chipset": "Apple A14 Bionic (5 nm)",
+    "gpu": "Apple GPU 4 nhân",
+    "charger": "Lightning",
+    "battery": "Li-Ion",
+    "simNumber": { "$numberInt": "1" },
+    "price": 21950000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c21f" },
+    "id": "APFS19HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ac" } },
+    "ram": { "_id": { "$oid": "6080df1a5cdf0a0d727267b2" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "iPhone 11 64GB",
+    "model": "A2221",
+    "manufactor": "Apple",
+    "make": "China",
+    "backCam": "Dual Camera 12.0 MP",
+    "frontCam": "12 MP",
+    "display": "IPS LCD/ Liquid Retina HD",
+    "resolution": "828 x 1792",
+    "size": { "$numberDouble": "6.1" },
+    "chipset": "Apple A13 Bionic",
+    "gpu": "Apple GPU 4 nhân",
+    "charger": "Lightning",
+    "battery": "3110 mAh",
+    "simNumber": { "$numberInt": "1" },
+    "price": 16290000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c220" },
+    "id": "SSFS212K01",
+    "name": "Samsung Galaxy S21 Ultra 5G",
+    "model": "SM-G998B",
+    "make": "China",
+    "backCam": "Ống kính góc siêu rộng 12MP (2PD) AF f2.2; Ống kính góc rộng 108MP F1.8 OIS; Ống kính Zoom quang học 1 10MP (3x, 2PD) OIS F2.4; Ống kính Zoom quang học 2 10MP (10x, 2PD) OIS F4.9; ToF Laser AF",
+    "frontCam": "Ống kính 40MP AF F2.2",
+    "display": "Vô cực Infinity-O 6.8\" WQHD+, Dynamic AMOLED 2X",
+    "resolution": "1440 x 3200",
+    "size": { "$numberDouble": "6.7" },
+    "chipset": "Exynos 2100 (5nm)",
+    "gpu": "Mali-G78 MP14",
+    "charger": "USB Type-C 3.2",
+    "battery": "5.000 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 30990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/226316/samsung-galaxy-s21-ultra-bac-600x600-1-600x600.jpg",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b5" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "manufactor": {
+      "ref": "manufactors",
+      "_id": { "$oid": "6080e76dc767c60b99d71ea1" }
+    }
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c221" },
+    "id": "SSFS20HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b5" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "Samsung Galaxy Note 20 ",
+    "model": "SM-N985F",
+
+    "manufactor": "Samsung",
+    "make": "China",
+    "backCam": "Chính 64 MP & Phụ 12 MP, 12 MP",
+    "frontCam": "  10 MP",
+    "display": "Super AMOLED Plus",
+    "resolution": "1080 x 2400",
+    "size": { "$numberDouble": "6.7" },
+    "chipset": "Exynos 990 8 nhân",
+    "gpu": " Mali-G77 MP11 ",
+    "charger": "2 đầu Type-C",
+    "battery": "4500 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 33000000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/225063/sam-sung-note-20-ultra-vang-dong-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c222" },
+    "id": "SSCS20HD02",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b2" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": " Samsung Galaxy M31",
+    "model": "SM-M315F",
+    "manufactor": "Samsung",
+    "make": "China",
+    "backCam": "Chính 64 MP & Phụ 12 MP, 5 MP, 5 MP",
+    "frontCam": " 32 MP",
+    "display": "Super AMOLED",
+    "resolution": "1080 x 2400 ",
+    "size": { "$numberDouble": "6.4" },
+    "chipset": "Exynos 9611 8 nhân",
+    "gpu": "Mali-G72 MP3",
+    "charger": "USB Type-C 3.2",
+    "battery": "6000 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 4790000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/209793/samsung-galaxy-m31-600x600-1-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c223" },
+    "id": "SSMS20HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b2" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "Samsung Galaxy A51",
+    "model": "SM-A515F",
+    "manufactor": "Samsung",
+    "make": "China",
+    "backCam": "Chính 48 MP & Phụ 12 MP, 5 MP, 5 MP",
+    "frontCam": " 32 MP",
+    "display": "Super AMOLED",
+    "resolution": "1080 x 2400",
+    "size": { "$numberDouble": "6.5" },
+    "chipset": "Exynos 9611 8 nhân",
+    "gpu": "Mali-G72 MP3",
+    "charger": "USB Type-C ",
+    "battery": "4000 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 7990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/211570/samsung-galaxy-a51-silver-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c224" },
+    "id": "OPMS20HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b3" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "Oppo Reno 5",
+    "model": "PEGM00",
+    "manufactor": "Oppo",
+    "make": "China",
+    "backCam": "64 MP + 8 MP + 2 MP + 2 MP, 4 camera",
+    "frontCam": "44 MP",
+    "display": "AMOLED, 90Hz, Gorilla Glass 3+",
+    "resolution": "1080 x 2400",
+    "size": { "$numberDouble": "6.43" },
+    "chipset": "Qualcomm Snapdragon 720G",
+    "gpu": "Adreno 618",
+    "charger": "USB Type-C",
+    "battery": "4310mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 8990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/220438/oppo-reno5-trang-600x600-1-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c225" },
+    "id": "OPMS19HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ad" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b3" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "Oppo A91",
+    "model": "PCPM00",
+    "manufactor": "Oppo",
+    "make": "China",
+    "backCam": "Chính 48 MP & Phụ 8 MP, 2 MP, 2 MP",
+    "frontCam": "16 MP",
+    "display": "AMOLED",
+    "resolution": "1080 x 2400",
+    "size": { "$numberDouble": "6.4" },
+    "chipset": "MediaTek Helio P70 8 nhân",
+    "gpu": "Mali-G72 MP3",
+    "charger": "USB Type-C",
+    "battery": "4025 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 6990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/217287/oppo-a91-trang-600x600-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c226" },
+    "id": "OPSF20HD01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ae" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b3" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "OPPO Reno4 Pro",
+    "model": "CPH2113",
+    "manufactor": "Oppo",
+    "make": "China",
+    "backCam": "Chính 48 MP & Phụ 8 MP, 2 MP, 2 MP",
+    "frontCam": " 32 MP",
+    "display": " AMOLED ",
+    "resolution": "1080 x 2400",
+    "size": { "$numberDouble": "6.5" },
+    "chipset": "Snapdragon 720G 8 nhân ",
+    "gpu": " Adreno 618 ",
+    "charger": "USB Type-C",
+    "battery": "4000 mAh",
+    "simNumber": { "$numberInt": "2" },
+    "price": 11990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/223497/oppo-reno4-pro-trang-600x600.jpg"
+  },
+  {
+    "_id": { "$oid": "60780679a8881f578735c227" },
+    "id": "XMFS212K01",
+    "rom": { "ref": "roms", "_id": { "$oid": "6080deaf5cdf0a0d727267ae" } },
+    "ram": { "ref": "rams", "_id": { "$oid": "6080df1a5cdf0a0d727267b3" } },
+    "waranty": {
+      "ref": "waranties",
+      "_id": { "$oid": "6080e0165cdf0a0d727267b8" }
+    },
+    "name": "Xiaomi Mi 11 5G",
+    "model": "Xiaomi Mi 11 5G",
+    "manufactor": "Xiaomi",
+    "make": "China",
+    "backCam": " Chính 108 MP & Phụ 13 MP, 5 MP ",
+    "frontCam": "20 MP",
+    "display": " AMOLED ",
+    "resolution": "1440 x 3200",
+    "size": { "$numberDouble": "6.81" },
+    "chipset": "Snapdragon 888 8 nhân",
+    "gpu": " Adreno 618 ",
+    "charger": "USB Type-C",
+    "battery": " 4600 mAh ",
+    "simNumber": { "$numberInt": "2" },
+    "price": 21990000,
+    "image": "https://cdn.tgdd.vn/Products/Images/42/226264/xiaomi-mi-11-xanhduong-600x600-600x600.jpg"
+  }
+]

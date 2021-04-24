@@ -1,0 +1,16 @@
+[
+  {
+    "user": {
+      "ref": { "$oid": "60818eb1d7758d12d8e6a089" }
+    },
+    "paymentType": "Credit Card",
+    "provider": ""
+  },
+  {
+    "user": {
+      "ref": { "$oid": "60818eb1d7758d12d8e6a089" }
+    },
+    "paymentType": "Paypal",
+    "provider": ""
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "receiverName": "admin",
+    "receiverPhone": "0965423327",
+    "city": "TP.HCM",
+    "district": "Quan 10",
+    "subDistrict": "Phuong 14",
+    "addressDetail": "123abc Thanh Thai",
+    "addressType": "Cơ quan/ Công ty",
+    "isPrimary": 1,
+    "userId": {
+      "ref": "users",
+      "_id": { "$oid": "60818eb1d7758d12d8e6a089" }
+    }
+  }
+]
