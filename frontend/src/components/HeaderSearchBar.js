@@ -4,7 +4,7 @@ import Button from "../components/Button";
 const HeaderSearchBar = () => {
   return (
     <div className="header-searchbar">
-      <Button text="DANH MỤC SẢN PHẨM" />
+      <Button text="DANH MỤC SẢN PHẨM" textAlign="left" width="80px" />
       <form className="search-form">
         <input
           type="text"

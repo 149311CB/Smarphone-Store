@@ -11,8 +11,6 @@ const Header = () => {
     >
       <nav
         style={{
-          width: "90%",
-          margin: "0 auto",
           backgroundColor: "#323d43",
         }}
       >

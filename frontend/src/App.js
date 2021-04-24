@@ -1,11 +1,14 @@
 import Header from "./components/Header";
 import { BrowserRouter as Router } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
 
 function App() {
   return (
     <Router>
       <Header />
-      <h1>Hello world!</h1>
+      <main>
+        <HomeScreen />
+      </main>
     </Router>
   );
 }

@@ -9,6 +9,8 @@ const Button = ({
   outline,
   cursor,
   width,
+  textAlign,
+  padding,
 }) => {
   return (
     <button
@@ -19,6 +21,8 @@ const Button = ({
         outline: `${outline}`,
         cursor: `${cursor}`,
         width: `${width}`,
+        textAlign: `${textAlign}`,
+        padding: `${padding}`,
       }}
     >
       {text}
@@ -33,6 +37,8 @@ Button.defaultProps = {
   outline: "none",
   cursor: "pointer",
   width: "100px",
+  textAlign: "center",
+  padding: "0 0.6rem",
 };
 
 Button.propTypes = {
@@ -43,6 +49,7 @@ Button.propTypes = {
   outline: PropTypes.string,
   cursor: PropTypes.string,
   width: PropTypes.string,
+  textAlign: PropTypes.string,
 };
 
 export default Button;
