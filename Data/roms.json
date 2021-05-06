@@ -1,23 +1,51 @@
 [
   {
-    "rom": 8
+    "name": "Rom 8GB",
+    "value": 8,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 16
+    "Name": "Rom 16GB",
+    "value": 16,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 32
+    "Name": "Rom 32GB",
+    "value": 32,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 64
+    "Name": "Rom 64GB",
+    "value": 64,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 128
+    "Name": "Rom 128GB",
+    "value": 128,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 256
+    "Name": "Rom 256GB",
+    "value": 256,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   },
   {
-    "rom": 512
+    "Name": "Rom 512GB",
+    "value": 512,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   }
 ]

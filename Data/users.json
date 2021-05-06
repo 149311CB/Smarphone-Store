@@ -1,11 +1,19 @@
 [
   {
+    "_id": {
+      "$oid": "60818eb1d7758d12d8e6a089"
+    },
     "firstName": "admin",
     "lastName": "admin",
     "phoneNumber": "0965423327",
     "email": "admin@smartshop.com",
-    "sex": 1,
-    "birthday": "12/08/2021",
-    "password": "48cbf690abab1ada5976b8caea045a2ce2cd0d047d39ad9f77ca9cea3bfb082a"
+    "birthday": {
+      "$date": "1999-12-07T17:00:00.000Z"
+    },
+    "password": "48cbf690abab1ada5976b8caea045a2ce2cd0d047d39ad9f77ca9cea3bfb082a",
+    "gender": 1,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   }
 ]

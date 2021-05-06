@@ -1,0 +1,16 @@
+[
+  {
+    "discountType": "freeship",
+    "discountPercent": 0,
+    "minPrice": 0,
+    "manufactor": [],
+    "discountStart": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    },
+    "activeTime": 72,
+    "paymentMethod": "",
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
+  }
+]

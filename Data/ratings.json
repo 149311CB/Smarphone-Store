@@ -1,8 +1,21 @@
 [
   {
-    "user": { "ref": "users", "_id": { "$oid": "60818eb1d7758d12d8e6a089" } },
-    "spec": { "ref": "specs", "_id": { "$oid": "60780679a8881f578735c21c" } },
+    "user": {
+      "ref": "users",
+      "_id": {
+        "$oid": "60818eb1d7758d12d8e6a089"
+      }
+    },
+    "spec": {
+      "ref": "specs",
+      "_id": {
+        "$oid": "60780679a8881f578735c21c"
+      }
+    },
     "rating": 5,
-    "comment": ""
+    "comment": "",
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
   }
 ]
