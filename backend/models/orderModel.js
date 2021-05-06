@@ -2,17 +2,12 @@ import mongoose from 'mongoose'
 
 const orderSchema = mongoose.Schema({
   subTotal: {
-    type: Double,
+    type: mongoose.Schema.Types.Decimal128,
     required: true
   },
   status: {
     type: String,
     required: true
-  },
-  payment: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'Payment'
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

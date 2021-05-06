@@ -10,9 +10,10 @@ const discoutnSchema = mongoose.Schema({
     required: true
   },
   minPrice: {
-    type: Double,
+    type: mongoose.Schema.Types.Decimal128,
     required: false
   },
+  manufactor: [],
   paymentMethod: {
     type: mongoose.Schema.Types.ObjectId,
     required: false,

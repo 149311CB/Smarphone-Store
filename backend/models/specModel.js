@@ -1,35 +1,5 @@
 import mongoose from "mongoose";
 
-const rom = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  value: {
-    type: Number,
-    required: true
-  },
-  createdDate: {
-    type: Date,
-    required: true
-  }
-})
-
-const ram = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  value: {
-    type: Number,
-    required: true
-  },
-  createdDate: {
-    type: Date,
-    required: true
-  }
-})
-
 const productSchema = mongoose.Schema({
   id: {
     type: String,
@@ -80,10 +50,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  gpu: {
-    type: String,
-    required: true,
-  },
   charger: {
     type: String,
     required: true,
@@ -96,16 +62,15 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  rom: [rom],
-  ram: [ram],
-  price: {
-    type: Double,
+  roms: [],
+  rams: [],
+  warranty: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: 'Warranty'
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  price: Number,
+  images: [],
   createAt: {
     type: Date,
     required: true

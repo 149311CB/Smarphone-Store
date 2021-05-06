@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
 
 const paymentSchema = mongoose.Schema({
+  order: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Order"
+  },
   paymentMethod: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,

@@ -1,10 +1,10 @@
 import express from "express";
-import { getSpecs, getSpecById } from "../controllers/productController.js";
+import {getSpecs, getSpecById, createProduct, deleteProductById} from "../controllers/productController.js";
 
 const router = express.Router();
 
-router.route("/").get(getSpecs);
+router.route("/").get(getSpecs).post(createProduct);
 
-router.route("/:id").get(getSpecById);
+router.route("/:id").get(getSpecById).delete(deleteProductById);
 
 export default router;

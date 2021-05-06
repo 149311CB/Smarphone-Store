@@ -16,7 +16,7 @@ const orderDetailSchema = mongoose.Schema({
     required: true
   },
   total: {
-    type: Double,
+    type: mongoose.Schema.Types.Decimal128,
     required: true
   },
 })
