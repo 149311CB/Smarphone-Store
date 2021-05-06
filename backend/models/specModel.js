@@ -106,6 +106,10 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  createAt: {
+    type: Date,
+    required: true
+  }
 });
 
 const Spec = mongoose.model("Spec", productSchema);

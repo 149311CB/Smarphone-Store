@@ -14,6 +14,10 @@ const paymentMethodSchema = mongoose.Schema({
     required: true,
     ref: 'User'
   },
+  createAt: {
+    type: Date,
+    required: true
+  }
 })
 
 const PaymentMethod = mongoose.model('PaymentMethod', paymentMethodSchema)

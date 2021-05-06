@@ -1,5 +1,44 @@
 import mongoose from 'mongoose'
 
+const citySchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    required: true
+  }
+})
+
+const districtSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  city: [citySchema],
+  createdAt: {
+    type: Date,
+    required: true
+  }
+})
+
+const wardSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  level: {
+    type: String,
+    required: true
+  },
+  district: [districtSchema],
+  createdAt: {
+    type: Date,
+    required: true
+  }
+})
+
 const addressSchema = mongoose.Schema({
   receiverFirstName: {
     type: String,
@@ -9,18 +48,9 @@ const addressSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  city: {
-    type: String,
-    required: true
-  },
-  district: {
-    type: String,
-    required: true
-  },
-  subDistrict: {
-    type: String,
-    required: true,
-  },
+  city: [citySchema],
+  district: [districtSchema],
+  ward: [wardSchema],
   addressDetails: {
     type: String,
     required: true
@@ -37,6 +67,10 @@ const addressSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
+  },
+  createdAt: {
+    type: Date,
+    required: true
   }
 })
 

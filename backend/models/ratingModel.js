@@ -16,7 +16,12 @@ const ratingSchema = mongoose.Schema({
   spec: {
     type: mongoose.Schema.Types.ObjectId,
     required: true
+  },
+  createAt: {
+    type: Date,
+    required: true
   }
+
 })
 
 const Rating = mongoose.model('Rating', ratingSchema);

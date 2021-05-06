@@ -25,6 +25,10 @@ const discoutnSchema = mongoose.Schema({
   activeTime: {
     type: Number,
     required: true
+  },
+  createAt: {
+    type: Date,
+    required: true
   }
 })
 

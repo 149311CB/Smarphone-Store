@@ -1,14 +1,6 @@
 import mongoose from 'mongoose'
 
 const orderDetailSchema = mongoose.Schema({
-  quantity: {
-    type: Number,
-    required: true
-  },
-  total: {
-    type: Double,
-    required: true
-  },
   order: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -18,6 +10,14 @@ const orderDetailSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Spec'
+  },
+  quantity: {
+    type: Number,
+    required: true
+  },
+  total: {
+    type: Double,
+    required: true
   },
 })
 

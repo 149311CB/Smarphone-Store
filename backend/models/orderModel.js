@@ -1,14 +1,18 @@
 import mongoose from 'mongoose'
 
 const orderSchema = mongoose.Schema({
-  SubTotal: {
+  subTotal: {
     type: Double,
     required: true
   },
-  paymentMethod: {
+  status: {
+    type: String,
+    required: true
+  },
+  payment: {
     type: mongoose.Schema.Types.ObjectId,
-    require: true,
-    ref: 'paymentMethod'
+    required: true,
+    ref: 'Payment'
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,14 +23,6 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Address'
-  },
-  isPaid: {
-    type: Boolean,
-    required: true
-  },
-  paidAt: {
-    type: Date,
-    required: false
   },
   createAt: {
     type: Date,
