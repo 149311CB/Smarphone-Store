@@ -1,5 +1,35 @@
 import mongoose from "mongoose";
 
+const rom = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  value: {
+    type: Number,
+    required: true
+  },
+  createdDate: {
+    type: Date,
+    required: true
+  }
+})
+
+const ram = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  value: {
+    type: Number,
+    required: true
+  },
+  createdDate: {
+    type: Date,
+    required: true
+  }
+})
+
 const productSchema = mongoose.Schema({
   id: {
     type: String,
@@ -66,16 +96,10 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  rom: {
-    type: Number,
-    required: true,
-  },
-  ram: {
-    type: Number,
-    required: true,
-  },
+  rom: [rom],
+  ram: [ram],
   price: {
-    type: Number,
+    type: Double,
     required: true,
   },
   image: {
