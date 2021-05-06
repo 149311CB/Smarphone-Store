@@ -14,20 +14,25 @@ Go
 -- CRETATE NEW TABLE
 CREATE TABLE roms(
 	_id varchar(10) NOT NULL PRIMARY KEY,
-	Rom int NOT NULL
+	name nvarchar(Max),
+	value int NOT NULL,
+	createdAt DateTime NOT NULL
 )
 Go
 
 CREATE TABLE rams(
 	_id varchar(10) NOT NULL PRIMARY KEY,
-	Ram int NOT NULL
+	name nvarchar(Max),
+	value int NOT NULL,
+	createdAt DateTime NOT NULL
 )
 Go
 
 CREATE TABLE waranties(
 	_id varchar(10) NOT NULL PRIMARY KEY,
-	WarantyType nvarchar(50) NOT NULL,
-	WarantyTime int NOT NULL,
+	warantyType nvarchar(50) NOT NULL,
+	warantyTime int NOT NULL,
+	createdAt DateTime NOT NULL
 )
 
 CREATE TABLE specs(
@@ -51,6 +56,7 @@ CREATE TABLE specs(
 	charger nvarchar(25) NOT NULL,
 	warantyId varchar(10) NOT NULL FOREIGN KEY REFERENCES waranties(_id),
 	price decimal NOT NULL,
+	createdAt DateTime NOT NULL
 )
 Go
 
@@ -59,30 +65,59 @@ CREATE TABLE users(
 	fullName nvarchar(50),
 	phoneNumber int,
 	email varchar(100),
-	sex binary,
+	gender binary,
 	birthday DateTime,
 	Password varchar(50),
+	createdAt DateTime NOT NULL
 )
 Go
+
+CREATE TABLE city(
+	_id varchar(10) NOT NULL PRIMARY KEY,
+	name nvarchar(Max),
+	createdAt DateTime NOT NULL
+)
+Go
+
+CREATE TABLE district(
+	_id varchar(10) NOT NULL PRIMARY KEY,
+	name nvarchar(Max),
+	cityId varchar(10) NOT NULL FOREIGN KEY REFERENCES city(_id),
+	createdAt DateTime NOT NULL
+)
+Go
+
+CREATE TABLE ward(
+	_id varchar(10) NOT NULL PRIMARY KEY,
+	name nvarchar(Max),
+	level nvarchar(Max),
+	districtId varchar(10) NOT NULL FOREIGN KEY REFERENCES district(_id),
+	createdAt DateTime NOT NULL
+)
+Go
+
 
 CREATE TABLE addresses(
 	_id varchar(10) NOT NULL PRIMARY KEY,
 	receiverName nvarchar(50) NOT NULL,
 	receiverPhone varchar(25) NOT NULL,
-	city nvarchar(50) NOT NULL,
-	district nvarchar(50) NOT NULL,
-	subDistrict nvarchar(50) NOT NULL,
+	cityId varchar(10) NOT NULL FOREIGN KEY REFERENCES city(_id),
+	district varchar(10) NOT NULL FOREIGN KEY REFERENCES district(_id),
+	ward varchar(10) NOT NULL FOREIGN KEY REFERENCES ward(_id),
 	addressDetail nvarchar(255) NOT NULL,
 	addressType nvarchar(50) NOT NULL,
 	isPrimary binary NOT NULL,
 	userId varchar(10) NOT NULL FOREIGN KEY REFERENCES users(_id),
+	createdAt DateTime NOT NULL
 )
+Go
 
 CREATE TABLE paymentMethods(
 	_id varchar(10) NOT NULL PRIMARY KEY,
 	userId varchar(10) NOT NULL FOREIGN KEY REFERENCES users(_id),
 	paymentType nvarchar(50) NOT NULL,
-	provider nvarchar(50)
+	provider nvarchar(50),
+	createdAt DateTime NOT NULL
 )
 Go
 
@@ -94,18 +129,26 @@ CREATE TABLE discounts(
 	discountStart DateTime NOT NULL,
 	activeTime int NOT NULL,
 	paymentMethodId varchar(10) NOT NULL FOREIGN KEY REFERENCES paymentMethods(_id),
+	createdAt DateTime NOT NULL
 )
 Go
 
+CREATE TABLE payment(
+	_id varchar(10) NOT NULL PRIMARY KEY,
+	paymentMethodId varchar(10) NOT NULL FOREIGN KEY REFERENCES paymentMethods(_id),
+	paymentAmount Decimal NOT NULL,
+	paymentAt DateTime NOT NULL,
+	isPaid binary NOT NULL
+)
 
 CREATE TABLE orders(
 	_id varchar(10) NOT NULL PRIMARY KEY,
 	userId varchar(10) NOT NULL FOREIGN KEY REFERENCES users(_id),
 	total decimal NOT NULL,
-	paymentMethodId varchar(10) NOT NULL FOREIGN KEY REFERENCES paymentMethods(_id),
 	addressId varchar(10) NOT NULL FOREIGN KEY REFERENCES addresses(_id),
-	createAt Datetime NOT NULL,
-	idPaid binary NOT NULL
+	status nvarchar(Max) NOT NULL,
+	paymentId varchar(10) NOT NULL FOREIGN KEY REFERENCES payment(_id),
+	createAt Datetime NOT NULL
 )
 Go
 
@@ -113,7 +156,8 @@ CREATE TABLE orderDetail(
 	_id varchar(10) NOT NULL PRIMARY KEY,
 	orderId varchar(10) NOT NULL FOREIGN KEY REFERENCES orders(_id),
 	specId varchar(10) NOT NULL FOREIGN KEY REFERENCES specs(_id),
-	quantity int NOT NULL
+	quantity int NOT NULL,
+	createdAt DateTime NOT NULL
 )
 
 CREATE TABLE ratings(
@@ -121,5 +165,6 @@ CREATE TABLE ratings(
 	userId varchar(10) NOT NULL FOREIGN KEY REFERENCES users(_id),
 	specId varchar(10) NOT NULL FOREIGN KEY REFERENCES specs(_id),
 	rating int NOT NULL,
-	comment nvarchar(255)
+	comment nvarchar(255),
+	createdAt DateTime NOT NULL
 )
