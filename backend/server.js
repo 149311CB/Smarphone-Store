@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import router from "./routes/productRoutes.js";
+import ultilsRouter from './routes/ultilsRoutes.js'
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", router);
+app.use("/api/ultils", ultilsRouter)
 
 const PORT = process.env.PORT || 5000;
 

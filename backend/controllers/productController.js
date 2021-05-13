@@ -17,4 +17,4 @@ const getSpecById = asyncHandler(async (req, res) => {
   res.json(spec);
 });
 
-export { getSpecs, getSpecById };
+export {getSpecs, getSpecById};

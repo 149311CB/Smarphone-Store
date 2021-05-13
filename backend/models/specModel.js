@@ -50,10 +50,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  gpu: {
-    type: String,
-    required: true,
-  },
   charger: {
     type: String,
     required: true,
