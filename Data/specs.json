@@ -4,20 +4,15 @@
       "$oid": "60780679a8881f578735c21c"
     },
     "id": "APFS20HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128,
+      256
+    ],
+    "rams": [
+      6
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -43,56 +38,9 @@
     "price": {
       "$numberDouble": "29959000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg",
-    "createdAt": {
-      "$date": "2021-05-05T17:00:00.000Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "60780679a8881f578735c21d"
-    },
-    "id": "APFS20HD02",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d6a"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
-      "_id": {
-        "$oid": "6093bdb114a4fd3226fc2d63"
-      }
-    },
-    "name": "iPhone 12 Pro Max 256GB",
-    "model": "A2411",
-    "manufactor": "Apple",
-    "make": "China",
-    "backCam": "12 MP, f/1.6, 26mm (wide), 1.4µm, dual pixel PDAF, OIS; 12 MP, f/2.0, 52mm (telephoto), 1/3.4\", 1.0µm, PDAF, OIS, 2x optical zoom; 12 MP, f/2.4, 120˚, 13mm (ultrawide), 1/3.6\" TOF 3D LiDAR scanner (depth)",
-    "frontCam": "12 MP, f/2.2, 23mm (wide), 1/3.6\" SL 3D, (depth/biometrics sensor)",
-    "display": "Super Retina XDR OLED, HDR10, Dolby Vision, Wide color gamut, True-tone",
-    "resolution": "1284 x 2778",
-    "size": {
-      "$numberDouble": "6.7"
-    },
-    "chipset": "Apple A14 Bionic (5 nm)",
-    "gpu": "Apple GPU 4 nhân",
-    "charger": "Lightning",
-    "battery": "Li-Ion",
-    "simNumber": {
-      "$numberInt": "1"
-    },
-    "price": {
-      "$numberDouble": "32490000"
-    },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -102,20 +50,14 @@
       "$oid": "60780679a8881f578735c21e"
     },
     "id": "APFS20DH03",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d68"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      64
+    ],
+    "rams": [
+      6
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -141,7 +83,9 @@
     "price": {
       "$numberDouble": "21950000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -151,19 +95,14 @@
       "$oid": "60780679a8881f578735c21f"
     },
     "id": "APFS19HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d68"
-      }
-    },
-    "ram": {
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      64
+    ],
+    "rams": [
+      6
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -189,7 +128,9 @@
     "price": {
       "numberDouble": "16290000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -199,20 +140,14 @@
       "$oid": "60780679a8881f578735c220"
     },
     "id": "SSFS212K01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d71"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      12
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -238,7 +173,9 @@
     "price": {
       "$numberDouble": "30990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/226316/samsung-galaxy-s21-ultra-bac-600x600-1-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/226316/samsung-galaxy-s21-ultra-bac-600x600-1-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -248,20 +185,14 @@
       "$oid": "60780679a8881f578735c221"
     },
     "id": "SSFS20HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d71"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      12
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -287,7 +218,9 @@
     "price": {
       "$numberDouble": "33000000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/225063/sam-sung-note-20-ultra-vang-dong-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/225063/sam-sung-note-20-ultra-vang-dong-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -297,20 +230,14 @@
       "$oid": "60780679a8881f578735c222"
     },
     "id": "SSCS20HD02",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      12
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -336,7 +263,9 @@
     "price": {
       "$numberDouble": "4790000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/209793/samsung-galaxy-m31-600x600-1-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/209793/samsung-galaxy-m31-600x600-1-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -346,20 +275,14 @@
       "$oid": "60780679a8881f578735c223"
     },
     "id": "SSMS20HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6e"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      6
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -385,7 +308,9 @@
     "price": {
       "$numberDouble": "7990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/211570/samsung-galaxy-a51-silver-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/211570/samsung-galaxy-a51-silver-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -395,20 +320,14 @@
       "$oid": "60780679a8881f578735c224"
     },
     "id": "OPMS20HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6f"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      8
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -434,7 +353,9 @@
     "price": {
       "$numberDouble": "8990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/220438/oppo-reno5-trang-600x600-1-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/220438/oppo-reno5-trang-600x600-1-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -444,20 +365,14 @@
       "$oid": "60780679a8881f578735c225"
     },
     "id": "OPMS19HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d69"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6f"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      128
+    ],
+    "rams": [
+      8
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -483,7 +398,9 @@
     "price": {
       "$numberDouble": "6990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/217287/oppo-a91-trang-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/217287/oppo-a91-trang-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -493,20 +410,14 @@
       "$oid": "60780679a8881f578735c226"
     },
     "id": "OPSF20HD01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d6a"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6f"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      256
+    ],
+    "rams": [
+      8
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -532,7 +443,9 @@
     "price": {
       "$numberDouble": "11990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/223497/oppo-reno4-pro-trang-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/223497/oppo-reno4-pro-trang-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }
@@ -542,20 +455,14 @@
       "$oid": "60780679a8881f578735c227"
     },
     "id": "XMFS212K01",
-    "rom": {
-      "ref": "roms",
-      "_id": {
-        "$oid": "6093be4614a4fd3226fc2d6a"
-      }
-    },
-    "ram": {
-      "ref": "rams",
-      "_id": {
-        "$oid": "6093be6914a4fd3226fc2d6f"
-      }
-    },
-    "waranty": {
-      "ref": "waranties",
+    "roms": [
+      256
+    ],
+    "rams": [
+      8
+    ],
+    "warranty": {
+      "ref": "warranties",
       "_id": {
         "$oid": "6093bdb114a4fd3226fc2d63"
       }
@@ -581,7 +488,9 @@
     "price": {
       "$numberDouble": "21990000"
     },
-    "image": "https://cdn.tgdd.vn/Products/Images/42/226264/xiaomi-mi-11-xanhduong-600x600-600x600.jpg",
+    "images": [
+      "https://cdn.tgdd.vn/Products/Images/42/226264/xiaomi-mi-11-xanhduong-600x600-600x600.jpg"
+    ],
     "createdAt": {
       "$date": "2021-05-05T17:00:00.000Z"
     }

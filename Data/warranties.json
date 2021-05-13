@@ -1,0 +1,32 @@
+[
+  {
+    "_id": {
+      "$oid": "6093bdb114a4fd3226fc2d62"
+    },
+    "warrantyType": "Bảo hành điện tử",
+    "time": 6,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6093bdb114a4fd3226fc2d63"
+    },
+    "warrantyType": "Bảo hành điện tử",
+    "time": 12,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6093bdb114a4fd3226fc2d64"
+    },
+    "warrantyType": "Bảo hành điện tử",
+    "time": 24,
+    "createdAt": {
+      "$date": "2021-05-05T17:00:00.000Z"
+    }
+  }
+]

@@ -11,4 +11,3 @@
           + Id
           + Name
           + Level (Cấp hành chính phường,xã,thị trấn)
-    
