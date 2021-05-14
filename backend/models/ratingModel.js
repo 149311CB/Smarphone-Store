@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const ratingSchema = mongoose.Schema({
   rating: {
-    type: Double,
+    type: mongoose.Schema.Types.Decimal128,
     required: true
   },
   comment: {
@@ -11,10 +11,12 @@ const ratingSchema = mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true
   },
   spec: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Spec",
     required: true
   },
   createAt: {
