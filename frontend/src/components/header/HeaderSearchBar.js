@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../components/Button";
+import Button from "../Button";
 
 const HeaderSearchBar = () => {
   return (
@@ -7,13 +7,7 @@ const HeaderSearchBar = () => {
       <Button text="DANH MỤC SẢN PHẨM" textAlign="left" width="100px" />
       <form className="search-form">
         <input
-          type="text"
-          style={{
-            border: "none",
-            outline: "none",
-            padding: "0.9rem 0.6rem",
-          }}
-        />
+          type="text" />
       </form>
       <Button text="TÌM KIẾM" border="1px solid #a7c080" />
     </div>

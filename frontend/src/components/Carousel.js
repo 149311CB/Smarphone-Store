@@ -1,35 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, {useffect, useState} from "react";
+import {useSelector} from "react-redux";
 
-const HeroSlide = ({ products }) => {
-  const [timer, setTime] = useState();
-  const [primary, setPrimary] = useState("");
-
-  useEffect(() => {
-    const slide = () => {
-      setPrimary("slide");
-    };
-    setTimeout(() => setPrimary("changed"), 3000);
-    console.log(primary);
-  }, []);
-
+const HeroSlide = () => {
+  const {loading, error, banners} = useSelector(state => state.bannerList)
+  const [x, setX] = useState(0);
+  const slideLeft = () => {
+    if(x !== 0){
+      setX(x + 100);
+    }else{
+        setX(-(banners.length-1)*100)
+    }
+  }
+  const slideRight = () => {
+      if(x !== -(banners.length-1)*100){
+      setX(x - 100)
+      }else{
+        setX(0)
+      }
+  }
   return (
-    <div className="hero-container">
-      <div className="hero-slide">
-        {products.map((s, index) =>
-          index < 3 ? (
-            index === 1 ? (
-              <div key={index} className={"hero-image " + primary}>
-                <img src={s.image} />
-              </div>
-            ) : (
-              <div key={index} className="hero-image">
-                <img src={s.image} />
-              </div>
-            )
-          ) : (
-            ""
-          )
+    <div className="carousel-container">
+      <div className="carousel-slide">
+        <button id="slide-left" onClick={e => slideLeft()}><i class="fas fa-chevron-left" ></i></button>
+        {banners.map((p, index) =>
+          <div key={index} className="carousel-image" style={{transform:`translateX(${x}%)`}}>
+            <img src={p.image} />
+          </div>
         )}
+        <button id="slide-right" onClick={e => slideRight()}><i class="fas fa-chevron-right" ></i></button>
       </div>
     </div>
   );

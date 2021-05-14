@@ -1,0 +1,44 @@
+/* HEADER */
+header {
+  min-height: 10vh;
+  padding: 0.6rem 0rem;
+  background-color: $text-color;
+}
+
+/* NAVGATION BAR */
+nav {
+  @include flex(initial, center, row);
+  font-family: "Nunito", serif;
+  width: 90%;
+  margin: 0 auto;
+  background-color: $text-color;
+}
+
+.header-funtions {
+  width: 100%;
+  @include flex(space-between, center, row);
+}
+
+.header-searchbar {
+  display: flex;
+  flex-grow: 1;
+  padding-left: 0.6rem;
+  .search-form {
+    width: 50%;
+    input {
+      border-radius: 0.1rem 0 0 0.1rem;
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 0.6rem 0.3rem;
+    }
+  }
+}
+
+.header-options {
+  @include flex(space-between, center, row);
+  font-size: 0.75rem;
+  a {
+    padding-left: 0.6rem;
+  }
+}

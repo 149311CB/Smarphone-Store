@@ -55,61 +55,35 @@ a {
   color: white;
 }
 
-/* HEADER */
-header {
-  min-height: 10vh;
-  padding: 0.6rem 0rem;
+$bg-color:#fafafa;
+$accent-color:#A7C080;
+$text-color:#323d43;
+
+body{
+  background-color:  $bg-color;
 }
 
-/* NAVGATION BAR */
-nav {
-  @include flex(initial, center, row);
-  border: 1px solid red;
-  font-family: "Nunito", serif;
-  width: 90%;
-  margin: 0 auto;
-}
 
-.header-funtions {
-  width: 100%;
-  @include flex(space-between, center, row);
-}
-
-.header-searchbar {
-  display: flex;
-  flex-grow: 1;
-  padding-left: 0.6rem;
-  .search-form {
-    width: 50%;
-    input {
-      border-radius: 0.1rem 0 0 0.1rem;
-      width: 100%;
-    }
-  }
-}
-
-.header-options {
-  @include flex(space-between, center, row);
-  font-size: 0.75rem;
-  a {
-    padding-left: 0.6rem;
-  }
-}
 
 /* MAIN */
-main {
+#main-container{
+  @include flex(space-between,stretch,row)
   width: 90%;
-  min-height: 90vh;
   margin: 1.2rem auto;
-  // border: 1px solid blue;
+}
+
+main {
+  background-color: white;
+  min-height: 90vh;
+  width: 70%;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1);
-  padding: 1.2rem;
   border-radius: 0.1rem;
 }
 
 /* CARD */
 .product-row {
-  @include grid(auto-fill, 250px, 1fr, 1.2rem);
+  @include grid(auto-fill, 200px, 1fr, 1.2rem);
+  padding: 1.2rem;
 }
 
 .card {
@@ -128,30 +102,7 @@ main {
   }
 }
 
-/* HERO SLIDE */
-.hero-container {
-  width: 100%;
-  height: 25rem;
-  border: 1px solid purple;
-  @include flex(center, center, row);
-}
-
-.hero-slide {
-  @include flex(center, center, row);
-  width: 90%;
-  height: 90%;
-  border: 1px solid red;
-}
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.hero-image:nth-child(2) {
-  flex: 2 0 100%;
-}
+@import "header";
+@import "sidebar";
+@import "carousel";
+@import "filterbar"

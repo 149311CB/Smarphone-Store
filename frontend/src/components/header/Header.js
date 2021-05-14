@@ -1,19 +1,11 @@
 import React from "react";
-import HeaderSearchBar from "./HeaderSearchBar";
+import HeaderSearchBar from './HeaderSearchBar'
 import HeaderOptions from "./HeaderOptions";
 
 const Header = () => {
   return (
-    <header
-      style={{
-        backgroundColor: "#323d43",
-      }}
-    >
-      <nav
-        style={{
-          backgroundColor: "#323d43",
-        }}
-      >
+    <header>
+      <nav>
         <div
           className="logo"
           style={{

@@ -1,0 +1,52 @@
+.sidebar{
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1);
+  width: 25%;
+  background-color: white;
+  font-size: 0.813rem;
+  padding: 0.6rem 1.2rem;
+  .sidebar-indicator{
+    border-top: 1px solid rgba(0, 0, 0, 0.125);;
+    margin: 1.2rem 0;
+  }
+  h4{
+    font-weight: 500;
+    font-size: 0.938rem;
+    margin-bottom: 0.6rem;
+  }
+  .rating:hover{
+    cursor: pointer;
+  }
+  .price-group{
+    @include flex(center, flex-start, column)
+    button{
+      background:rgb(238, 238, 238) none repeat scroll 0% 0%;
+      border: none;
+      text-align: initial;
+      margin: 0 0 0.3rem 0;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1.2rem;
+      cursor: pointer;
+         }
+       .price-input{
+         margin: 0.3rem 0;
+          @include flex(space-between,center,row)
+        input{
+          width: 45%;
+        }
+      }
+      #apply{
+          background-color:$accent-color;
+          color:$text-color;
+          border-radius: 0.2rem;
+          font-weight: 500;
+      }
+  }
+  .checkbox-group{
+    @include flex(initial,center,row)
+    margin-bottom: 0.6rem;
+    input{
+      margin-right:0.6rem;
+    }
+  }
+}
+
