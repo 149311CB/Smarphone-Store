@@ -62,22 +62,19 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  rom: {
-    type: Number,
+  roms: [],
+  rams: [],
+  warranty: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: 'Warranty'
   },
-  ram: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
+  price: Number,
+  images: [],
+  createAt: {
+    type: Date,
+    required: true
+  }
 });
 
 const Spec = mongoose.model("Spec", productSchema);
