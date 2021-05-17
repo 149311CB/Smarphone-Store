@@ -5,7 +5,7 @@ export const bannerListAction = () => async (dispatch) => {
   try {
     dispatch({type: BANNER_REQUEST});
     const {data} = await axios.get("/api/ultils/banners");
-    dispatch({type: BANNER_REQUEST_SUCCESS, payload: data})
+    dispatch({type: BANNER_REQUEST_SUCCESS, banners: data})
   } catch (error) {
     dispatch({
       type: BANNER_REQUEST_FAIL,
@@ -16,4 +16,3 @@ export const bannerListAction = () => async (dispatch) => {
     })
   }
 }
-

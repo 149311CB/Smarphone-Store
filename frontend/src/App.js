@@ -1,16 +1,24 @@
 import Header from "./components/header/Header";
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from './screens/ProductScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
 import Sidebar from './components/sidebar/Sidebar'
+import DateTimePicker from './components/DateTimePicker'
 
 function App() {
   return (
     <Router>
       <Header />
       <div id="main-container">
-        <Sidebar />
+        <Route path="/" component={Sidebar} exact />
         <main>
-          <HomeScreen />
+          <Route path="/login" component={LoginScreen} exact />
+          <Route path="/register" component={RegisterScreen} exact />
+          <Route path="/" component={HomeScreen} exact />
+          <Route path="/details/:id" component={ProductScreen} exact />
+          <Route path="/date" component={DateTimePicker} exact />
         </main>
       </div>
     </Router>

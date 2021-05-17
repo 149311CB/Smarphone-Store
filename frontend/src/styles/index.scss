@@ -58,6 +58,9 @@ a {
 $bg-color:#fafafa;
 $accent-color:#A7C080;
 $text-color:#323d43;
+$accent-disabled:rgba(167, 192, 128,0.5);
+$border-color:rgba(0, 0, 0, 0.125);
+$danger:#CC2414;
 
 body{
   background-color:  $bg-color;
@@ -74,8 +77,8 @@ body{
 
 main {
   background-color: white;
-  min-height: 90vh;
-  width: 70%;
+  min-height: 50vh;
+  width: 100%;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1);
   border-radius: 0.1rem;
 }
@@ -102,7 +105,62 @@ main {
   }
 }
 
+  .coupon{
+    @include flex(center,center,row);
+    position: relative;
+    overflow: hidden;
+    font-size: 0.813rem;
+  .coupon-value{
+    padding: 0.3rem 1.2rem;
+    border: 1px solid $border-color;
+    border-radius: 0.2rem;
+  }
+  .coupon-value.active{
+    background-color: $accent-color;
+    border: none;
+  }
+   .coupon-ball{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid $border-color;
+    background-color: white;
+    position: absolute;
+  }
+  .coupon-ball-left{
+    left: -7px;
+  }
+  .coupon-ball-right{
+    right: -7px;
+  }
+}
+
+.indicator{
+  border-top: 1px solid $border-color;
+  margin:1.2rem 0;
+}
+
+.noselect{
+-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.form-error{
+  color:rgb(255, 66, 78);
+  font-weight: 500;
+}
+
+
 @import "header";
 @import "sidebar";
 @import "carousel";
-@import "filterbar"
+@import "filterbar";
+@import "paginations";
+@import "productDetails";
+@import "login";
+@import "datetimepicker";

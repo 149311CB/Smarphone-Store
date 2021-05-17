@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const ratingSchema = mongoose.Schema({
   rating: {
-    type: mongoose.Schema.Types.Decimal128,
+    type: Number,
     required: true
   },
   comment: {

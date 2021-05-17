@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import {errorHandler} from './middlewares/errorMiddlewares.js'
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
@@ -30,6 +31,8 @@ app.use("/api/warranties", warrantyRoutes);
 app.use("/api/addresses", addressRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/ultils", ultilsRouter)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
 

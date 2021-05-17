@@ -1,7 +1,8 @@
 import React from 'react'
-import Rating from './Rating'
+import Rating from '../../Rating'
 
 const RatingGroup = () => {
+
   return (
     <div className="rating-group">
       <h4>Đánh giá</h4>

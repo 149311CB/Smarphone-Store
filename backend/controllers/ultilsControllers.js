@@ -13,10 +13,16 @@ const getBanners = asyncHandler(async (req, res) => {
 // @descs   Fetch all banner
 // @route   GET /api/ultils/banners
 // @access  Public
-const getRatings = asyncHandler(async (req, res) => {
+const getRatingsByValue = asyncHandler(async (req, res) => {
   const value = req.query.value;
   const ratings = await Rating.find({rating: value})
   res.json(ratings)
 })
 
-export {getBanners, getRatings}
+const getRatingsByProduct = asyncHandler(async (req, res) => {
+  console.log(req.params.id)
+  const ratings = await Rating.find({spec:req.params.id});
+  res.json(ratings)
+})
+
+export {getBanners, getRatingsByValue, getRatingsByProduct}

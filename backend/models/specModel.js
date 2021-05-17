@@ -69,6 +69,18 @@ const productSchema = mongoose.Schema({
     required: true,
     ref: 'Warranty'
   },
+  ratings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Rating"
+    }
+  ],
+  coupons: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Coupon"
+    }
+  ],
   price: Number,
   images: [],
   createAt: {

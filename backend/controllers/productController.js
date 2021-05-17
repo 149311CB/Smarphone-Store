@@ -12,7 +12,11 @@ const getSpecs = asyncHandler(async (req, res) => {
   const minram = req.query.minram ? parseInt(req.query.minram) : 0;
   const maxram = req.query.maxram ? parseInt(req.query.maxram) : Number.MAX_SAFE_INTEGER;
   const manufactor = req.query.manufactor ? `${req.query.manufactor}` : /.*/;
-  const specs = await Spec.find({price: {$gte: minprice, $lte: maxprice}, roms: {$gte: minrom, $lte: maxrom}, rams: {$gte: minram, $lte: maxram}, manufactor: manufactor})
+  const page = parseInt(req.query.page)
+  const limit = parseInt(req.query.limit)
+
+  const specs = await Spec.find({price: {$gte: minprice, $lte: maxprice}, roms: {$gte: minrom, $lte: maxrom}, rams: {$gte: minram, $lte: maxram}, manufactor: manufactor});
+
   res.json(specs);
 });
 
@@ -20,7 +24,7 @@ const getSpecs = asyncHandler(async (req, res) => {
 // @route   GET /api/specs/:id
 // @access  Public
 const getSpecById = asyncHandler(async (req, res) => {
-  const spec = await Spec.findById(req.params.id);
+  const spec = await Spec.findById(req.params.id).populate("ratings").populate("warranty").populate("coupons");
   res.json(spec);
 });
 

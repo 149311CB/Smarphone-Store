@@ -1,12 +1,12 @@
 import asyncHandler from 'express-async-handler'
-import Discount from '../models/discountModel.js'
+import Coupon from '../models/discountModel.js'
 
 // @descs   Fetch all discount
 // @route   GET /api/discounts
 // @access  Public
 const getDiscounts = asyncHandler(async (req, res) => {
   try {
-    const discount = await Discount.find({})
+    const discount = await Coupon.find({})
     res.json(discount)
   } catch (error) {
     res.json(error)
@@ -17,7 +17,7 @@ const getDiscounts = asyncHandler(async (req, res) => {
 // @route   GET /api/discounts/:id
 // @access  Public
 const getDiscountById = asyncHandler(async (req, res) => {
-  const discount = await Discount.findById(req.params.id)
+  const discount = await Coupon.findById(req.params.id)
   if (discount) {
     res.status(201).json(discount)
   } else {
@@ -30,7 +30,7 @@ const getDiscountById = asyncHandler(async (req, res) => {
 // @route   POST /api/discounts
 // @access  Public
 const createDiscount = asyncHandler(async (req, res) => {
-  const discount = await Discount.create(req.body)
+  const discount = await Coupon.create(req.body)
   res.status(201).json(discount)
 })
 
@@ -38,7 +38,7 @@ const createDiscount = asyncHandler(async (req, res) => {
 // @route   POST /api/discounts
 // @access  Public
 const deleteDiscount = asyncHandler(async (req, res) => {
-  const discount = await Discount.findById(req.params.id)
+  const discount = await Coupon.findById(req.params.id)
   if (discount) {
     discount.remove()
     res.status(201).json({message: "Discount removed"})

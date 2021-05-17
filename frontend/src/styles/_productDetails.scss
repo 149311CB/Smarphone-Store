@@ -1,0 +1,159 @@
+.product-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "product-image product-image product-title product-title product-title product-title product-title"
+    "product-image product-image product-options product-options product-options product-submit product-submit"
+    "product-image product-image product-options product-options product-options product-submit product-submit"
+    "product-image product-image product-options product-options product-options product-submit product-submit"
+    "product-image product-image product-options product-options product-options product-submit product-submit";
+}
+
+.product-image { grid-area: product-image; }
+
+.product-options { grid-area: product-options; }
+
+.product-title { grid-area: product-title; }
+
+.product-submit { grid-area: product-submit; }
+
+.product-content-container{
+  padding: 0 0.6rem 0.6rem 0;
+  .product-image{
+    border: 1px solid $border-color;
+    border-top: none;
+    border-left:none;
+    border-bottom: none;
+    padding: 0.6rem;
+    img{
+      width: 100%;
+    }
+    .small-images{
+      @include flex(flex-start,center,row);
+      padding-top: 0.6rem;
+      img{
+        margin-right: 0.3rem;
+        height: 70px;
+        width: 60px;
+        border: 1px solid $border-color;
+        border-radius: 0.3rem;
+        padding: 0.3rem;
+      }
+    }
+  }
+  .product-title{
+    padding: 0.6rem 1.2rem;
+    .rating{
+      font-size: 0.813rem;
+    }
+  }
+
+  .product-options{
+    padding: 0.6rem 1.2rem;
+    .group-title{
+      padding-bottom: 0.3rem;
+      font-size: 0.813rem;
+    }
+    .price-tag{
+      background-color: #F1F1F1;
+      color:$danger;
+      border-radius: 0.3rem;
+      font-weight: 500;
+      padding: 1.2rem;
+      font-size: 2rem;
+      }
+      .roms-group{
+        @include flex(flex-start,center,row);
+        font-size: 0.813rem;
+        div{
+          padding: 0.3rem 1.2rem;
+          border-radius: 0.3rem;
+          text-align: center;
+          border: 1px solid $border-color;
+          color: $text-color;
+          margin-right: 0.3rem;
+        }
+        div:hover{
+          cursor: pointer;
+        }
+        .active{
+          background: $accent-color;
+          border: none;
+        }
+      }
+      .coupon-group{
+        display: flex;
+      }
+
+      .quantity-select{
+        input{
+          border: 1px solid $border-color;
+          outline: none;
+          width: 13%;
+          padding: 0.55rem;
+          text-align: center;
+        }
+        input:focus{
+          border: 1px solid blue;
+        }
+        button{
+          background: $accent-color;
+          border: none;
+          padding: 0.6rem;
+        }
+        button:hover{
+          cursor: pointer;
+        }
+        .left-btn{
+          border-radius: 0.1rem 0 0 0.1rem;
+        }
+        .right-btn{
+          border-radius: 0 0.1rem 0.1rem 0;
+        }
+      }
+  }
+  .product-submit{
+    color: $text-color;
+    font-size: 0.813rem;
+    padding: 0.6rem;
+    ul{
+      border-radius: 0.3rem;
+      border: 1px solid $border-color;
+      list-style: none;
+      padding: 0.6rem;
+      li:first-child{
+        border-top: none;
+      }
+      li{
+        padding: 0.6rem 0;
+        border-top:1px solid $border-color;
+      }
+      .warranty-detail p{
+        line-height: 2rem;
+      }
+      
+      .btn-container{
+        text-align: center;
+        button{
+          width: 90%;
+          padding: 0.6rem 0;
+          font-weight: 500;
+          border-radius: 0.3rem;
+          border: none;
+        }
+        button:hover{
+          cursor: pointer;
+        }
+        .buy-btn{
+          background: $text-color;
+          color: $accent-color;
+        }
+        .add-to-card-btn{
+          background: $accent-color;
+        }
+      }
+    }
+  }
+}
