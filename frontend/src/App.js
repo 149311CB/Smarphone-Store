@@ -5,7 +5,7 @@ import ProductScreen from './screens/ProductScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import Sidebar from './components/sidebar/Sidebar'
-import DateTimePicker from './components/DateTimePicker'
+import CartScreen from './screens/CartScreen'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/register" component={RegisterScreen} exact />
           <Route path="/" component={HomeScreen} exact />
           <Route path="/details/:id" component={ProductScreen} exact />
-          <Route path="/date" component={DateTimePicker} exact />
+          <Route patch="/cart" component={CartScreen} exact />
         </main>
       </div>
     </Router>

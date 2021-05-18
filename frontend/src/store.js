@@ -5,6 +5,7 @@ import {productListReducer, productReducer} from "./reducers/ProductReducer";
 import {bannerListReducer, ratingByProductReducer} from './reducers/UltilsReducers'
 import {filterReducer} from './reducers/FiltersReducers'
 import {userLoginReducer, userRegisterReducer} from './reducers/UserReducers'
+import {getCartReducer, addToCartReducer} from './reducers/CartReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -12,7 +13,9 @@ const reducer = combineReducers({
   bannerList: bannerListReducer,
   filter: filterReducer,
   userLogin: userLoginReducer,
-  userRegister: userRegisterReducer
+  userRegister: userRegisterReducer,
+  addToCart: addToCartReducer,
+  getCart: getCartReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -20,9 +23,6 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   : null
 
 const initialState = {
-  /* filter: {
-    filter: ""
-  }, */
   userLogin: {userInfo: userInfoFromStorage}
 };
 

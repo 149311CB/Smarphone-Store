@@ -29,7 +29,7 @@ const HeaderOptions = () => {
       </div>
       <div className="options-container">
         <div className="header-options">
-          <Link to="#cart">
+          <Link to="/cart">
             <i className="fas fa-shopping-cart"></i> GIỎ HÀNG
           </Link>
           {userInfo

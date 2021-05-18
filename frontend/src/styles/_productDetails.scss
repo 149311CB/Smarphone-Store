@@ -74,13 +74,11 @@
           border: 1px solid $border-color;
           color: $text-color;
           margin-right: 0.3rem;
+          background: $accent-color;
+          border: none;
         }
         div:hover{
           cursor: pointer;
-        }
-        .active{
-          background: $accent-color;
-          border: none;
         }
       }
       .coupon-group{
@@ -107,10 +105,10 @@
           cursor: pointer;
         }
         .left-btn{
-          border-radius: 0.1rem 0 0 0.1rem;
+          border-radius: 0.3rem 0 0 0.3rem;
         }
         .right-btn{
-          border-radius: 0 0.1rem 0.1rem 0;
+          border-radius: 0 0.3rem 0.3rem 0;
         }
       }
   }

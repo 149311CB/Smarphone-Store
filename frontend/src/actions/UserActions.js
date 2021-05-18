@@ -1,9 +1,11 @@
 import {USER_LOGIN_REQUEST, USER_LOGIN_REQUEST_SUCCESS, USER_LOGIN_REQUEST_FAIL, USER_LOGOUT, USER_REGISTER_REQUEST, USER_REGISTER_REQUEST_SUCCESS, USER_REGISTER_REQUEST_FAIL} from '../constants/LoginConstants'
+import {addToCart} from './CartActions'
 import axios from 'axios'
 
-export const userLoginAction = (email, password) => async (dispatch) => {
+export const userLoginAction = (email, password) => async (dispatch, getState) => {
   try {
     dispatch({type: USER_LOGIN_REQUEST})
+
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -14,6 +16,7 @@ export const userLoginAction = (email, password) => async (dispatch) => {
 
     dispatch({type: USER_LOGIN_REQUEST_SUCCESS, userInfo: data})
     localStorage.setItem("userInfo", JSON.stringify(data))
+    const localCart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : null
   } catch (error) {
     dispatch({
       type: USER_LOGIN_REQUEST_FAIL,

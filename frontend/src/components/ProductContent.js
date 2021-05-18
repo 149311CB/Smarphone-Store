@@ -1,25 +1,21 @@
 import React, {useState, useEffect} from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import Rating from './Rating'
 import ProductOptions from './ProductOptions'
+import {addToCart} from '../actions/CartActions'
+
+
 const ProductContent = () => {
+  const dispatch = useDispatch()
   const {loading, error, product} = useSelector(state => state.productDetail)
+  product ? console.log(product._id) : console.log(null)
 
   const [mainImage, setMainImage] = useState("")
   const [quantity, setQuantity] = useState(1)
-  const [rom, setRom] = useState(Object.keys(0).length !== 0 ? product.roms[0] : 0)
   const rating = Object.keys(product).length !== 0 ? product.ratings.reduce((acc, curr) => acc + curr.rating, 0) : 0
 
   const changeMainImage = (i) => {
     setMainImage(i)
-  }
-
-  const changeRoms = (r, e) => {
-    {/* setRom(r)*/}
-    const romGroup = Array.from(document.querySelectorAll(".roms-group div.active"))
-    romGroup.map(rg => rg.classList.remove("active"))
-    e.target.classList.add("active")
-    setRom(r)
   }
 
   const changeQuantity = (qty) => {
@@ -46,7 +42,8 @@ const ProductContent = () => {
     setCoupon(c)
   } */}
 
-  const addToCart = (e) => {
+  const addToCartHandler = (e) => {
+    dispatch(addToCart({product: product._id, quantity: quantity}))
   }
 
   return (
@@ -70,10 +67,10 @@ const ProductContent = () => {
           <div className="product-options" >
             <ProductOptions
               price={product.price}
-              roms={product.roms}
+              rom={product.rom}
+              ram={product.ram}
               quantity={quantity}
               coupons={product.coupons}
-              changeRoms={changeRoms}
               changeQuantity={changeQuantity} />
           </div>
 
@@ -89,11 +86,10 @@ const ProductContent = () => {
                 <button className="buy-btn">MUA NGAY</button>
               </li>
               <li className="btn-container">
-                <button className="add-to-card-btn">THÊM VÀO GIỎ HÀNG</button>
+                <button className="add-to-card-btn" onClick={addToCartHandler}>THÊM VÀO GIỎ HÀNG</button>
               </li>
             </ul>
           </div>
-
         </div > : ""
       }
     </>
