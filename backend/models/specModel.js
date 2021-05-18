@@ -62,8 +62,14 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  roms: [],
-  rams: [],
+  rom: {
+    type: Number,
+    required: true
+  },
+  ram: {
+    type: Number,
+    required: true
+  },
   warranty: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,

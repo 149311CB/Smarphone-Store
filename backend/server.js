@@ -9,6 +9,7 @@ import discountRoutes from './routes/discountRoutes.js'
 import warrantyRoutes from './routes/warrantyRoutes.js'
 import addressRoutes from './routes/addressRoutes.js'
 import cityRoutes from './routes/cityRoutes.js'
+import cartRoutes from './routes/cartRoutes.js'
 import ultilsRouter from './routes/ultilsRoutes.js'
 
 dotenv.config();
@@ -30,7 +31,8 @@ app.use("/api/discounts", discountRoutes);
 app.use("/api/warranties", warrantyRoutes);
 app.use("/api/addresses", addressRoutes);
 app.use("/api/cities", cityRoutes);
-app.use("/api/ultils", ultilsRouter)
+app.use("/api/ultils", ultilsRouter);
+app.use("/api/cart", cartRoutes);
 
 app.use(errorHandler)
 

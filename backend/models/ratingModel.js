@@ -23,7 +23,6 @@ const ratingSchema = mongoose.Schema({
     type: Date,
     required: true
   }
-
 })
 
 const Rating = mongoose.model('Rating', ratingSchema);

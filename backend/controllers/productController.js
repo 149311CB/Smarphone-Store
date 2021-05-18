@@ -15,7 +15,7 @@ const getSpecs = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page)
   const limit = parseInt(req.query.limit)
 
-  const specs = await Spec.find({price: {$gte: minprice, $lte: maxprice}, roms: {$gte: minrom, $lte: maxrom}, rams: {$gte: minram, $lte: maxram}, manufactor: manufactor});
+  const specs = await Spec.find({price: {$gte: minprice, $lte: maxprice}, rom: {$gte: minrom, $lte: maxrom}, ram: {$gte: minram, $lte: maxram}, manufactor: manufactor});
 
   res.json(specs);
 });

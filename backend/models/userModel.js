@@ -34,6 +34,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  carts: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cart",
+    required: false
+  },
   createAt: {
     type: Date,
     required: true
