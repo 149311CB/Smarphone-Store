@@ -6,6 +6,7 @@ import {bannerListAction} from '../actions/ultilsActions'
 import {useDispatch, useSelector} from "react-redux";
 import FilterBar from '../components/filters/FilterBar'
 import Paginations from '../components/Paginations'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const HomeScreen = () => {
   {/* const localFilter = localStorage.getItem('filter')*/}
@@ -27,16 +28,21 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(bannerListAction())
   }, [])
-
+  {/* loading?<ClipLoader color = {"#A7c080"} override = {override} size = {35} />*/}
   return (
     <>
-      <Carousel products={products} />
-      <FilterBar changeActive={changeActive} option={option} />
-      <div className="product-row">
-        {products.map((s, index) => (
-          <Card data={s} key={index} />
-        ))}
-      </div>
+      {loading ? <div className="loader"> <ClipLoader color={"#A7c080"} size={100} /> </div> :
+        <div class="sub-main">
+          <Carousel products={products} />
+          <FilterBar changeActive={changeActive} option={option} />
+          <div className="product-row">
+            {products.map((s, index) => (
+              <Card id={s._id} name={s.name}
+                ratings={s.ratings != "undefined" ? s.ratings : []}
+                price={s.price} image={s.images[0]} key={index} />
+            ))}
+          </div>
+        </div>}
       {current ? <Paginations current={current} /> : ""}
     </>
   );

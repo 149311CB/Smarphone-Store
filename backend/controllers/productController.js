@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Spec from "../models/specModel.js";
+import Cart from '../models/cartModel.js'
 
 // @descs   Fetch all products specs
 // @route   GET /api/specs
@@ -12,19 +13,54 @@ const getSpecs = asyncHandler(async (req, res) => {
   const minram = req.query.minram ? parseInt(req.query.minram) : 0;
   const maxram = req.query.maxram ? parseInt(req.query.maxram) : Number.MAX_SAFE_INTEGER;
   const manufactor = req.query.manufactor ? `${req.query.manufactor}` : /.*/;
-  const page = parseInt(req.query.page)
-  const limit = parseInt(req.query.limit)
 
-  const specs = await Spec.find({price: {$gte: minprice, $lte: maxprice}, rom: {$gte: minrom, $lte: maxrom}, ram: {$gte: minram, $lte: maxram}, manufactor: manufactor});
+  const specs = await Spec.find({
+    price: {$gte: minprice, $lte: maxprice},
+    rom: {$gte: minrom, $lte: maxrom},
+    ram: {$gte: minram, $lte: maxram},
+    manufactor: manufactor
+  })
+    .select("name price images")
+    .populate({path: "ratings", select: "rating"});
 
   res.json(specs);
 });
+
+const getSimilarProduct = asyncHandler(async (req, res) => {
+  const specs = await Spec.find({
+    manufactor: req.query.manufactor
+  })
+    .select("name price images")
+    .populate({path: "ratings", select: "rating"})
+  res.json(specs)
+})
+
+// @descs   Fetch all products specs
+// @route   GET /api/specs
+// @access  Public
+const getSpecsForCart = asyncHandler(async (req, res) => {
+  // console.log(req.query.product)
+  const spec = await Spec.findOne({_id: req.body.product})
+    .select("name price images coupons")
+    .populate({
+      path: "coupons",
+      select: "name discountType discountAmount discountPercent discountStart activeTime", model: "Coupon"
+    })
+  res.json(spec._doc)
+})
 
 // @descs   Fetch products specs by id
 // @route   GET /api/specs/:id
 // @access  Public
 const getSpecById = asyncHandler(async (req, res) => {
-  const spec = await Spec.findById(req.params.id).populate("ratings").populate("warranty").populate("coupons");
+  console.log(req.params.id)
+  const spec = await Spec.findById(req.params.id)
+    .populate({
+      path: "ratings",
+      populate: {path: "user", select: "firstName lastName"}
+    })
+    .populate("warranty")
+    .populate("coupons");
   res.json(spec);
 });
 
@@ -50,4 +86,12 @@ const deleteProductById = asyncHandler(async (req, res) => {
   }
 })
 
-export {getSpecs, getSpecById, createProduct, deleteProductById};
+
+export {
+  getSpecs,
+  getSpecById,
+  createProduct,
+  deleteProductById,
+  getSpecsForCart,
+  getSimilarProduct
+};

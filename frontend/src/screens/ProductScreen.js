@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {productDetail} from '../actions/productActions'
 import ProductContent from '../components/ProductContent'
+import SimilarProducts from '../components/SimilarProducts'
+import ProductSpecification from '../components/ProductSpecification'
+import ProductRatings from '../components/ProductRatings'
 
-const ProductScreen = ({match, history}) => {
+const ProductScreen = ({match}) => {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(productDetail(match.params.id))
-  })
-
+  dispatch(productDetail(match.params.id))
   return (
-    <div className="product-details">
-      <ProductContent />
-    </div>
+    <>
+      <div className="product-details">
+        <ProductContent />
+        <SimilarProducts />
+        <ProductSpecification />
+        <ProductRatings />
+      </div>
+    </>
   )
 }
 

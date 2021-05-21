@@ -6,6 +6,7 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import Sidebar from './components/sidebar/Sidebar'
 import CartScreen from './screens/CartScreen'
+import ProgressBar from './components/ProgressBar'
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route path="/register" component={RegisterScreen} exact />
           <Route path="/" component={HomeScreen} exact />
           <Route path="/details/:id" component={ProductScreen} exact />
-          <Route patch="/cart" component={CartScreen} exact />
+          <Route path="/cart" component={CartScreen} exact />
+          <Route path="/progressbar" component={ProgressBar} exact />
         </main>
       </div>
     </Router>

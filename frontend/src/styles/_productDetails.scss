@@ -20,11 +20,9 @@
 .product-submit { grid-area: product-submit; }
 
 .product-content-container{
-  padding: 0 0.6rem 0.6rem 0;
-  .product-image{
-    border: 1px solid $border-color;
-    border-top: none;
-    border-left:none;
+  padding: 0 0.6rem 0rem 0;
+  border-bottom: 1px solid $border-color;
+  .product-image{ border: 1px solid $border-color; border-top: none; border-left:none;
     border-bottom: none;
     padding: 0.6rem;
     img{
@@ -151,6 +149,113 @@
         .add-to-card-btn{
           background: $accent-color;
         }
+      }
+    }
+  }
+}
+
+.similar-products{
+  padding-top: 2.4rem;
+  h4{
+    font-weight: 500;
+    padding-left: 0.6rem;
+  }
+
+.similar-row{
+  @include flex(flex-start,center,row);
+  overflow: hidden;
+  width: 100%;
+  a{
+    margin: 0.6rem;
+    width: 18%;
+  }
+ }
+}
+
+.specifications{
+  padding: 0.6rem;
+  font-size: 0.813rem;
+  h4{
+    font-weight: 500;
+    padding-bottom: 0.6rem;
+  }
+    .table-container{
+      border-radius: 0.3rem;
+  padding: 0.6rem;
+  border: 1px solid $border-color;
+
+    }
+  table{
+    padding: 0.6rem;
+    border-collapse: collapse;
+    tr{
+      border-bottom: 0px none;
+    }
+    tr:nth-child(2n){
+      background-color: rgb(250, 250, 250);
+    }
+    td{
+      padding: 0.6rem 0.6rem;
+    }
+    td:first-child{
+      background-color: #E4E4E4;
+    }
+  }
+}
+
+.product-ratings{
+  padding: 0.6rem;
+  h4{
+    font-weight: 500;
+    padding-bottom: 0.6rem;
+  }
+  .ratings-list{
+    font-size: 0.813rem;
+    // @include flex(center,initial,row);
+    display: flex;
+    flex-wrap: wrap;
+      border: 1px solid $border-color;
+      border-radius: 0.3rem;
+      // padding: 1.2rem;
+    .ratings-summary{
+      padding: 1.2rem;
+      .rating-group{
+        @include flex(flex-start,center,row);
+      }
+      span{
+        margin-right: 0.3rem;
+      }
+      .progress-bar{
+        margin-right: 0.3rem;
+      }
+      button{
+        background-color: $accent-color;
+        color: $text-color;
+        border: none;
+        padding: 0.6rem;
+        margin-top: 0.6rem;
+        border-radius: 0.3rem;
+      }
+    }
+    .ratings-details{
+      // margin-left: 6rem;
+      padding: 1.2rem;
+      flex: 1 0 30rem;
+      // border:1px solid $border-color;
+      .user-rating{
+        .user-name{
+          font-size: 1rem;
+          font-weight: 500;
+        }
+        margin-bottom: 1.2rem;
+        .profile-picture{
+          margin-right: 1.2rem;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: $text-color;
+        }
+        @include flex(initial,initial,row);
       }
     }
   }
