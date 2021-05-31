@@ -31,7 +31,7 @@ const getSimilarProduct = asyncHandler(async (req, res) => {
     manufactor: req.query.manufactor
   })
     .select("name price images")
-    .populate({path: "ratings", select: "rating"})
+    .populate({path: "ratings", select: "rating user"})
   res.json(specs)
 })
 
@@ -44,7 +44,8 @@ const getSpecsForCart = asyncHandler(async (req, res) => {
     .select("name price images coupons")
     .populate({
       path: "coupons",
-      select: "name discountType discountAmount discountPercent discountStart activeTime", model: "Coupon"
+      select: "name discountType discountAmount discountPercent discountStart activeTime",
+      model: "Coupon"
     })
   res.json(spec._doc)
 })
@@ -53,7 +54,6 @@ const getSpecsForCart = asyncHandler(async (req, res) => {
 // @route   GET /api/specs/:id
 // @access  Public
 const getSpecById = asyncHandler(async (req, res) => {
-  console.log(req.params.id)
   const spec = await Spec.findById(req.params.id)
     .populate({
       path: "ratings",
@@ -63,6 +63,14 @@ const getSpecById = asyncHandler(async (req, res) => {
     .populate("coupons");
   res.json(spec);
 });
+
+// @descs   Fetch products specs by id
+// @route   GET /api/specs/:id
+// @access  Public
+const createProductRating = asyncHandler(async (req, res) => {
+
+})
+
 
 // @descs   Create a product
 // @route   POST /api/producs

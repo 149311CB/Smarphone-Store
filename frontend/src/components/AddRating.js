@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import ReactStars from "react-rating-stars-component";
 
 const AddRating = ({image, name, open, onClose}) => {
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState("")
   if (!open) return null
   const MODAL_STYLES = {
     position: 'fixed',
@@ -25,9 +27,12 @@ const AddRating = ({image, name, open, onClose}) => {
     backgroundColor: 'rgba(0, 0, 0, .3)',
     zIndex: 1000
   }
+
+
   const ratingChanged = (newRating) => {
-    console.log(newRating);
+    setRating(newRating)
   };
+
   const submitHandler = (e) => {
     e.prevenDefault()
   }
@@ -60,7 +65,7 @@ const AddRating = ({image, name, open, onClose}) => {
         </div>
         <div className="comment-form-container">
           <form>
-            <textarea rows={8} placeholder="Chia sẻ cảm nhận của bạn về sản phẩm này"></textarea>
+            <textarea rows={8} placeholder="Chia sẻ cảm nhận của bạn về sản phẩm này" onChange={e => setComment(e.target.value)}></textarea>
             <button id="add-rating" type="submit" onSubmit={submitHandler}>Gửi đánh giá</button>
           </form>
         </div>

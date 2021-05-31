@@ -21,7 +21,7 @@ const getRatingsByValue = asyncHandler(async (req, res) => {
 
 const getRatingsByProduct = asyncHandler(async (req, res) => {
   console.log(req.params.id)
-  const ratings = await Rating.find({spec:req.params.id});
+  const ratings = await Rating.find({spec: req.params.id});
   res.json(ratings)
 })
 

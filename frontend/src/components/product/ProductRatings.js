@@ -1,30 +1,39 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useSelector} from 'react-redux'
-import Rating from './Rating'
-import ProgressBar from './ProgressBar'
-import AddRating from './AddRating'
+import Rating from '../Rating'
+import ProgressBar from '../ProgressBar'
+import AddRating from '../AddRating'
 
 const ProductRatings = () => {
   const {product} = useSelector(state => state.productDetail)
   const [isOpen, setIsOpen] = useState(false)
   const {ratings} = product
+  console.log(ratings)
+
   let fiveStar = 0;
   let fourStar = 0;
   let threeStar = 0;
   let twoStar = 0;
   let oneStar = 0;
+  const localUser = JSON.parse(localStorage.getItem("userInfo"))
 
   if (product != "undefined" && Object.keys(product).length > 0) {
     const newFilter = ratings.filter(r =>
       r.rating === 5 ? fiveStar += 1
-        : r.rating > 4 && r.rating < 5 ? fourStar += 1
-          : r.rating > 3 && r.rating < 4 ? threeStar += 1
-            : r.rating > 2 && r.rating < 3 ? twoStar += 1
-              : r.rating > 1 && r.rating < 2 ? oneStar += 1 : 0).length
-    {/* fourStar = ratings.filter(r => r.rating > 4 && r.rating < 5).length
-    threeStar = ratings.filter(r => r.rating > 3 && r.rating < 4).length
-    twoStar = ratings.filter(r => r.rating > 2 && r.rating < 3).length
-    oneStar = ratings.filter(r => r.rating > 1 && r.rating < 2).length */}
+        : r.rating >= 4 && r.rating < 5 ? fourStar += 1
+          : r.rating >= 3 && r.rating < 4 ? threeStar += 1
+            : r.rating >= 2 && r.rating < 3 ? twoStar += 1
+              : r.rating >= 1 && r.rating < 2 ? oneStar += 1 : 0).length
+  }
+
+  useEffect(() => {
+    const elemnt = document.getElementById("add-rating-btn")
+    if (elemnt) {
+      elemnt.style.display = "none"
+    }
+  })
+  if (ratings == null) {
+    return null;
   }
 
   return (
@@ -59,7 +68,7 @@ const ProductRatings = () => {
                 <ProgressBar value={oneStar} summary={ratings.length} />
                 <span>{oneStar}</span>
               </div>
-              <button onClick={() => setIsOpen(true)}>Viết nhận xét</button>
+              <button onClick={() => setIsOpen(true)} id="add-rating-btn">Viết nhận xét</button>
               <AddRating image={product.images[0]} name={product.name} open={isOpen} onClose={() => setIsOpen(false)}></AddRating>
             </div>
             <div className="ratings-details">

@@ -2,6 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from "react-router-dom";
 import {logoutAction} from '../../actions/UserActions'
+import ProfileDropdown from './ProfileDropdown'
 
 const HeaderOptions = () => {
   const dispatch = useDispatch()
@@ -34,22 +35,13 @@ const HeaderOptions = () => {
           </Link>
           {userInfo
             ?
-            <div className="user-dropdown">
-              <div id="user-name" className="noselect" onClick={showDropdown}> <i className="fas fa-user"></i> {userInfo.firstName.toUpperCase()}</div>
-              <div className="dropdown-box">
-                <ul>
-                  <Link to="/profile"><li>Info</li></Link>
-                  <li onClick={logoutHandler}>Logout</li>
-                </ul>
-              </div>
-            </div>
+            <ProfileDropdown userInfo={userInfo} logoutHandler={logoutHandler} />
             :
             (<Link to="/login">
               <i className="fas fa-user"></i> ĐĂNG NHẬP
             </Link>)
           }
         </div>
-
       </div>
     </div>
   );

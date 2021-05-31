@@ -66,22 +66,25 @@ body{
   background-color:  $bg-color;
 }
 
-
+button{
+  cursor: pointer;
+}
 
 /* MAIN */
 #main-container{
   @include flex(space-between,stretch,row)
   width: 90%;
   margin: 1.2rem auto;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1) !important;
+  border-radius:0.3rem;
 }
 
 main {
+  border-radius:0.3rem;
   @include flex(center,initial,row)
   background-color: white;
   min-height: 50vh;
   width: 100%;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1);
-  border-radius: 0.1rem;
 }
 .loader{
   margin-top: 5rem;
@@ -226,6 +229,60 @@ main {
     outline: currentColor none 0px;
     padding: 0.6rem;
   }
+  button{
+    background-color: $accent-color;
+    margin-top: 0.6rem;
+    border-radius: 0.3rem;
+    padding: 0.6rem 0.6rem;
+  }
+}
+
+.btn{
+  border: none;
+  &.nm{
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.2rem;
+  }
+  &.lg{
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.3rem;
+  }
+}
+.primary-btn{
+  background: $accent-color;
+  color: $text-color;
+  &.dark{
+    background: $text-color;
+    color: $accent-color;
+  }
+}
+.light-btn{
+  border:none;
+  &.transparent{
+    background: white;
+  }
+}
+.danger-btn{
+  background-color: $danger;
+}
+
+.shipping{
+    font-size: 0.813rem;
+    .shipping-row{
+      @include flex(space-between,center,row);
+      .add-address-btn{
+        background: $accent-color;
+        border: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        color: $text-color;
+      }
+    }
+    margin-bottom: 0.6rem;
+    border: 1px solid $border-color;
+    padding: 0.6rem;
+    border-radius: 0.3rem;
 }
 
 @import "header";
@@ -237,3 +294,6 @@ main {
 @import "login";
 @import "datetimepicker";
 @import "cart";
+@import "checkout";
+@import "addAdress";
+@import "addressList"

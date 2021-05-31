@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Card from './Card'
-import {similarProducts} from '../actions/productActions'
+import Card from '../Card'
+import {similarProducts} from '../../actions/productActions'
 
 const SimilarProducts = () => {
   const dispatch = useDispatch()

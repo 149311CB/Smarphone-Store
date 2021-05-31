@@ -1,10 +1,10 @@
 import React, {useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {productDetail} from '../actions/productActions'
-import ProductContent from '../components/ProductContent'
-import SimilarProducts from '../components/SimilarProducts'
-import ProductSpecification from '../components/ProductSpecification'
-import ProductRatings from '../components/ProductRatings'
+import ProductContent from '../components/product/ProductContent'
+import SimilarProducts from '../components/product/SimilarProducts'
+import ProductSpecification from '../components/product/ProductSpecification'
+import ProductRatings from '../components/product/ProductRatings'
 
 const ProductScreen = ({match}) => {
   const dispatch = useDispatch()

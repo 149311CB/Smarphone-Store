@@ -1,5 +1,5 @@
 import React from 'react'
-import Coupon from './Coupon'
+import Coupon from '../Coupon'
 
 const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) => {
   var formatter = new Intl.NumberFormat('en-US', {

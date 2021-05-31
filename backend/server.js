@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import {errorHandler} from './middlewares/errorMiddlewares.js'
+
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
@@ -11,6 +12,7 @@ import addressRoutes from './routes/addressRoutes.js'
 import cityRoutes from './routes/cityRoutes.js'
 import cartRoutes from './routes/cartRoutes.js'
 import ultilsRouter from './routes/ultilsRoutes.js'
+import orderDetailRoutes from './routes/orderDetailRoutes.js'
 
 dotenv.config();
 
@@ -33,6 +35,10 @@ app.use("/api/addresses", addressRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/ultils", ultilsRouter);
 app.use("/api/cart", cartRoutes);
+app.use("/api/orderdetails", orderDetailRoutes)
+
+app.use("/api/config/paypal", (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+app.use("/api/config/stripe", (req, res) => res.send(process.env.STRIPE_PUBLIC_KEY))
 
 app.use(errorHandler)
 

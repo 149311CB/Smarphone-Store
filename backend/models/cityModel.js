@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const cityShema = mongoose.Schema({
+const citySchema = mongoose.Schema({
   Id: {
     type: String,
     required: true
@@ -39,6 +39,6 @@ const cityShema = mongoose.Schema({
   ]
 })
 
-const City = mongoose.model('City', cityShema);
+const City = mongoose.model('City', citySchema);
 
 export default City;

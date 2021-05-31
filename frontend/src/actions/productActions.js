@@ -4,7 +4,8 @@ import {
   PRODUCT_LIST_REQUEST_SUCCESS,
   PRODUCT_LIST_REQUEST_FAIL,
   PRODUCT_REQUEST, PRODUCT_REQUEST_SUCCESS, PRODUCT_REQUEST_FAIL,
-  GET_SIMILARS_REQUEST, GET_SIMILARS_SUCCESS, GET_SIMILARS_FAIL
+  GET_SIMILARS_REQUEST, GET_SIMILARS_SUCCESS, GET_SIMILARS_FAIL,
+  CREATE_RATING_REQUEST, CREATE_RATING_SUCCESS, CREATE_RATING_FAIL
 } from "../constants/ProductConstants";
 
 export const listProducts = (input) => async (dispatch) => {
@@ -62,5 +63,13 @@ export const similarProducts = (input) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+}
+
+export const createRatingAction = (input) => async (dispatch) => {
+  try {
+    dispatch({type: CREATE_RATING_REQUEST})
+    const {data} = axios.post("")
+  } catch (error) {
   }
 }

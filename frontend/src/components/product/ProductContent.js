@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Rating from './Rating'
+import Rating from '../Rating'
 import ProductOptions from './ProductOptions'
 import ClipLoader from "react-spinners/ClipLoader";
-import {addToCart} from '../actions/CartActions'
+import {addToCart} from '../../actions/CartActions'
 
 
 const ProductContent = () => {

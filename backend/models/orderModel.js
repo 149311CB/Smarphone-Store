@@ -1,10 +1,6 @@
 import mongoose from 'mongoose'
 
 const orderSchema = mongoose.Schema({
-  subTotal: {
-    type: mongoose.Schema.Types.Decimal128,
-    required: true
-  },
   status: {
     type: String,
     required: true
@@ -14,12 +10,23 @@ const orderSchema = mongoose.Schema({
     required: true,
     ref: 'User'
   },
-  address: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'Address'
+  shippingAddress: {
+    type: String,
+    required: true
   },
-  createAt: {
+  shippingFee: {
+    type: Number,
+    required: true
+  },
+  gateway: {
+    type: String,
+    required: true
+  },
+  paidInfo: {
+    type: String,
+    required: true
+  },
+  createdAt: {
     type: Date,
     required: true
   }

@@ -5,7 +5,9 @@ import {productListReducer, productReducer, similarsReducer} from "./reducers/Pr
 import {bannerListReducer, ratingByProductReducer} from './reducers/UltilsReducers'
 import {filterReducer} from './reducers/FiltersReducers'
 import {userLoginReducer, userRegisterReducer} from './reducers/UserReducers'
-import {getCartReducer, addToCartReducer, removeFromCartReducer} from './reducers/CartReducers'
+import {getCartReducer, addToCartReducer, removeFromCartReducer, deleteCartReducer} from './reducers/CartReducers'
+import {getAddressListByUserReducer, getAddressByUserReducer, getCityListReducer, addAddressReducer} from './reducers/AddressReducers'
+import {orderCreateReducer} from "./reducers/OrderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -17,7 +19,13 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   addToCart: addToCartReducer,
   getCart: getCartReducer,
-  removeFromCart: removeFromCartReducer
+  removeFromCart: removeFromCartReducer,
+  getAddressByUser: getAddressByUserReducer,
+  cityList: getCityListReducer,
+  addAddress: addAddressReducer,
+  addressListByUser: getAddressListByUserReducer,
+  orderCreated: orderCreateReducer,
+  cartDeleted:deleteCartReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

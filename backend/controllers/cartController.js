@@ -14,8 +14,7 @@ const getCart = asyncHandler(async (req, res) => {
       }
     });
   res.json(cart)
-}
-)
+})
 
 // @descs   Update cart by user
 // @route   POST /api/carts
@@ -73,4 +72,15 @@ const removeFromCart = asyncHandler(async (req, res) => {
   }
 })
 
-export {getCart, updateCart, removeFromCart}
+const deleteCart = asyncHandler(async (req, res) => {
+  const cart = await Cart.findOne({_id: req.params.id, user: req.user})
+  if (cart) {
+    await cart.remove()
+    res.json({message: 'Cart removed'})
+  } else {
+    res.status(404)
+    throw new Error('Order not found')
+  }
+})
+
+export {getCart, updateCart, removeFromCart, deleteCart}

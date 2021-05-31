@@ -1,14 +1,6 @@
 import mongoose from 'mongoose'
 
 const addressSchema = mongoose.Schema({
-  receiverFirstName: {
-    type: String,
-    required: true,
-  },
-  receiverLastName: {
-    type: String,
-    required: true,
-  },
   city: {
     type: String,
     required: true
@@ -25,12 +17,8 @@ const addressSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  addressType: {
-    type: String,
-    required: false
-  },
   isPrimary: {
-    type: Boolean,
+    type: Number,
     required: true
   },
   user: {

@@ -1,11 +1,22 @@
 import {
-  CART_ADD_ITEM, CART_REMOVE_ITEM, GET_CART_REQUEST,
-  GET_CART_SUCCESS, GET_CART_FAIL,
-  UPDATE_CART_REQUEST, UPDATE_CART_SUCCESS, UPDATE_CART_FAIL,
-  REMOVE_FROM_CART_REQUEST, REMOVE_FROM_CART_SUCCESS, REMOVE_FROM_CART_FAIL
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  GET_CART_REQUEST,
+  GET_CART_SUCCESS,
+  GET_CART_FAIL,
+  UPDATE_CART_REQUEST,
+  UPDATE_CART_SUCCESS,
+  UPDATE_CART_FAIL,
+  REMOVE_FROM_CART_REQUEST,
+  REMOVE_FROM_CART_SUCCESS,
+  REMOVE_FROM_CART_FAIL,
+  DELETE_CART_REQUEST,
+  DELETE_CART_FAIL,
+  DELETE_CART_SUCCESS
 }
   from '../constants/CartConstants'
 import axios from 'axios'
+import {logoutAction} from "./UserActions";
 
 export const addToCart = (input) => async (dispatch, getState) => {
   try {
@@ -17,8 +28,7 @@ export const addToCart = (input) => async (dispatch, getState) => {
     if (!userInfo) {
       let localCart = localStorage.getItem("cart")
         ? JSON.parse(localStorage.getItem("cart"))
-        : []
-      console.log(localCart.products)
+        : null
       let isNew = true
       localCart ? localCart.products.forEach(function (i) {
         if (i.product._id == input.product) {
@@ -29,15 +39,9 @@ export const addToCart = (input) => async (dispatch, getState) => {
         }
       }) : isNew = true
       if (isNew) {
-        // console.log(input)
         const {data} = await axios.post("/api/products/localcart", input)
-        // console.log({data})
         localCart = {...localCart, products: [{product: data, quantity: input.quantity}]}
-        console.log(localCart)
         localStorage.setItem("cart", JSON.stringify(localCart))
-        // console.log(...spec)
-        /* localCart = [...localCart, input]
-        localStorage.setItem("cart", JSON.stringify(localCart)) */
       }
       dispatch({type: UPDATE_CART_SUCCESS, cartInfo: localCart})
       return;
@@ -125,6 +129,35 @@ export const removeFromCart = (input) => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    })
+  }
+}
+
+export const deleteCart = (id)=>async (dispatch,getState) =>{
+  try{
+    dispatch({type:DELETE_CART_REQUEST})
+    const {
+      userLogin: {userInfo},
+    } = getState()
+    const config = {
+      headers: {
+        // 'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const {data} = await axios.delete(`/api/carts/${id}`,config)
+    dispatch({type:DELETE_CART_SUCCESS})
+  }catch(error){
+    const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logoutAction())
+    }
+    dispatch({
+      type: DELETE_CART_FAIL,
+      error: message,
     })
   }
 }

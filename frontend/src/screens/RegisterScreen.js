@@ -41,7 +41,6 @@ const RegisterScreen = ({location, history}) => {
   return (
     <>
       {
-
         loading ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div> :
           <form className="register-form" onSubmit={submitHandler}>
             <div className="form-group-container">

@@ -1,5 +1,3 @@
-
-
 .cart-container{
   display: flex;
   align-content:flex-start;
@@ -7,7 +5,7 @@
   border: 1px solid $border-color;
   padding: 1.2rem;
   font-size: 0.875rem;
-  grid-gap: 0.6rem;
+  grid-gap: 2.4rem;
 
   .product-list{
     border: 1px solid $border-color;
@@ -19,7 +17,7 @@
       margin-top: 0.6rem;
     }
       .image-container{
-        width: 20%;
+        width: 15%;
         img{
           height: 100%;
           width: 100%;
@@ -100,12 +98,7 @@
       }
     }
   }
-  .shipping{
-    margin-bottom: 0.6rem;
-    border: 1px solid $border-color;
-    padding: 0.6rem;
-    border-radius: 0.3rem;
-  }
+  
   .total-price{
     border: 1px solid $border-color;
     padding: 0.6rem;

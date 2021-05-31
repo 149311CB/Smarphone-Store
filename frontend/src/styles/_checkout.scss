@@ -1,0 +1,65 @@
+.checkout-screen{
+  width: 100%;
+  padding: 1.2rem;
+  @include flex(center,flex-start,row);
+}
+
+.checkout-summary{
+  width: 100%;
+  font-size: 0.875rem;
+  display: flex;
+  align-content:flex-start;
+  justify-content:space-between;
+  grid-gap: 2.4rem;
+  .left-col{
+    flex-grow: 1;
+  }
+  .right-col{
+    width: 30%;
+  }
+  .product-list{
+    flex-grow: 1;
+    border: 1px solid $border-color;
+    border-radius: 0.3rem;
+    padding: 0.6rem;
+    .product-container{
+      height: 75px;
+      @include flex(flex-start,flex-start,row);
+      p:first{
+        margin-left: 1.2rem;
+      }
+      .product-summary{
+        p{
+          margin-right: 1.2rem;
+          &.price{
+            color: $danger;
+          }
+        }
+      }
+      .image-container{
+        width: 75px;
+        height: 75px;
+        img{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .payment-methods{
+    margin-top: 1.2rem;
+    .payment-group{
+      border: 1px solid $border-color;
+      padding: 0.6rem;
+      border-radius: 0.3rem;
+    }
+    .radio-group{
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.6rem;
+      label{
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

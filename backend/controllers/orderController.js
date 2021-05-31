@@ -1,8 +1,9 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 import OrderDetail from '../models/orderDetailModel.js'
+import {raw} from "express";
 
-// @descs   Fetch all orders
+/* // @descs   Fetch all orders
 // @route   GET /api/orders
 // @access  Public
 const getOrders = asyncHandler(async (req, res) => {
@@ -58,4 +59,22 @@ const deleteOrder = asyncHandler(async (req, res) => {
   }
 })
 
-export {getOrders, getOrderById, getOrderDetail, createOrder, deleteOrder}
+export {getOrders, getOrderById, getOrderDetail, createOrder, deleteOrder} */
+
+const getAllOrderByUserId = asyncHandler(async (req, res) => {
+  const order = await Order.find({user: req.query.user})
+  res.json(order)
+})
+
+const getOrderDetailByOrderId = asyncHandler(async (req, res) => {
+  const orderDetail = await OrderDetail.find({order: req.query.order})
+  res.json(orderDetail)
+})
+
+const createOrder = asyncHandler(async (req, res) => {
+  const order = await Order.create({...req.body.order, user: req.user})
+  const orderDetails = await OrderDetail.create({...req.body.details, order: order._id})
+  res.json({...order._doc, ...orderDetails._doc})
+})
+
+export {getAllOrderByUserId, getOrderDetailByOrderId, createOrder}

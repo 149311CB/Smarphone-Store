@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCart, addToCart, removeFromCart} from '../actions/CartActions'
+import {getCart, addToCart, removeFromCart} from '../../actions/CartActions'
 
 const ProductContainer = ({ci, formatter}) => {
   const dispatch = useDispatch()
