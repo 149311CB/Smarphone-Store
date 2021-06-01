@@ -114,4 +114,5 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-export {getUsers, getUserById, createUser, authUser, getUserProfile, registerUser}
+
+export {getUsers, getUserById, createUser, authUser, getUserProfile, registerUser }

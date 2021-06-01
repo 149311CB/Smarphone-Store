@@ -4,17 +4,20 @@ import Rating from '../Rating'
 import ProductOptions from './ProductOptions'
 import ClipLoader from "react-spinners/ClipLoader";
 import {addToCart} from '../../actions/CartActions'
+import Alert from "../Alert";
+import {Link} from "react-router-dom";
+import {useClickOutsidev2} from "../../hooks/clickOutsidev2";
 
 
 const ProductContent = () => {
   const dispatch = useDispatch()
   const {loading, error, product} = useSelector(state => state.productDetail)
-  console.log(loading)
 
+  const {visible,setVisible,ref} = useClickOutsidev2(false)
   const [mainImage, setMainImage] = useState("")
   const [quantity, setQuantity] = useState(1)
-  const rating = Object.keys(product).length !== 0
-    ? product.ratings.reduce((acc, curr) => acc + curr.rating, 0) : 0
+  const rating = product != null  && Object.keys(product).length !== 0
+    ? product.reviews.reduce((acc, curr) => acc + curr.rating, 0) : 0
 
   const changeMainImage = (i) => {
     setMainImage(i)
@@ -44,8 +47,8 @@ const ProductContent = () => {
 
             <div className="product-title">
               <h2>{product.name}</h2>
-              <Rating text={`(${product.ratings.length})`}
-                value={rating / product.ratings.length} />
+              <Rating text={`(${product.reviews.length})`}
+                value={rating / product.reviews.length} />
             </div>
 
             <div className="product-options" >
@@ -65,7 +68,8 @@ const ProductContent = () => {
                   <p>Hình thức bảo hành: {product.warranty.warrantyType}</p>
                   <p>Thời gian bảo hành: {product.warranty.time} Tháng</p>
                 </li>
-                <li className="btn-container" onClick={e => addToCart(e)}>
+                <li className="btn-container" >
+                  {/* onClick={e => addToCart(e)}>*/}
                   <button className="buy-btn">MUA NGAY</button>
                 </li>
                 <li className="btn-container">

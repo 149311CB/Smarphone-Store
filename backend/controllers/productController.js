@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Spec from "../models/specModel.js";
-import Cart from '../models/cartModel.js'
 
 // @descs   Fetch all products specs
 // @route   GET /api/specs
@@ -20,8 +19,7 @@ const getSpecs = asyncHandler(async (req, res) => {
     ram: {$gte: minram, $lte: maxram},
     manufactor: manufactor
   })
-    .select("name price images")
-    .populate({path: "ratings", select: "rating"});
+    .select("name price images reviews")
 
   res.json(specs);
 });
@@ -30,8 +28,7 @@ const getSimilarProduct = asyncHandler(async (req, res) => {
   const specs = await Spec.find({
     manufactor: req.query.manufactor
   })
-    .select("name price images")
-    .populate({path: "ratings", select: "rating user"})
+    .select("name price images reviews")
   res.json(specs)
 })
 
@@ -39,8 +36,7 @@ const getSimilarProduct = asyncHandler(async (req, res) => {
 // @route   GET /api/specs
 // @access  Public
 const getSpecsForCart = asyncHandler(async (req, res) => {
-  // console.log(req.query.product)
-  const spec = await Spec.findOne({_id: req.body.product})
+  const spec = await Spec.findById(req.params.id)
     .select("name price images coupons")
     .populate({
       path: "coupons",
@@ -55,12 +51,9 @@ const getSpecsForCart = asyncHandler(async (req, res) => {
 // @access  Public
 const getSpecById = asyncHandler(async (req, res) => {
   const spec = await Spec.findById(req.params.id)
-    .populate({
-      path: "ratings",
-      populate: {path: "user", select: "firstName lastName"}
-    })
     .populate("warranty")
-    .populate("coupons");
+    .populate("coupons")
+    .populate({path:"reviews",populate:{path:"user", select:"firstName lastName"}})
   res.json(spec);
 });
 
@@ -94,6 +87,24 @@ const deleteProductById = asyncHandler(async (req, res) => {
   }
 })
 
+const createReviews = asyncHandler(async (req, res) =>{
+  const spec = await Spec.findById(req.params.id)
+if(spec){
+  const alreadyReview = spec.reviews.find(r => r.user.toString() === req.user._id.toString())
+  if(alreadyReview){
+    res.status(400)
+    throw new Error("Product already reviewed")
+  }
+  const review = {...req.body,user:req.user._id}
+  spec.reviews.push(review)
+  await spec.save()
+  res.status(201).json({message:"Review added"})
+}else{
+  res.status(404)
+  throw new Error("Product not found")
+}
+  res.json(spec)
+})
 
 export {
   getSpecs,
@@ -101,5 +112,6 @@ export {
   createProduct,
   deleteProductById,
   getSpecsForCart,
-  getSimilarProduct
+  getSimilarProduct,
+    createReviews
 };

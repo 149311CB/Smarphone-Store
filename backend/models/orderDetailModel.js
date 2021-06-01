@@ -7,6 +7,7 @@ const orderDetailSchema = mongoose.Schema({
     ref: 'Order'
   },
   products: [{
+    _id:false,
     product: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

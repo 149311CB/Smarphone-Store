@@ -15,7 +15,7 @@ const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) =>
       <div className="price-tag">
         <span>{formatter.format(price)}</span>
       </div>
-      <div className="indicator"></div>
+      <div className="indicator"/>
       <div>
         <div className="group-title">Dung lượng bộ nhớ trong</div>
         <div className="roms-group noselect">
@@ -25,7 +25,7 @@ const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) =>
           <div>{rom}</div>
         </div>
       </div>
-      <div className="indicator"></div>
+      <div className="indicator"/>
       <div>
         <div className="group-title">Dung lượng ram</div>
         <div className="roms-group noselect">
@@ -35,7 +35,7 @@ const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) =>
           <div>{ram}</div>
         </div>
       </div>
-      <div className="indicator"></div>
+      <div className="indicator"/>
 
       <div className="group-title">Mã giảm giá có thể áp dụng</div>
       <div className="coupon-group">
@@ -43,11 +43,12 @@ const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) =>
           <Coupon coupon={c} />
         )}
       </div>
-      <div className="indicator"></div>
+      <div className="indicator"/>
       <div className="quantity-select">
-        <button className="left-btn" onClick={e => changeQuantity(quantity - 1)} disabled={quantity === 1 ? true : false}><i className="fas fa-minus"></i></button>
+        <button className="left-btn" onClick={e => changeQuantity(quantity - 1)} disabled={quantity === 1 ? true : false}><i className="fas fa-minus"/></button>
         <input value={quantity} />
-        <button className="right-btn" onClick={e => changeQuantity(quantity + 1)} > <i className="fas fa-plus"></i></button>
+        <button className="right-btn"
+                onClick={e => changeQuantity(quantity + 1)} > <i className="fas fa-plus"/></button>
       </div>
     </>
   )

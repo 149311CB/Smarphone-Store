@@ -7,16 +7,20 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CheckoutProducts from './CheckoutProducts'
 import ShippingContainer from '../ShippingContainer'
 import PaymentMethods from './PaymentMethods'
+import {useHistory} from "react-router-dom";
 
 const CheckoutSummary = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [sdkReady, setSdkReady] = useState(false)
+  const [paymentProcessing, setPaymentProcessing] = useState(false);
 
   const {loading, error, cartInfo} = useSelector(state => state.getCart)
+  const {loading:payLoading, error:payError} = useSelector(state => state.orderCreated)
 
   let amount = 0;
-  if (cartInfo.products) {
+  if (cartInfo != null && cartInfo.products) {
     amount = cartInfo.products.reduce((acc, curr) => acc + curr.product.price, 0)
   }
 
@@ -45,7 +49,7 @@ const CheckoutSummary = () => {
 
   return (
     <>
-      {loading || loading == null
+      {!window.paypal || payLoading || loading || loading == null
         ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div>
         :
         <div style={{width: "100%"}}>
@@ -53,7 +57,7 @@ const CheckoutSummary = () => {
           <div className="checkout-summary">
             <div className="left-col">
               <CheckoutProducts cartInfo={cartInfo} />
-              <PaymentMethods amount={amount} sdkReady={sdkReady} cartInfo={cartInfo} />
+              <PaymentMethods paymentProccessing={e => setPaymentProcessing(true)} amount={amount} sdkReady={sdkReady} cartInfo={cartInfo} />
             </div>
             <div className="right-col">
               <ShippingContainer />

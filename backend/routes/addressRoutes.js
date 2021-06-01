@@ -13,7 +13,6 @@ import {
 
 const router = express.Router();
 
-// router.route("/").get(getAddress).post(createAddress);
 router.route("/").get(protect, getAddressesByUser).post(protect, createAddress)
 router.route("/primary").get(protect, getPrimaryAddressByUserId)
 

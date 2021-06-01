@@ -12,16 +12,12 @@ const Paypal = ({sdkReady, method, changePaymentMethod, amount, cartInfo, addres
   const [usdAmount, setUsdAmount] = useState(0)
 
   const paypalSubmitHandler = (paymentResult) => {
-    console.log(paymentResult)
-    if (paymentResult.status !== "COMPLETED") {
-      history.push("/checkout/incomplete")
-    } else {
       const order = {
         details: {
           products: [...cartInfo.products]
         },
         order: {
-          status: "paid",
+          status: paymentResult.status === "COMPLETED" ? "paid" : "payment fail",
           createdAt: paymentResult.create_time,
           gateway: "paypal",
           paidInfo: paymentResult.payer.email_address,
@@ -29,8 +25,7 @@ const Paypal = ({sdkReady, method, changePaymentMethod, amount, cartInfo, addres
           shippingFee: 0
         }
       }
-      dispatch(completeOrder(cartInfo._id,order))
-    }
+      dispatch(completeOrder(order))
   }
   useEffect(() => {
     const paypalMethod = async (input) => {
@@ -48,7 +43,7 @@ const Paypal = ({sdkReady, method, changePaymentMethod, amount, cartInfo, addres
     <div className="paypal-group" style={{marginBottom: "0.6rem"}}>
       <div className="radio-group">
         <input id="pay-with-paypal" type="radio" name="payment" value={1} onClick={e => changePaymentMethod(1)} />
-        <label htmlFor="pay-with-paypal"><span style={{margin: "0 0.3rem"}}><img src={paypal} /></span> Thanh toán bằng paypal</label>
+        <label htmlFor="pay-with-paypal"><span style={{margin: "0 0.3rem"}}><img src={paypal}  alt={"paypal-icon"}/></span> Thanh toán bằng paypal</label>
       </div>
       {method === 1 ?
         <div style={{width: "35%"}}>

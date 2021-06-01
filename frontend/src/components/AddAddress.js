@@ -2,11 +2,15 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getCityListAction, addAddressAction} from '../actions/AddressActions'
 import ClipLoader from "react-spinners/ClipLoader";
+import {useHistory} from "react-router-dom";
+import {ADD_ADDRESS_RESET} from "../constants/AddressConstants";
 
 const AddAddress = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const {loading, error, cities} = useSelector(state => state.cityList)
+    const {loading:addLoading,error:addError,newAddress} = useSelector(state => state.addAddress)
   const [city, setCity] = useState(0)
   const [district, setDistrict] = useState(0)
   const [ward, setWard] = useState(0)
@@ -26,12 +30,21 @@ const AddAddress = () => {
   }
 
   useEffect(() => {
-    dispatch(getCityListAction())
-  }, [])
+      if(cities == null || cities.length === 0){
+        dispatch(getCityListAction())
+      }
+      if(newAddress){
+        dispatch({type:ADD_ADDRESS_RESET})
+        history.push("/addresses")
+      }
+  }, [newAddress])
 
   return (
     <>
-      {loading == null || loading ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div > :
+      {loading == null || loading || addLoading
+          ?
+          <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div >
+          :
         <form className="add-address-form">
           <div className="form-group">
             <label htmlFor={"city"}>Tỉnh/ Thành phố</label>

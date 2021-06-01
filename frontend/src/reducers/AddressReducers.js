@@ -1,6 +1,6 @@
 import {
   ADD_ADDRESS_FAIL,
-  ADD_ADDRESS_REQUEST,
+  ADD_ADDRESS_REQUEST, ADD_ADDRESS_RESET,
   ADD_ADDRESS_SUCCESS,
   GET_ADDRESS_BY_USER_FAIL,
   GET_ADDRESS_BY_USER_REQUEST,
@@ -63,6 +63,8 @@ export const addAddressReducer = (state = {}, action) => {
       return {loading: false, newAddress: action.newAddress}
     case ADD_ADDRESS_FAIL:
       return {loading: false, error: action.newAddress}
+    case ADD_ADDRESS_RESET:
+      return {}
     default:
       return state
   }

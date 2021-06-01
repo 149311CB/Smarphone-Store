@@ -5,8 +5,9 @@ import {
   PRODUCT_LIST_REQUEST_FAIL,
   PRODUCT_REQUEST, PRODUCT_REQUEST_SUCCESS, PRODUCT_REQUEST_FAIL,
   GET_SIMILARS_REQUEST, GET_SIMILARS_SUCCESS, GET_SIMILARS_FAIL,
-  CREATE_RATING_REQUEST, CREATE_RATING_SUCCESS, CREATE_RATING_FAIL
+  CREATE_RATING_REQUEST, CREATE_RATING_SUCCESS, CREATE_RATING_FAIL, GET_USER_RATING_REQUEST
 } from "../constants/ProductConstants";
+import {logoutAction} from "./UserActions";
 
 export const listProducts = (input) => async (dispatch) => {
   try {
@@ -66,10 +67,32 @@ export const similarProducts = (input) => async (dispatch) => {
   }
 }
 
-export const createRatingAction = (input) => async (dispatch) => {
-  try {
-    dispatch({type: CREATE_RATING_REQUEST})
-    const {data} = axios.post("")
-  } catch (error) {
+export const createReviews = (product,input) => async(dispatch,getState) =>{
+  try{
+    dispatch({type:CREATE_RATING_REQUEST})
+    const {
+      userLogin: {userInfo},
+    } = getState()
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const {data} = await axios.post(`/api/products/${product}/reviews`,input,config)
+    dispatch({type:CREATE_RATING_SUCCESS,ratingCreated:data})
+  }catch(error){
+    const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logoutAction())
+    }
+    dispatch({
+      type: CREATE_RATING_FAIL,
+      error: message,
+    })
   }
 }
+

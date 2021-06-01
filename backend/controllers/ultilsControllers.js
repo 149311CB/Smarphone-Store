@@ -20,9 +20,14 @@ const getRatingsByValue = asyncHandler(async (req, res) => {
 })
 
 const getRatingsByProduct = asyncHandler(async (req, res) => {
-  console.log(req.params.id)
   const ratings = await Rating.find({spec: req.params.id});
   res.json(ratings)
 })
 
-export {getBanners, getRatingsByValue, getRatingsByProduct}
+const createRating = asyncHandler(async(req,res) =>{
+  const today = new Date().toISOString()
+  const rating = await Rating.create({...req.body,user:req.user._id, createdAt:today })
+  res.json(rating)
+})
+
+export {getBanners, getRatingsByValue, getRatingsByProduct, createRating}

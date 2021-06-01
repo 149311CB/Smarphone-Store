@@ -21,7 +21,7 @@ const ratingSchema = mongoose.Schema({
   },
   createAt: {
     type: Date,
-    required: true
+    required: false
   }
 })
 

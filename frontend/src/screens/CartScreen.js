@@ -3,15 +3,20 @@ import {useDispatch, useSelector} from 'react-redux'
 import {addToCart, getCart} from '../actions/CartActions'
 import {getAddressByUserAction} from '../actions/AddressActions'
 import ClipLoader from "react-spinners/ClipLoader";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import ProductContainer from '../components/carts/ProductContainer'
 import ShippingContainer from '../components/ShippingContainer'
+import OverlayMessages from "../components/OverlayMessages";
 
 const CartScreen = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const {loading, error, cartInfo} = useSelector(state => state.getCart)
-  const totalprice = Object.keys(cartInfo).length > 0
+  const {userInfo} = useSelector(state => state.userLogin)
+  const totalprice = cartInfo != null && cartInfo.products != null && Object.keys(cartInfo).length > 0
     ? cartInfo.products.reduce((acc, crr) => acc + crr.product.price * crr.quantity, 0) : 0
+
+  const [isOpen, setIsOpen] = useState(false);
 
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -20,6 +25,14 @@ const CartScreen = () => {
     //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
+  const checkOutBegin=() =>{
+      if(!userInfo){
+        setIsOpen(true)
+        dispatch({ type:"CHECKOUT_PENDING" })
+        return null
+      }
+      history.push("/checkout")
+  }
   useEffect(() => {
     dispatch(getCart())
     dispatch(getAddressByUserAction())
@@ -30,8 +43,10 @@ const CartScreen = () => {
       {
         loading || loading == null
           ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div>
+          : cartInfo == null || cartInfo.products == null || cartInfo.products.length === 0 ?
+          <h2>Cart is empty</h2>
           :
-          <div className="cart-container">
+          <div className="cart-container" style={{width:"100%"}}>
             <div className="product-list">
               <div style={{fontSize: "1rem", fontWeight: "500"}}>Giỏ Hàng</div>
               <div className="indicator" />
@@ -57,9 +72,19 @@ const CartScreen = () => {
                 <h4>Thành tiền</h4>
                 <div>{formatter.format(totalprice)}</div>
                 <div className="indicator" />
-                <Link to="/checkout" className="btn primary-btn lg" style={{display: "block", textAlign: "center"}}>Tiến hành thanh toán</Link>
+                <button className="btn primary-btn lg"
+                        style={{display: "block", textAlign: "center"}}
+                        onClick={checkOutBegin}>Tiến hành thanh toán</button>
               </div>
             </div >
+              <OverlayMessages img={"https://149311cbimages.s3.amazonaws.com/vault.svg"}
+                               message={"You are not login yet! Please login to continue"}
+                               body={"You are not login yet! Please login to continue"}
+                               open={isOpen}
+                               messageType={"danger"}
+                               onClose={()=>setIsOpen(false)}>
+                <button className={ "btn primary-btn lg"} onClick={() => history.push("/login")}>Continue</button>
+              </OverlayMessages>
           </div>
       }
     </>

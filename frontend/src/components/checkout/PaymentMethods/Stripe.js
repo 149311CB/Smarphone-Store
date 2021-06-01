@@ -5,8 +5,28 @@ import {loadStripe} from "@stripe/stripe-js";
 import {useSelector} from "react-redux";
 
 const stripePromise = loadStripe("pk_test_51Iwqe0KvZqrt4tRI0ZewUir13YIgFCeoaO9AQQb2w6a1Lu8AnWN2TypvEg4Q24xXXM8rL0BChZEjaIdx5FOYgVqQ0081tq7z3V")
+
 const Stripe = ({method, changePaymentMethod}) => {
 
+    const CARD_OPTIONS = {
+        iconStyle: "solid",
+        style: {
+            base: {
+                iconColor: "#c4f0ff",
+                color: "#fff",
+                fontWeight: 500,
+                fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+                fontSize: "16px",
+                fontSmoothing: "antialiased",
+                ":-webkit-autofill": { color: "#fce883" },
+                "::placeholder": { color: "#87bbfd" }
+            },
+            invalid: {
+                iconColor: "#ffc7ee",
+                color: "#ffc7ee"
+            }
+        }
+    }
   const handleStripeSubmit = () => {
 
   }
@@ -22,7 +42,7 @@ const Stripe = ({method, changePaymentMethod}) => {
             <Elements stripe={stripePromise}>
               <ElementsConsumer>{({elements, stripe}) => (
                 <form id="stripe-form" onSubmit={e => handleStripeSubmit(e, elements, stripe)}>
-                  <CardElement />
+                  <CardElement options={CARD_OPTIONS}/>
                 </form>
               )}</ElementsConsumer>
             </Elements>

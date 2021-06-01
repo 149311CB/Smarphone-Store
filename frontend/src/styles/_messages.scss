@@ -1,0 +1,27 @@
+.overlay-message{
+  display: flex;
+  .message-header{
+    button{
+      position:absolute;
+      top: 0.6rem;
+      right:0.6rem;
+    }
+  }
+  .image-container{
+    width: 70%;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    img{
+      height: 100%;
+    }
+  }
+  .message-body{
+    color:$text-color;
+    padding:2.4rem 0 0.6rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+  }
+}

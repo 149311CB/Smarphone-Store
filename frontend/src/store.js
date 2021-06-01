@@ -4,10 +4,22 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {productListReducer, productReducer, similarsReducer} from "./reducers/ProductReducer";
 import {bannerListReducer, ratingByProductReducer} from './reducers/UltilsReducers'
 import {filterReducer} from './reducers/FiltersReducers'
-import {userLoginReducer, userRegisterReducer} from './reducers/UserReducers'
-import {getCartReducer, addToCartReducer, removeFromCartReducer, deleteCartReducer} from './reducers/CartReducers'
+import {
+  createRatingReducer,
+  getUserRatingReducer,
+  userLoginReducer,
+  userLogoutReducer,
+  userRegisterReducer
+} from './reducers/UserReducers'
+import {
+  getCartReducer,
+  addToCartReducer,
+  removeFromCartReducer,
+  deleteCartReducer,
+  pushCartReducer
+} from './reducers/CartReducers'
 import {getAddressListByUserReducer, getAddressByUserReducer, getCityListReducer, addAddressReducer} from './reducers/AddressReducers'
-import {orderCreateReducer} from "./reducers/OrderReducers";
+import {checkoutPendingReducer, orderCreateReducer} from "./reducers/OrderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -17,15 +29,20 @@ const reducer = combineReducers({
   filter: filterReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userLogout:userLogoutReducer,
   addToCart: addToCartReducer,
   getCart: getCartReducer,
   removeFromCart: removeFromCartReducer,
+  pushCart:pushCartReducer,
   getAddressByUser: getAddressByUserReducer,
   cityList: getCityListReducer,
   addAddress: addAddressReducer,
   addressListByUser: getAddressListByUserReducer,
   orderCreated: orderCreateReducer,
-  cartDeleted:deleteCartReducer
+  cartDeleted:deleteCartReducer,
+  checkoutPending:checkoutPendingReducer,
+  getUserRating:getUserRatingReducer,
+  createRating:createRatingReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -19,6 +19,7 @@ const RegisterScreen = ({location, history}) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const userRegister = useSelector(state => state.userRegister)
+  const {isCheckout} = useSelector(state => state.checkoutPending)
   const {loading, error, userInfo} = userRegister
   const getISODate = (e) => {
     setBirthday(e)
@@ -34,6 +35,11 @@ const RegisterScreen = ({location, history}) => {
 
   useEffect(() => {
     if (userInfo) {
+      if(isCheckout){
+        console.log("register")
+        history.push("/checkout")
+        return
+      }
       history.push(redirect)
     }
   }, [history, userInfo, redirect])

@@ -1,37 +1,23 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-
-let useClickOutside = (handler) => {
-  let domNode = useRef()
-  useEffect(() => {
-    let maybeHandler = (event) => {
-      if (!domNode.current.contains(event.target)) {
-        handler()
-      }
-    }
-    document.addEventListener("mousedown", maybeHandler)
-    return () => {
-      document.removeEventListener("mousedown", maybeHandler)
-    }
-  })
-  return domNode
-}
+import {useClickOutside} from "../../hooks/clickOutside";
+import {useClickOutsidev2} from "../../hooks/clickOutsidev2";
 
 const ProfileDropdown = ({userInfo, logoutHandler}) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const {visible,setVisible,ref} = useClickOutsidev2(false)
 
-  const domNode = useClickOutside(() => {
-    setIsOpen(false)
-  })
+    const handleClick=() =>{
+        setVisible((prevState) => !prevState)
+    }
 
   return (
     <>
-      <div ref={domNode} className="user-dropdown" onClick={e => setIsOpen(!isOpen)}>
+      <div className="user-dropdown" onClick={e => handleClick()}>
         <div id="user-name" className="noselect">
-          <i className="fas fa-user"></i> {userInfo.firstName.toUpperCase()}
+          <i className="fas fa-user"/> {userInfo.firstName.toUpperCase()}
         </div>
-        {isOpen ?
-          <div className="dropdown-box">
+        {visible ?
+          <div ref={ref} className="dropdown-box">
             <ul>
               <Link to="/profile"><li>Info</li></Link>
               <li onClick={logoutHandler}>Logout</li>
@@ -40,7 +26,6 @@ const ProfileDropdown = ({userInfo, logoutHandler}) => {
           : ""}
       </div>
     </>
-
   )
 }
 

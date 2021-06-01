@@ -27,7 +27,7 @@ function App() {
           <Route path="/progressbar" component={ProgressBar} exact />
           <Route path="/checkout" component={CheckoutScreen} exact />
           <Route path="/addresses" component={AddressList} exact />
-          <Route path="/addresses/primary" component={AddAddress} exact />
+          <Route path="/addresses/add" component={AddAddress} exact />
           <Route path="/checkout/complete" component={CheckoutComplete} exact />
         </main>
       </div>

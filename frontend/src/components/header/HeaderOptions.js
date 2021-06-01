@@ -1,10 +1,12 @@
 import React from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {logoutAction} from '../../actions/UserActions'
 import ProfileDropdown from './ProfileDropdown'
+import Alert from "../Alert";
 
 const HeaderOptions = () => {
+    const history = useHistory()
   const dispatch = useDispatch()
   const slideDown = () => {
     const elemnt = document.querySelector('.options-container')
@@ -16,6 +18,7 @@ const HeaderOptions = () => {
   }
   const logoutHandler = () => {
     dispatch(logoutAction())
+    history.push("/")
   }
 
   const userLogin = useSelector(state => state.userLogin)
@@ -24,21 +27,21 @@ const HeaderOptions = () => {
   return (
     <div>
       <div className="burger-btn" onClick={e => slideDown(e)}>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div/>
+        <div/>
+        <div/>
       </div>
       <div className="options-container">
-        <div className="header-options">
+        <div className="header-options" style={{ position:"relative" }}>
           <Link to="/cart">
-            <i className="fas fa-shopping-cart"></i> GIỎ HÀNG
+            <i className="fas fa-shopping-cart"/> GIỎ HÀNG
           </Link>
           {userInfo
             ?
             <ProfileDropdown userInfo={userInfo} logoutHandler={logoutHandler} />
             :
             (<Link to="/login">
-              <i className="fas fa-user"></i> ĐĂNG NHẬP
+              <i className="fas fa-user"/> ĐĂNG NHẬP
             </Link>)
           }
         </div>

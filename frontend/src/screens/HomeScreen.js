@@ -38,7 +38,7 @@ const HomeScreen = () => {
           <div className="product-row">
             {products.map((s, index) => (
               <Card id={s._id} name={s.name}
-                ratings={s.ratings != "undefined" ? s.ratings : []}
+                ratings={s.reviews != "undefined" ? s.reviews : []}
                 price={s.price} image={s.images[0]} key={index} />
             ))}
           </div>

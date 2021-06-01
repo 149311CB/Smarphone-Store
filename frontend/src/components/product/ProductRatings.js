@@ -1,24 +1,26 @@
 import React, {useState, useEffect} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import Rating from '../Rating'
 import ProgressBar from '../ProgressBar'
 import AddRating from '../AddRating'
+import {getUserRatingAction} from "../../actions/UserActions";
 
 const ProductRatings = () => {
+  const dispatch = useDispatch()
   const {product} = useSelector(state => state.productDetail)
+  const {userInfo} = useSelector(state => state.userLogin)
+  const {userRating} = useSelector(state => state.getUserRating)
   const [isOpen, setIsOpen] = useState(false)
-  const {ratings} = product
-  console.log(ratings)
+  const {reviews} = product
 
   let fiveStar = 0;
   let fourStar = 0;
   let threeStar = 0;
   let twoStar = 0;
   let oneStar = 0;
-  const localUser = JSON.parse(localStorage.getItem("userInfo"))
 
   if (product != "undefined" && Object.keys(product).length > 0) {
-    const newFilter = ratings.filter(r =>
+    const newFilter = reviews.filter(r =>
       r.rating === 5 ? fiveStar += 1
         : r.rating >= 4 && r.rating < 5 ? fourStar += 1
           : r.rating >= 3 && r.rating < 4 ? threeStar += 1
@@ -29,53 +31,63 @@ const ProductRatings = () => {
   useEffect(() => {
     const elemnt = document.getElementById("add-rating-btn")
     if (elemnt) {
-      elemnt.style.display = "none"
+      let display=true
+      reviews.map(r =>{
+        if(userInfo != null && r.user._id === userInfo._id){
+          elemnt.style.display="none"
+          display=false
+        }
+      })
+      if(display){
+        dispatch(getUserRatingAction(product._id))
+      }
     }
-  })
-  if (ratings == null) {
+  },[product])
+
+  if (reviews == null) {
     return null;
   }
 
   return (
     <>
-      {ratings ?
+      {reviews ?
         < div className="product-ratings">
           <h4>Đánh giá sản phẩm</h4>
           <div className="ratings-list">
             <div className="ratings-summary">
               <div className="rating-group">
                 <Rating value={5} />
-                <ProgressBar value={fiveStar} summary={ratings.length} />
+                <ProgressBar value={fiveStar} summary={reviews.length} />
                 <span>{fiveStar}</span>
               </div>
               <div className="rating-group">
                 <Rating value={4} />
-                <ProgressBar value={fourStar} summary={ratings.length} />
+                <ProgressBar value={fourStar} summary={reviews.length} />
                 <span>{fourStar}</span>
               </div>
               <div className="rating-group">
                 <Rating value={3} />
-                <ProgressBar value={threeStar} summary={ratings.length} />
+                <ProgressBar value={threeStar} summary={reviews.length} />
                 <span>{threeStar}</span>
               </div>
               <div className="rating-group">
                 <Rating value={2} />
-                <ProgressBar value={twoStar} summary={ratings.length} />
+                <ProgressBar value={twoStar} summary={reviews.length} />
                 <span>{twoStar}</span>
               </div>
               <div className="rating-group">
                 <Rating value={1} />
-                <ProgressBar value={oneStar} summary={ratings.length} />
+                <ProgressBar value={oneStar} summary={reviews.length} />
                 <span>{oneStar}</span>
               </div>
               <button onClick={() => setIsOpen(true)} id="add-rating-btn">Viết nhận xét</button>
-              <AddRating image={product.images[0]} name={product.name} open={isOpen} onClose={() => setIsOpen(false)}></AddRating>
+              <AddRating image={product.images[0]} id={product._id} name={product.name} open={isOpen} onClose={() => setIsOpen(false)}/>
             </div>
             <div className="ratings-details">
-              {ratings.map(r =>
+              {reviews.map(r =>
                 <div>
                   <div className="user-rating">
-                    <div className="profile-picture"></div>
+                    <div className="profile-picture"/>
                     <div>
                       <div>
                         <p className="user-name">{r.user.lastName + " " + r.user.firstName}</p>
@@ -84,7 +96,7 @@ const ProductRatings = () => {
                       <p style={{marginTop: "0.6rem"}}>{r.comment}</p>
                     </div>
                   </div>
-                  <div className="indicator"></div>
+                  <div className="indicator"/>
                 </div>)}
             </div>
           </div>

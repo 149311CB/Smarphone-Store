@@ -22,7 +22,10 @@
 .product-content-container{
   padding: 0 0.6rem 0rem 0;
   border-bottom: 1px solid $border-color;
-  .product-image{ border: 1px solid $border-color; border-top: none; border-left:none;
+  .product-image{
+    border: 1px solid $border-color;
+    border-top: none;
+    border-left:none;
     border-bottom: none;
     padding: 0.6rem;
     img{
@@ -129,7 +132,7 @@
       .warranty-detail p{
         line-height: 2rem;
       }
-      
+
       .btn-container{
         text-align: center;
         button{
@@ -156,6 +159,7 @@
 
 .similar-products{
   padding-top: 2.4rem;
+  @include flex(center,center,column);
   h4{
     font-weight: 500;
     padding-left: 0.6rem;
@@ -163,8 +167,10 @@
 
 .similar-row{
   @include flex(flex-start,center,row);
-  overflow: hidden;
-  width: 100%;
+  overflow: auto;
+  width: 87vw;
+  border:1px solid $border-color;
+  border-radius: 0.3rem;
   a{
     margin: 0.6rem;
     width: 18%;

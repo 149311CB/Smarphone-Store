@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link, useHistory} from 'react-router-dom'
 import {getAddressListByUserAction} from '../actions/AddressActions'
 import primaryAddrr from '../right.png'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AddressList = () => {
   const history = useHistory()
@@ -12,10 +13,14 @@ const AddressList = () => {
 
   const changeShipping = (add) => {
     localStorage.setItem("shipping", JSON.stringify(add))
-    history.goBack()
+    history.push("/cart")
   }
 
   const editAddress = (add) => {
+
+  }
+
+  const deleteAddress =(add) =>{
 
   }
 
@@ -23,12 +28,16 @@ const AddressList = () => {
     dispatch(getAddressListByUserAction())
   }, [])
 
-  if (addressList == null) {
-    return null
-  }
   return (
+      <>
+      {loading || loading == null
+          ?
+          <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div>
+          :
     <div className="address-list-container">
-      <button className="btn primary-btn lg" style={{margin: "1.2rem 1.2rem 0 1.2rem"}}>Thêm địa chỉ</button>
+      <button className="btn primary-btn lg" style={{margin: "1.2rem 1.2rem 0 1.2rem"}} onClick={() => history.push("/addresses/add")}>Thêm địa chỉ</button>
+      {addressList != null
+      ?
       <div className="address-list">
         {addressList.map(add => (
           <div className="address-card">
@@ -41,7 +50,7 @@ const AddressList = () => {
                   </div>
                   <span>Địa chỉ mặc định</span>
                 </div>
-                <div className="indicator"></div>
+                <div className="indicator"/>
               </>
               : ""}
             <div className="address-body">
@@ -50,14 +59,16 @@ const AddressList = () => {
             <div className="address-footer">
               <button className="btn primary-btn nm dark" onClick={e => changeShipping(add)}>Giao đến địa chỉ này</button>
               <button className="btn light-btn nm light" onClick={e => editAddress(add)}>Chỉnh sửa</button>
-              <button className="btn nm danger-btn">Xóa</button>
+              <button className="btn nm danger-btn" onClick={e => deleteAddress(add)}>Xóa</button>
             </div>
           </div>
         ))}
       </div>
-    </div>
+          :
+          <p style={{margin:"1.2rem"}}>You don't have any address yet</p>}
+    </div>}
+      </>
   )
 }
 
 export default AddressList
-

@@ -34,7 +34,7 @@ app.use("/api/warranties", warrantyRoutes);
 app.use("/api/addresses", addressRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/ultils", ultilsRouter);
-app.use("/api/cart", cartRoutes);
+app.use("/api/carts", cartRoutes);
 app.use("/api/orderdetails", orderDetailRoutes)
 
 app.use("/api/config/paypal", (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))

@@ -15,7 +15,7 @@ const EditAddress = ({address}) => {
 
   const addAddressHanlder = (e) => {
     e.preventDefault()
-    dispatch(updateAddressAction(, {
+    dispatch(updateAddressAction(1, {
       city: cities[city].Name,
       district: cities[city].Districts[district].Name,
       ward: cities[city].Districts[district].Wards[ward].Name,

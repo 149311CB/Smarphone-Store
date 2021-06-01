@@ -12,6 +12,7 @@ const LoginScreen = ({location, history}) => {
   const dispatch = useDispatch();
   const userLogin = useSelector(state => state.userLogin)
   const {loading, error, userInfo} = userLogin
+  const {isCheckout} = useSelector(state => state.checkoutPending)
 
   const redirect = location.search ? location.search.split("=")[1] : "/"
 
@@ -22,7 +23,13 @@ const LoginScreen = ({location, history}) => {
 
   useEffect(() => {
     if (userInfo) {
+      if(isCheckout){
+        console.log("login")
+        history.push("/checkout")
+        return
+      }
       history.push(redirect)
+      console.log(redirect)
     }
   }, [history, userInfo, redirect])
 

@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import ReactStars from "react-rating-stars-component";
+import {createReviews} from "../actions/productActions";
+import {useDispatch} from "react-redux";
 
-const AddRating = ({image, name, open, onClose}) => {
+const AddRating = ({image,id, name, open, onClose}) => {
+  const dispatch=useDispatch()
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState("")
   if (!open) return null
@@ -28,16 +31,16 @@ const AddRating = ({image, name, open, onClose}) => {
     zIndex: 1000
   }
 
-
   const ratingChanged = (newRating) => {
     setRating(newRating)
   };
 
   const submitHandler = (e) => {
-    e.prevenDefault()
+    e.preventDefault()
+    dispatch(createReviews(id,{rating:rating,comment:comment}))
+      onClose()
   }
   return ReactDOM.createPortal(
-
     <>
       <div style={OVERLAY_STYLES} />
       <div className="add-rating" style={MODAL_STYLES}>
@@ -48,7 +51,7 @@ const AddRating = ({image, name, open, onClose}) => {
             </div>
             <span>{name}</span>
           </div>
-          <button onClick={onClose}><i className="fas fa-times fa-lg"></i></button>
+          <button onClick={onClose}><i className="fas fa-times fa-lg"/></button>
         </div>
         <div className="react-star-container">
           <ReactStars
@@ -56,17 +59,17 @@ const AddRating = ({image, name, open, onClose}) => {
             onChange={ratingChanged}
             size={80}
             isHalf={true}
-            emptyIcon={<i className="far fa-star"></i>}
-            halfIcon={<i className="fa fa-star-half-alt"></i>}
-            fullIcon={<i className="fa fa-star"></i>}
+            emptyIcon={<i className="far fa-star"/>}
+            halfIcon={<i className="fa fa-star-half-alt"/>}
+            fullIcon={<i className="fa fa-star"/>}
             color="rgba(0, 0, 0, 0.125)"
             activeColor="#f0bc37"
           />
         </div>
         <div className="comment-form-container">
-          <form>
-            <textarea rows={8} placeholder="Chia sẻ cảm nhận của bạn về sản phẩm này" onChange={e => setComment(e.target.value)}></textarea>
-            <button id="add-rating" type="submit" onSubmit={submitHandler}>Gửi đánh giá</button>
+          <form onSubmit={submitHandler}>
+            <textarea rows={8} placeholder="Chia sẻ cảm nhận của bạn về sản phẩm này" onChange={e => setComment(e.target.value)}/>
+            <button id="add-rating" type="submit" >Gửi đánh giá</button>
           </form>
         </div>
       </div>
@@ -77,4 +80,3 @@ const AddRating = ({image, name, open, onClose}) => {
 }
 
 export default AddRating
-

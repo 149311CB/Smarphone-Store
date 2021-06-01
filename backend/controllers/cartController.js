@@ -5,82 +5,137 @@ import Cart from '../models/cartModel.js'
 // @route   GET /api/carts
 // @access  Private
 const getCart = asyncHandler(async (req, res) => {
-  const cart = await Cart.findOne({user: req.query.user})
+  const cart = await Cart.findOne({user: req.user._id})
     .populate({
       path: "products",
       populate: {
         path: "product", select: "name price images coupons",
-        populate: {path: "coupons", select: "name discountType discountAmount discountPercent discountStart activeTime", model: "Coupon"}
+        populate: {
+          path: "coupons", select: "name discountType discountAmount discountPercent discountStart activeTime",
+          model: "Coupon"
+        }
       }
     });
   res.json(cart)
 })
 
+// @descs   Add to cart
+// @route   POST /api/carts
+// @access  Private
+const addToCart = asyncHandler(async (req, res) => {
+  const today = new Date().toISOString()
+  const cart = await Cart.findOne({user: req.user._id})
+  if (!cart) {
+    const createdCart = await Cart.create({products: [...req.body], user: req.user._id, createAt: today})
+    res.json(createdCart)
+  }
+  let isNew = true
+  cart.products.forEach(function (c) {
+    // Don't change to ===
+    if (c.product == req.body[0].product) {
+      c.quantity += req.body[0].quantity
+      isNew = false
+    }
+  })
+  if (isNew) {
+    cart.products.push(req.body[0])
+  }
+  const updatedCart = await cart.save()
+  res.json(updatedCart)
+})
+
+// @desc    Update quantity
+// @route   POST /api/carts/
+// @access  Private
+const updateQuantity = asyncHandler(async (req, res) => {
+  const cart = await Cart.findOne({user: req.user._id})
+  if (cart) {
+    cart.products.forEach(function (c) {
+      // Don't change to ===
+      if (c.product == req.body.product) {
+        c.quantity = req.body.quantity
+      }
+    })
+  } else {
+    res.status(404)
+    throw new Error("Cart not found")
+  }
+  const updatedCart = await cart.save()
+  res.json(updatedCart)
+})
+
 // @descs   Update cart by user
 // @route   POST /api/carts
 // @access  Private
-const updateCart = asyncHandler(async (req, res) => {
-  const today = new Date()
-  const cart = await Cart.findOne({user: req.query.user})
-  let isNew = true;
-  if (cart) {
-    console.log("update")
-    cart.products.forEach(function (i) {
-      if (i.product == req.body.product) {
-        i.quantity += req.body.quantity
-        isNew = false;
-      }
-    })
-    if (isNew) {
-      console.log("new")
-      cart.products = [...cart.products, {...req.body}]
-    }
-    const updatedCart = await cart.save()
-    res.json({...updatedCart._doc})
-  } else {
-    const created = await Cart.create({
-      products: [...req.body],
-      user: req.query.user,
-      createAt: today.toISOString()
-    })
-    if (created) {
-      res.json({...created._doc})
-    }
-  }
-}
-)
+// const updateCart = asyncHandler(async (req, res) => {
+//   const today = new Date()
+//   const cart = await Cart.findOne({user: req.user._id})
+//   let isNew = true;
+//   if (cart) {
+//     cart.products.forEach(function (i) {
+//       if (i.product === req.body.product) {
+//         i.quantity += req.body.quantity
+//         isNew = false;
+//       }
+//     })
+//     if (isNew) {
+//       console.log("new")
+//       cart.products = [...cart.products, {...req.body}]
+//     }
+//     const updatedCart = await cart.save()
+//     res.json({...updatedCart._doc})
+//   } else {
+//     const created = await Cart.create({
+//       products: [...req.body],
+//       user: req.query.user,
+//       createAt: today.toISOString()
+//     })
+//     if (created) {
+//       res.json({...created._doc})
+//     }
+//   }
+// }
+// )
 
 // @descs   Update cart by user
 // @route   POST /api/carts
 // @access  Private
 const removeFromCart = asyncHandler(async (req, res) => {
-  const cart = await Cart.findOne({user: req.query.user})
+  const cart = await Cart.findOne({user: req.user})
+  console.log(req.body.product)
   if (cart) {
     cart.products.forEach(function (i) {
       if (i.product == req.body.product) {
-        if (req.body.quantity) {
-          i.quantity = req.body.quantity
-        } else {
-          const index = cart.products.indexOf(i)
-          cart.products.splice(index, 1)
-        }
+        const index = cart.products.indexOf(i)
+        cart.products.splice(index, 1)
       }
     })
 
     const removed = await cart.save()
-    res.json({...removed._doc})
+    res.json(removed)
   }
 })
 
-const deleteCart = asyncHandler(async (req, res) => {
-  const cart = await Cart.findOne({_id: req.params.id, user: req.user})
-  if (cart) {
-    await cart.remove()
-    res.json({message: 'Cart removed'})
-  } else {
+const clearCart = asyncHandler(async (req, res) => {
+  const cart = await Cart.findOne({user: req.user._id})
+  if (!cart) {
     res.status(404)
     throw new Error('Order not found')
   }
+  cart.products = []
+  const updatedCart = cart.save()
+  res.json({message: 'Clear cart'})
 })
 
-export {getCart, updateCart, removeFromCart, deleteCart}
+const pushToServer = asyncHandler(async (req, res) => {
+  const cart = await Cart.findOne({user: req.user._id})
+  const today = new Date().toISOString()
+  if (!cart) {
+    const createdCart = await Cart.create({products: [...req.body], user: req.user._id, createAt: today})
+    res.json(createdCart)
+  }
+  cart.products = req.body
+  const updatedCart = await cart.save()
+  res.json(updatedCart)
+})
+export {getCart, removeFromCart, clearCart, addToCart, updateQuantity, pushToServer}

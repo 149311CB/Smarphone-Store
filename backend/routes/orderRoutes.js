@@ -10,13 +10,19 @@ router.route("/:id/detail").get(getOrderDetail)
 
 export default router; */
 
-import {getAllOrderByUserId, getOrderDetailByOrderId, createOrder} from '../controllers/orderController.js'
+import {
+    getAllOrderByUserId,
+    getOrderDetailByOrderId,
+    createOrder,
+    getOrderDetailForRating
+} from '../controllers/orderController.js'
 import protect from '../middlewares/authMiddlewares.js'
 
 const router = express.Router()
 
 router.route("/").get(protect, getAllOrderByUserId).post(protect, createOrder)
 router.route("/details").get(protect, getOrderDetailByOrderId)
+router.route("/details/ratings").get(protect,getOrderDetailForRating)
 
 
 export default router
