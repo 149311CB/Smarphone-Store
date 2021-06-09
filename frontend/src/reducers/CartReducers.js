@@ -16,7 +16,7 @@ import {
   ADD_TO_CART_FAIL,
   UPDATE_QTY_REQUEST,
   PUSH_CART_REQUEST,
-  PUSH_CART_SUCCESS, PUSH_CART_FAIL
+  PUSH_CART_SUCCESS, PUSH_CART_FAIL, PUSH_CART_RESET
 } from '../constants/CartConstants'
 
 export const addToCartReducer = (state = {cartInfo: []}, action) => {
@@ -86,8 +86,16 @@ export const deleteCartReducer =(state={},action)=>{
 }
 
 export const pushCartReducer =(state={},action)=>{
-  if(PUSH_CART_FAIL){
-    return {error:action.error}
+  switch (action.type){
+    case PUSH_CART_REQUEST:
+      return {loading:true}
+    case PUSH_CART_SUCCESS:
+      return {loading:false,message:action.message}
+    case PUSH_CART_FAIL:
+      return {loading:false,error:action.error}
+    case PUSH_CART_RESET:
+      return {}
+    default:
+      return state
   }
-  return state
 }

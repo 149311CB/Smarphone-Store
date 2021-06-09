@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 
 const Alert = ({children,message,top,left,right}) => {
     const ALERT_STYLES={
@@ -17,12 +17,10 @@ const Alert = ({children,message,top,left,right}) => {
         fontSize:"0.813rem"
     }
     return (
-      <>
         <div className={"alert-message"} style={ALERT_STYLES}>
             <div>{message}</div>
             {children}
         </div>
-      </>
   )
 }
 

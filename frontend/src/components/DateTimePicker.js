@@ -7,17 +7,17 @@ const arr = (month, year) => {
     .filter((v) => v.getMonth() === month - 1);
 };
 
-const DateTimePicker = ({getISODate}) => {
+const DateTimePicker = ({getISODate, initialDay, initialMonth, initialYear}) => {
   const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const [month, setMonth] = useState(new Date().getMonth());
-  const yearList = [];
-  const [year, setYear] = useState(new Date().getFullYear() - 10);
+    const yearList = [];
+  const [month, setMonth] = useState(initialMonth ? initialMonth: new Date().getMonth());
+  const [year, setYear] = useState(initialYear ? initialYear : new Date().getFullYear() - 10);
+    const [days, setDays] = useState(arr(month, year));
+    const [selectedDate, setSelectedDate] = useState(initialDay ? initialDay : new Date().getDate());
   for (var i = new Date().getFullYear() - 100; i <= new Date().getFullYear(); i++) {
     yearList.push(i);
   }
 
-  const [days, setDays] = useState(arr(month, year));
-  const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   useEffect(() => {
     getISODate(new Date(`${year.toString()}-${month.toString()}-${selectedDate.toString()}`).toISOString())
   }, [month, year, selectedDate])

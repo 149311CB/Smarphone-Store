@@ -10,21 +10,27 @@ const ShippingContainer = () => {
     <div className="shipping">
       <div className="shipping-row">
         <div>Địa chỉ nhận hàng</div>
-        <Link to="/addresses" className="add-address-btn">Thay đổi</Link>
+          {userInfo &&
+              <Link to="/checkout#addresslist" className="add-address-btn">Thay đổi</Link>
+          }
       </div>
       <div className="indicator" />
       <div className="shipping-col">
           {address ?
               <>
-                  <div>{userInfo.lastname} {userInfo.firstName}</div>
-                  <div>{address.addressDetails} {address.addressDetails ? "," : ""} {address.ward}, {address.district}, {address.city}</div>
+                  {userInfo &&
+                      <>
+                        <div>{userInfo.lastname} {userInfo.firstName}</div>
+                        <div>{address.addressDetails} {address.addressDetails ? "," : ""} {address.ward}, {address.district}, {address.city}</div>
+                      </>
+                  }
               </>
           :
               <>
                   {!userInfo ?
                     <Link to={"/login"} style={{color:"#323d43"}}><i className="fas fa-map-marker-alt"/> Đăng nhập để thêm địa chỉ giao hàng</Link>
                       :
-                    <Link to={"/addresses"} style={{color:"#323d43"}}><i className="fas fa-map-marker-alt"/> Thêm địa chỉ giao hàng</Link>
+                    <Link to={"/checkout#addaddress"} style={{color:"#323d43"}}><i className="fas fa-map-marker-alt"/> Thêm địa chỉ giao hàng</Link>
                   }
               </>
           }

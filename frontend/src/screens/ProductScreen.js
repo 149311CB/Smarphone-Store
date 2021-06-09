@@ -5,6 +5,7 @@ import ProductContent from '../components/product/ProductContent'
 import SimilarProducts from '../components/product/SimilarProducts'
 import ProductSpecification from '../components/product/ProductSpecification'
 import ProductRatings from '../components/product/ProductRatings'
+import {toast} from "react-toastify";
 
 const ProductScreen = ({match}) => {
   const dispatch = useDispatch()

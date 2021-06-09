@@ -1,3 +1,46 @@
 .paginations{
-  @include flex(space-between,center,row)
-}
+  button{
+    background: none;
+    border:1px solid #dee2e6;
+    padding:0.3rem 0.6rem;
+    color:#007bff;
+    border-left: none;
+    transition: 150ms ease-in-out background;
+    &.active{
+     background: #007bff;
+      color: white;
+      &:hover{
+        background: #007bff;
+        color: white;
+      }
+    }
+  }
+  button:hover{
+    color:#0056b3;
+    background: #e9ecef;
+  }
+  //button:active{
+  //  outline: 2px solid rgba(0, 123, 255, 0.57);
+  //}
+  button:disabled{
+    color: rgba(33, 37, 41, 0.78);
+    &:hover{
+      background: none;
+      cursor: initial;
+    }
+  }
+  display: flex;
+  ul{
+    display: flex;
+    list-style: none;
+  }
+    .previous{
+      border-left: 1px solid #dee2e6;
+      border-top-left-radius: 0.3rem;
+      border-bottom-left-radius: 0.3rem;
+    }
+    .next{
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+  }

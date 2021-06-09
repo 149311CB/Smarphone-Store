@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {userLoginAction} from '../actions/UserActions'
 import ClipLoader from "react-spinners/ClipLoader";
+import {pushCartToServer} from "../actions/CartActions";
+import {PUSH_CART_RESET} from "../constants/CartConstants";
 
 const LoginScreen = ({location, history}) => {
 
@@ -13,8 +15,7 @@ const LoginScreen = ({location, history}) => {
   const userLogin = useSelector(state => state.userLogin)
   const {loading, error, userInfo} = userLogin
   const {isCheckout} = useSelector(state => state.checkoutPending)
-
-  const redirect = location.search ? location.search.split("=")[1] : "/"
+  const {loading:pushLoading,error:pushError,message:pushMessage} = useSelector(state => state.pushCart)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -23,20 +24,29 @@ const LoginScreen = ({location, history}) => {
 
   useEffect(() => {
     if (userInfo) {
-      if(isCheckout){
-        console.log("login")
+      const localCart = JSON.parse(localStorage.getItem("cart"))
+      if(localCart){
+        localStorage.removeItem("cart")
+        dispatch(pushCartToServer(localCart.products))
+        return;
+      }
+      if(pushMessage && isCheckout){
         history.push("/checkout")
+        // dispatch({type:PUSH_CART_RESET})
         return
       }
-      history.push(redirect)
-      console.log(redirect)
+      if(userInfo.role === "admin"){
+        history.push("/admin")
+        return
+      }
+      history.push("/")
     }
-  }, [history, userInfo, redirect])
+  }, [history, userInfo, pushMessage])
 
   return (
     <>
       {
-        loading ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div> :
+        loading && pushLoading ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div> :
           <form className="login-form" onSubmit={submitHandler}>
             {error ? <div className="form-error">{error}</div> : ""}
             <div className="form-group">
@@ -47,7 +57,8 @@ const LoginScreen = ({location, history}) => {
               <label htmlFor="password-input">Password</label>
               <input id="password-input" type="password" onChange={e => setPassword(e.target.value)} />
             </div>
-            <div style={{fontSize: "0.813rem", marginBottom: "0.6rem"}} className="link-to-register"><Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>New user? Register!</Link></div>
+            <div style={{fontSize: "0.813rem", marginBottom: "0.6rem"}} className="link-to-register">
+              <Link to={"/register"}>New user? Register!</Link></div>
             <button>Đăng nhập</button>
           </form>
       }

@@ -1,0 +1,76 @@
+.order-screen{
+  font-size: 0.813rem;
+  .orders-manager{
+    padding: 0.6rem 0.6rem 1.2rem 2.4rem;
+    h3{
+      font-weight:500;
+      font-size: 0.983rem;
+    }
+    .order-table{
+      margin-top: 1.2rem;
+      border:1px solid $border-color;
+
+    }
+  }
+
+}
+.order-details-manager{
+   padding: 0.6rem 0 1.2rem 2.4rem;
+    .order-body{
+      font-size: 0.813rem;
+      margin-top:1.2rem;
+      .order-details{
+        margin-top: 1.2rem;
+        @include flex(space-between,initial,row);
+        .shipping-address, .payment-methods{
+          width: 45%;
+          border:1px solid $border-color;
+          border-radius: 0.3rem;
+          .indicator{
+            margin:0.3rem 0;
+          }
+          p{
+            padding: 0.3rem 0.6rem;
+          }
+        }
+        .payment-methods{
+          margin-right: 0.6rem;
+        }
+      }
+      .product-list{
+        margin-top: 1.2rem;
+        margin-right: 0.6rem;
+        table{
+          width: 100%;
+          .product-details{
+            @include flex(flex-start,flex-start,row);
+            div{
+              width: 70px;
+              img{
+                width: 100%;
+              }
+            }
+          }
+          .product-options{
+            width: 100%;
+            button{
+              margin-right: 0.6rem;
+            }
+          }
+        }
+      }
+      .order-summary{
+        margin-top: 1.2rem;
+        margin-right: 0.6rem;
+        @include flex(space-between,initial,row);
+        .order-total{
+          p{
+            line-height: 2rem;
+          }
+          span{
+            color:$danger;
+          }
+        }
+      }
+    }
+ }

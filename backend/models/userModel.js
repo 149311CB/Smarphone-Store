@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     required: false
   },
   gender: {
-    type: Boolean,
+    type: Number,
     required: false
   },
   password: {
@@ -41,7 +41,7 @@ const userSchema = mongoose.Schema({
   },
   createAt: {
     type: Date,
-    required: true
+    required: false
   }
 })
 

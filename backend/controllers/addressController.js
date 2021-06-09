@@ -22,15 +22,15 @@ const getAddressById = asyncHandler(async (req, res) => {
 // @route   POST /api/addresses
 // @access  Public
 const createAddress = asyncHandler(async (req, res) => {
-    const primaryAddrr = await Address.findOne({user: req.user._id, isPrimary: 1})
-    if (primaryAddrr) {
-        if(req.body.isPrimary === 1){
-          primaryAddrr.isPrimary = 0
-        }
-      const normalAddrr = await primaryAddrr.save()
-    }else{
-      req.body.isPrimary = 1
+  const primaryAddrr = await Address.findOne({user: req.user._id, isPrimary: 1})
+  if (primaryAddrr) {
+    if (req.body.isPrimary === 1) {
+      primaryAddrr.isPrimary = 0
     }
+    const normalAddrr = await primaryAddrr.save()
+  } else {
+    req.body.isPrimary = 1
+  }
   const address = await Address.create(req.body)
   res.status(201).json(address);
 })
@@ -39,7 +39,7 @@ const createAddress = asyncHandler(async (req, res) => {
 // @route   DELETE /api/addresses
 // @access  Public
 const deleteAddressById = asyncHandler(async (req, res) => {
-  const address = await Address.findById({user:req.user._id,_id:req.params.id});
+  const address = await Address.findById({user: req.user._id, _id: req.params.id});
   if (address) {
     await address.remove()
   } else {

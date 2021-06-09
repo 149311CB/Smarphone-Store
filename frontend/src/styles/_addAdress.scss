@@ -7,7 +7,7 @@
   background: $text-color;
   color: white;
   .form-group-container{
-    @include flex(space-between,flex-start,row)
+    @include flex(space-between,flex-start,row);
     .form-group{
       width: 45%;
     }

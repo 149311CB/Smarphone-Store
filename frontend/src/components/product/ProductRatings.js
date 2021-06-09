@@ -81,7 +81,11 @@ const ProductRatings = () => {
                 <span>{oneStar}</span>
               </div>
               <button onClick={() => setIsOpen(true)} id="add-rating-btn">Viết nhận xét</button>
-              <AddRating image={product.images[0]} id={product._id} name={product.name} open={isOpen} onClose={() => setIsOpen(false)}/>
+              <AddRating image={product.images[0]}
+                         id={product._id}
+                         name={product.name}
+                         open={isOpen}
+                         onClose={() => setIsOpen(false)}/>
             </div>
             <div className="ratings-details">
               {reviews.map(r =>

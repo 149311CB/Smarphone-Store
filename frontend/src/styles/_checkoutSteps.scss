@@ -1,0 +1,41 @@
+.checkout-steps-container{
+  width: 50%;
+  margin-bottom: 1.2rem;
+  @include flex(center,center,column);
+}
+.checkout-steps{
+  @include flex(space-between,center,row);
+  position: relative;
+  margin-bottom: 1.2rem;
+  width: 90%;
+  font-size: 0.813rem;
+  &.top{
+    width: 100%;
+  }
+  .step-bar{
+    width: 50%;
+    position: absolute;
+    padding: 0.3rem;
+    background: #dfdfdf;
+    &.active{
+      background: $accent-color;
+    }
+    &.left{
+      left: 3px;
+    }
+    &.right{
+      right: 3px;
+    }
+  }
+}
+.step{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  @include flex(center,center,row);
+  z-index: 2;
+  background-color: #dfdfdf;
+  &.active{
+    background-color: $accent-color;
+  }
+}

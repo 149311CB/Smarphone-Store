@@ -52,7 +52,7 @@ h6 {
 
 a {
   text-decoration: none;
-  color: white;
+  color: #458588;
 }
 
 $bg-color:#fafafa;
@@ -247,6 +247,9 @@ main {
     padding: 0.6rem 1.2rem;
     border-radius: 0.3rem;
   }
+  &.wide{
+    padding: 0.6rem 2.4rem;
+  }
 }
 .primary-btn{
   background: $accent-color;
@@ -261,9 +264,15 @@ main {
   &.transparent{
     background: white;
   }
+  &.transparent:hover{
+    background-color: $border-color;
+  }
 }
 .danger-btn{
   background-color: $danger;
+  &.white{
+    color:white;
+  }
 }
 
 .shipping{
@@ -285,6 +294,21 @@ main {
     border-radius: 0.3rem;
 }
 
+table{
+  border-radius: 0.3rem;
+  border-collapse: collapse;
+  width: 100%;
+  th{
+    border:1px solid $border-color;
+    text-align: start;
+    padding: 0.3rem;
+  }
+  td{
+    border:1px solid $border-color;
+    padding: 0.3rem;
+  }
+}
+
 @import "header";
 @import "sidebar";
 @import "carousel";
@@ -298,3 +322,11 @@ main {
 @import "addAdress";
 @import "addressList";
 @import "messages";
+@import "checkoutSteps";
+@import "accountSidebar";
+@import "profileScreen";
+@import "orderScreen";
+@import "stripe";
+@import "admin";
+@import "productScreen";
+@import "adminProductDetail";

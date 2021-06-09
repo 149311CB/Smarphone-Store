@@ -1,0 +1,44 @@
+.profile-screen{
+  font-size: 0.813rem;
+  .profile-manager{
+    padding: 1.2rem 0 1.2rem 2.4rem;
+    .profile-form{
+      max-width: 340px;
+      min-width: 313px;
+    }
+    .form-group-container{
+      @include flex(space-between,flex-start,row);
+      .form-group{
+        width: 45%;
+      }
+    }
+    .radio-group-container{
+      @include flex(flex-start,center,row);
+      .radio-group{
+        // border: 1px solid $border-color;
+        margin-right: 0.6rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        @include flex(space-between,center,row);
+        label{
+          padding-right: 0.6rem;
+        }
+      }
+    }
+    .form-group{
+      @include flex(center,flex-start,column);
+      // border:1px solid $border-color;
+      margin-bottom: 0.6rem;
+      label{
+        margin-bottom: 0.6rem;
+      }
+      input{
+        width: 100%;
+        padding: 0.6rem;
+      }
+    }
+    .datetimepicker{
+      margin-bottom: 0;
+    }
+  }
+}

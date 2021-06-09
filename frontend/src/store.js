@@ -1,12 +1,19 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {productListReducer, productReducer, similarsReducer} from "./reducers/ProductReducer";
+import {
+  createProductReducer,
+  deleteProductReducer, fuzzySearchReducer,
+  productListReducer,
+  productReducer,
+  similarsReducer,
+  updateProductReducer
+} from "./reducers/ProductReducer";
 import {bannerListReducer, ratingByProductReducer} from './reducers/UltilsReducers'
 import {filterReducer} from './reducers/FiltersReducers'
 import {
-  createRatingReducer,
-  getUserRatingReducer,
+  createRatingReducer, deleteUserReducer, getUserByIdReducer, getUserListReducer, getUserProfileReducer,
+  getUserRatingReducer, updateUserByIdReducer, updateUserProfileReducer,
   userLoginReducer,
   userLogoutReducer,
   userRegisterReducer
@@ -19,7 +26,13 @@ import {
   pushCartReducer
 } from './reducers/CartReducers'
 import {getAddressListByUserReducer, getAddressByUserReducer, getCityListReducer, addAddressReducer} from './reducers/AddressReducers'
-import {checkoutPendingReducer, orderCreateReducer} from "./reducers/OrderReducers";
+import {
+  checkoutPendingReducer, deleteOrderByIdReducer,
+  getOrderDetailByIdReducer,
+  getOrderListByUserReducer, getOrderListReducer,
+  orderCreateReducer, updateOrderStatusReducer
+} from "./reducers/OrderReducers";
+import {getWarrantyListReducer} from "./reducers/WarrantyReducer";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -42,7 +55,23 @@ const reducer = combineReducers({
   cartDeleted:deleteCartReducer,
   checkoutPending:checkoutPendingReducer,
   getUserRating:getUserRatingReducer,
-  createRating:createRatingReducer
+  createRating:createRatingReducer,
+  getUserProfile:getUserProfileReducer,
+  updateUserProfile:updateUserProfileReducer,
+  getOrderListByUser:getOrderListByUserReducer,
+  getOrderDetails:getOrderDetailByIdReducer,
+  updateOrderStatus:updateOrderStatusReducer,
+  getUserList:getUserListReducer,
+  deleteUser:deleteUserReducer,
+  getUserById:getUserByIdReducer,
+  updateUserById:updateUserByIdReducer,
+  getOrderList:getOrderListReducer,
+  deleteOrderById:deleteOrderByIdReducer,
+  getWarrantyList:getWarrantyListReducer,
+  updateProduct:updateProductReducer,
+  deleteProduct:deleteProductReducer,
+  createProduct:createProductReducer,
+  fuzzySearch:fuzzySearchReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

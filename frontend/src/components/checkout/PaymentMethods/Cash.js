@@ -2,6 +2,7 @@ import React from 'react'
 import cash from "../../../pay 1.png";
 import {completeOrder} from "../../../actions/OrderActions";
 import {useDispatch} from "react-redux";
+import {CREATE_ORDER_RESET} from "../../../constants/OrderConstants";
 
 const Cash = ({method,changePaymentMethod,cartInfo,address}) => {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const Cash = ({method,changePaymentMethod,cartInfo,address}) => {
         }
         dispatch(completeOrder(order))
     }
+
   return (
       <div className="cash-group" style={{marginBottom: "0.6rem"}}>
         <div className="radio-group">
@@ -30,7 +32,8 @@ const Cash = ({method,changePaymentMethod,cartInfo,address}) => {
         {method === 0
             ? <button className="btn primary-btn lg"
                       style={{marginBottom: "0.6rem"}}
-                      onClick={cashSubmitHandler}>ĐẶT MUA</button> : ""}
+                      onClick={cashSubmitHandler}
+            disabled={!address}>ĐẶT MUA</button> : ""}
       </div>
   )
 }

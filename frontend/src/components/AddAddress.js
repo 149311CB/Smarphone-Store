@@ -35,7 +35,10 @@ const AddAddress = () => {
       }
       if(newAddress){
         dispatch({type:ADD_ADDRESS_RESET})
-        history.push("/addresses")
+          history.goBack()
+        // if(location.pathname === "/checkout"){
+        //   history.push("/checkout#addresslist")
+        // }
       }
   }, [newAddress])
 
@@ -86,7 +89,8 @@ const AddAddress = () => {
             <div>
               <input id="address-detail" type="text" placeholder="Địa chỉ chi tiết" onChange={e => setDetails(e.target.value)} />
             </div>
-            {error && error.includes("addressDetails") ? <div className="form-error">Address detail must not be empty</div> : ""}
+            {error && error.includes("addressDetails")
+                ? <div className="form-error">Address detail must not be empty</div> : ""}
           </div>
           <div className="checkbox-group">
             <input id="isPrimary" type="checkbox"

@@ -12,15 +12,23 @@ const Header = ({location}) => {
           <div
             className="logo"
             style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              backgroundColor: "#A7C080",
-            }}
-          ></div>
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        backgroundColor: "#A7C080",
+    }}
+    />
         </Link>
-        <div className={pathname === "/login" || pathname === "/register" ? "header-funtions hide-search" : "header-funtions"}>
-          {pathname === "/login" || pathname === "/register" ? "" : <HeaderSearchBar />}
+        <div className={pathname === "/login"
+        || pathname === "/register"
+        || pathname.includes("/admin")
+            || pathname.includes("/account")
+            ? "header-funtions hide-search" : "header-funtions"}>
+          {pathname === "/login"
+          || pathname === "/register"
+          || pathname.includes("/admin")
+          || pathname.includes("/account")
+              ?  "" : <HeaderSearchBar />}
           <HeaderOptions />
         </div>
       </nav>

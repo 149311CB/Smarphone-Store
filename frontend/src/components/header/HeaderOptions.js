@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link, useHistory} from "react-router-dom";
 import {logoutAction} from '../../actions/UserActions'
 import ProfileDropdown from './ProfileDropdown'
-import Alert from "../Alert";
 
 const HeaderOptions = () => {
     const history = useHistory()
@@ -13,7 +12,6 @@ const HeaderOptions = () => {
     elemnt.classList.toggle('active')
   }
   const showDropdown = (e) => {
-
     document.querySelector(".dropdown-box").classList.toggle("active")
   }
   const logoutHandler = () => {
@@ -38,7 +36,8 @@ const HeaderOptions = () => {
           </Link>
           {userInfo
             ?
-            <ProfileDropdown userInfo={userInfo} logoutHandler={logoutHandler} />
+            <ProfileDropdown userInfo={userInfo}
+                             logoutHandler={logoutHandler} />
             :
             (<Link to="/login">
               <i className="fas fa-user"/> ĐĂNG NHẬP

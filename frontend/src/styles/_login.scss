@@ -13,10 +13,9 @@
     .form-group{
       width: 45%;
     }
-    
   }
   .radio-group-container{
-    @include flex(flex-start,center,row)
+    @include flex(flex-start,center,row);
     .radio-group{
       // border: 1px solid $border-color;
       margin-right: 0.6rem;

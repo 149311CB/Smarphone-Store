@@ -5,15 +5,12 @@ import ProductOptions from './ProductOptions'
 import ClipLoader from "react-spinners/ClipLoader";
 import {addToCart} from '../../actions/CartActions'
 import Alert from "../Alert";
-import {Link} from "react-router-dom";
-import {useClickOutsidev2} from "../../hooks/clickOutsidev2";
-
 
 const ProductContent = () => {
+
   const dispatch = useDispatch()
   const {loading, error, product} = useSelector(state => state.productDetail)
 
-  const {visible,setVisible,ref} = useClickOutsidev2(false)
   const [mainImage, setMainImage] = useState("")
   const [quantity, setQuantity] = useState(1)
   const rating = product != null  && Object.keys(product).length !== 0

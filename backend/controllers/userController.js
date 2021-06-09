@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import Address from '../models/addressModel.js'
 import User from '../models/userModel.js'
 import generateToken from '../ultils/generateToken.js'
 
@@ -15,6 +16,10 @@ const getUsers = asyncHandler(async (req, res) => {
 // @access  Public
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
+  if (!user) {
+    res.statu(404)
+    res.json({message: "User not found"})
+  }
   res.json(user)
 })
 
@@ -33,6 +38,8 @@ const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id)
   if (user) {
     user.remove()
+    await Address.deleteMany({user: user._id})
+    await Order.deleteMany({user: user._id})
     res.json({message: 'User Removed'})
   } else {
     res.status(404)
@@ -69,9 +76,12 @@ const getUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     res.json({
       _id: user._id,
-      name: user.firstName + " " + user.lastName,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phoneNumber: user.phoneNumber,
       email: user.email,
-      role: user.role
+      gender: user.gender,
+      birthday: user.birthday
     })
   } else {
     rest.status(404)
@@ -98,7 +108,6 @@ const registerUser = asyncHandler(async (req, res) => {
     role: "customer",
     createAt: today
   })
-  console.log(user)
   if (user) {
     res.status(201).json({
       _id: user._id,
@@ -114,5 +123,49 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+  if (user && (user.matchPassword(req.body.password))) {
+    user.firstName = req.body.firstName
+    user.lastName = req.body.lastName
+    user.email = req.body.email
+    user.phoneNumber = req.body.phoneNumber
+    user.gender = req.body.gender
+  } else {
+    res.status(401)
+    throw new Error("Invalid email or password")
+  }
+  await user.save()
+  res.json({message: "Update profile success"})
+})
 
-export {getUsers, getUserById, createUser, authUser, getUserProfile, registerUser }
+const updateUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if (user) {
+    user.firstName = req.body.firstName
+    user.lastName = req.body.lastName
+    user.email = req.body.email
+    user.phoneNumber = req.body.phoneNumber
+    user.gender = req.body.gender
+  } else {
+    res.status(404)
+    res.json({message: "User not found"})
+  }
+  await user.save()
+  res.json({message: "Update profile success"})
+
+})
+
+const getUserList = asyncHandler(async (req, res) => {
+  if (req.user.role !== "admin") {
+    res.status(401)
+    throw new Error("Not authorize, token failed")
+  }
+  const users = await User.find({})
+  res.json(users)
+})
+
+export {
+  getUsers, createUser, authUser, getUserProfile, registerUser,
+  updateUserProfile, getUserList, deleteUser, getUserById, updateUserById
+}

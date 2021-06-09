@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCart} from '../../actions/CartActions'
+import {getCart, pushCartToServer} from '../../actions/CartActions'
 import {getAddressByUserAction} from '../../actions/AddressActions'
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -16,10 +16,13 @@ const CheckoutSummary = () => {
   const [sdkReady, setSdkReady] = useState(false)
   const [paymentProcessing, setPaymentProcessing] = useState(false);
 
+  const {loading:pushLoading,error:pushError,message:pushMessage} = useSelector(state => state.pushCart)
   const {loading, error, cartInfo} = useSelector(state => state.getCart)
   const {loading:payLoading, error:payError} = useSelector(state => state.orderCreated)
+    const {userInfo} = useSelector(state => state.userLogin)
 
   let amount = 0;
+
   if (cartInfo != null && cartInfo.products) {
     amount = cartInfo.products.reduce((acc, curr) => acc + curr.product.price, 0)
   }
@@ -43,14 +46,20 @@ const CheckoutSummary = () => {
       setSdkReady(true)
     }
 
-    dispatch(getCart())
-    dispatch(getAddressByUserAction())
-  }, [dispatch])
+    if(userInfo){
+        dispatch(getCart())
+        dispatch(getAddressByUserAction())
+    }
+
+  }, [dispatch,pushLoading])
 
   return (
     <>
       {!window.paypal || payLoading || loading || loading == null
-        ? <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div>
+        ?
+        <div className="loader">
+            <ClipLoader color={"#A7c080"} size={100} />
+        </div>
         :
         <div style={{width: "100%"}}>
           <div style={{fontSize: "1rem", fontWeight: "500", marginBottom: "0.6rem"}}>Danh sách sản phẩm</div>
@@ -69,4 +78,3 @@ const CheckoutSummary = () => {
 }
 
 export default CheckoutSummary
-

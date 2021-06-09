@@ -6,7 +6,7 @@
   padding: 0.6rem 1.2rem;
   margin-right: 1.2rem;
   .sidebar-indicator{
-    border-top: 1px solid rgba(0, 0, 0, 0.125);;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
     margin: 1.2rem 0;
   }
   h4{
@@ -18,7 +18,7 @@
     cursor: pointer;
   }
   .price-group{
-    @include flex(center, flex-start, column)
+    @include flex(center, flex-start, column);
     button{
       background:rgb(238, 238, 238) none repeat scroll 0% 0%;
       border: none;
@@ -36,7 +36,7 @@
     }
        .price-input{
          margin: 0.3rem 0;
-          @include flex(space-between,center,row)
+          @include flex(space-between,center,row);
         input{
           width: 45%;
         }
@@ -49,7 +49,7 @@
       }
   }
   .checkbox-group{
-    @include flex(initial,center,row)
+    @include flex(initial,center,row);
     margin-bottom: 0.6rem;
 -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

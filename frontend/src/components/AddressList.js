@@ -5,7 +5,7 @@ import {getAddressListByUserAction} from '../actions/AddressActions'
 import primaryAddrr from '../right.png'
 import ClipLoader from "react-spinners/ClipLoader";
 
-const AddressList = () => {
+const AddressList = ({width,grow, buttonsWidth, flexContainer}) => {
   const history = useHistory()
   const dispatch = useDispatch()
   const {loading, error, addressList} = useSelector(state => state.addressListByUser)
@@ -13,7 +13,7 @@ const AddressList = () => {
 
   const changeShipping = (add) => {
     localStorage.setItem("shipping", JSON.stringify(add))
-    history.push("/cart")
+    history.goBack()
   }
 
   const editAddress = (add) => {
@@ -30,15 +30,22 @@ const AddressList = () => {
 
   return (
       <>
+
+    <div className="address-list-container"
+         style={flexContainer} >
       {loading || loading == null
           ?
           <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div>
           :
-    <div className="address-list-container">
-      <button className="btn primary-btn lg" style={{margin: "1.2rem 1.2rem 0 1.2rem"}} onClick={() => history.push("/addresses/add")}>Thêm địa chỉ</button>
+          <>
+            <div style={{width:"100%"}}>
+      <button className="btn primary-btn lg"
+              style={{margin: "1.2rem 1.2rem 0 1.2rem"}}
+              onClick={() => history.push("/checkout#addaddress")}>Thêm địa chỉ</button>
+            </div>
       {addressList != null
       ?
-      <div className="address-list">
+      <div className="address-list" style={{width:`${ width }%`}}>
         {addressList.map(add => (
           <div className="address-card">
             {add.isPrimary
@@ -56,7 +63,7 @@ const AddressList = () => {
             <div className="address-body">
               Địa chỉ: {add.addressDetails}, {add.ward}, {add.district}, {add.city}
             </div>
-            <div className="address-footer">
+            <div className="address-footer" style={{width:`${buttonsWidth}%`}}>
               <button className="btn primary-btn nm dark" onClick={e => changeShipping(add)}>Giao đến địa chỉ này</button>
               <button className="btn light-btn nm light" onClick={e => editAddress(add)}>Chỉnh sửa</button>
               <button className="btn nm danger-btn" onClick={e => deleteAddress(add)}>Xóa</button>
@@ -66,7 +73,9 @@ const AddressList = () => {
       </div>
           :
           <p style={{margin:"1.2rem"}}>You don't have any address yet</p>}
-    </div>}
+      </>
+      }
+    </div>
       </>
   )
 }

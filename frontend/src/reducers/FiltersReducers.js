@@ -2,7 +2,6 @@ import {FILTER_UPDATE_REQUEST, PRICE_CLEAR_REQUEST, MANUFACTOR_CLEAR_REQUEST, RO
 
 //state is previous one?
 export const filterReducer = (state, action) => {
-  console.log(action.type)
   switch (action.type) {
     case FILTER_UPDATE_REQUEST:
       return {filter: {...state.filter, ...action.filter}}

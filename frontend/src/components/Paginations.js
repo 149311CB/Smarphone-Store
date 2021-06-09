@@ -1,19 +1,69 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-const Paginations = ({current, last}) => {
+const Paginations = ({total,currentpage,setcurrentpage}) => {
+
+  // total from api
+  // const total=247
+  // pagination handle these itselft
+  // const [currentpage,setcurrentpage] = useState(1)
+  const [currentFirstIndex, setCurrentFirstIndex] = useState(1);
+  const [currentLastIndex, setCurrentLastIndex] = useState(5);
+
+  const selectPageHandler=(p) =>{
+    setcurrentpage(p)
+  }
+
+  const previousSectionHandler=() =>{
+    setcurrentpage(currentFirstIndex-1)
+    setCurrentFirstIndex(currentFirstIndex-5)
+    setCurrentLastIndex(currentFirstIndex-1)
+  }
+
+  const nextSectionHandler=() =>{
+    setcurrentpage(currentLastIndex+1)
+    setCurrentFirstIndex(currentLastIndex+1)
+    setCurrentLastIndex(currentLastIndex+5)
+  }
+
+  const pages=[]
+    for(let i=1; i<=Math.ceil(total/12); i++){
+      pages.push(i)
+    }
+  useEffect(() => {
+    const active = document.querySelector("li button.active")
+    if(active){
+      active.classList.remove("active")
+    }
+    const currentActive = document.getElementById(`pagination-btn-${currentpage}`)
+      if(currentActive){
+        currentActive.classList.add("active")
+      }
+  }, [currentpage]);
+
+
   return (
-    <div className="paginations">
-      <div className="previous-pages">
-        {current - 2 > 0 ? <button value={current - 2}>{current - 2}</button> : ""}
-        {current - 1 > 0 ? <button value={current - 1}>{current - 1}</button> : ""}
-        <button value={current}>{current}</button>
-      </div>
-      {last !== current ? <span>...</span> : ""}
-      <div className="next-pages">
-        {last - 1 > 0 ? <button value={last - 1}>{last - 1}</button> : ""}
-        {last !== current ? <button value={last}>{last - 2}</button> : ""}
-      </div>
-    </div >
+      <>
+    <div className={"pagination-container"}>
+      <div className={"paginations"}>
+      <button className={"previous"}
+              disabled={currentFirstIndex===1}
+              onClick={() => previousSectionHandler()}
+              >Previous</button>
+      <ul >
+      {pages.map(( p,index ) =>(
+          index >= currentFirstIndex - 1 && index < currentLastIndex ?
+          <li className={"paginations-item"} key={p}>
+            <button id={`pagination-btn-${p}`}
+                    onClick={() => selectPageHandler(p)}>{p}</button>
+          </li>
+              :"" ))}
+        </ul>
+      <button className={"next"}
+              disabled={currentLastIndex >= pages.length+1}
+              onClick={() => nextSectionHandler()}>Next</button>
+        </div>
+    </div>
+      </>
   )
 }
 
