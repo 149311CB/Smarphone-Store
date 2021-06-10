@@ -5,7 +5,7 @@ import OrderDetail from '../models/orderDetailModel.js'
 const getAllOrderByUser = asyncHandler(async (req, res) => {
   const orderDetails = await OrderDetail.find({})
     .populate({path: "products.product", select: "name price"})
-    .populate({path: "order", match: {user: req.user._id}})
+    .populate({path: "order", match: {user: req.user._id}}).sort({createdAt: 'desc'})
   const userOders = []
   orderDetails.forEach(function (od) {
     if (od.order != null) {
@@ -57,9 +57,9 @@ const getOrderList = asyncHandler(async (req, res) => {
     throw new Error("Not authorize, token failed")
   }
 
-  const orderDetails = await OrderDetail.find({})
+  const orderDetails = await OrderDetail.find({}).sort({createdAt: "desc"})
     .populate({path: "products.product", select: "name price"})
-    .populate({path: "order", populate: {path: "user"}}).sort({'createdAt': 'desc'})
+    .populate({path: "order", populate: {path: "user"}})
 
   res.json(orderDetails)
 })

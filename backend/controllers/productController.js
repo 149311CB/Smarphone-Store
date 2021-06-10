@@ -90,12 +90,7 @@ const getSimilarProduct = asyncHandler(async (req, res) => {
 // @access  Public
 const getSpecsForCart = asyncHandler(async (req, res) => {
   const spec = await Spec.findById(req.params.id)
-    .select("name price images coupons")
-    .populate({
-      path: "coupons",
-      select: "name discountType discountAmount discountPercent discountStart activeTime",
-      model: "Coupon"
-    })
+    .select("name price images ")
   res.json(spec._doc)
 })
 
@@ -105,7 +100,6 @@ const getSpecsForCart = asyncHandler(async (req, res) => {
 const getSpecById = asyncHandler(async (req, res) => {
   const spec = await Spec.findById(req.params.id)
     .populate("warranty")
-    .populate("coupons")
     .populate({path: "reviews", populate: {path: "user", select: "firstName lastName"}})
   res.json(spec);
 });

@@ -29,7 +29,7 @@ const CLOSE_BUTTON ={
   right:"0.6rem"
 }
 
-const ConfirmActionModal = ({action,type,color,onConfirm,onClose,go}) => {
+const ConfirmActionModal = ({confirm,action,type,color,onConfirm,onClose,go}) => {
   return ReactDOM.createPortal(
       <>
       <div style={OVERLAY_STYLES} onClick={onClose}/>
@@ -38,7 +38,7 @@ const ConfirmActionModal = ({action,type,color,onConfirm,onClose,go}) => {
       <i className="fas fa-times fa-lg"/>
     </button>
       <div style={{width:"100%"}}>
-        <h3 style={{fontWeight:"500", margin:"1.2rem 0"}}>Bạn có chắc chắn muốn {action} ?</h3>
+        <h3 style={{fontWeight:"500", margin:"1.2rem 0"}}>{confirm && "Bạn có chắc chắn muốn"} {action} ?</h3>
         <button className={`btn ${type}-btn lg ${color}`}
                 style={{display:"block", width:"100%",fontWeight:"500"}}
                 onClick={onConfirm}>{go}</button>

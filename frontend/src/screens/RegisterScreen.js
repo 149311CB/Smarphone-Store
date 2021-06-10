@@ -5,7 +5,6 @@ import DateTimePicker from '../components/DateTimePicker'
 import {userRegisterAction} from '../actions/UserActions'
 import ClipLoader from "react-spinners/ClipLoader";
 import {pushCartToServer} from "../actions/CartActions";
-import {PUSH_CART_RESET} from "../constants/CartConstants";
 
 const RegisterScreen = ({location, history}) => {
 
@@ -45,7 +44,6 @@ const RegisterScreen = ({location, history}) => {
       }
       if(pushMessage && isCheckout){
         history.push("/checkout")
-        // dispatch({type:PUSH_CART_RESET})
         return
       }
       history.push("/")

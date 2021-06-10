@@ -7,6 +7,7 @@ import AddressList from "../components/AddressList";
 import AddAddress from "../components/AddAddress";
 import ClipLoader from "react-spinners/ClipLoader";
 import {PUSH_CART_RESET} from "../constants/CartConstants";
+import EditAddress from "../components/EditAddress";
 const CHECKOUT_STYLES = {
   display: "flex",
   flexDirection: "column",
@@ -43,12 +44,18 @@ const CheckoutScreen = ({location, history}) => {
             :
             hash === "#addresslist"
               ?
-              <AddressList width={100} buttonsWidth={30} flexContainer={{display:"flex",alignItems:"center", flexDirection:"column"}}/>
+              <AddressList width={100} buttonsWidth={30}
+                           flexContainer={{display:"flex",alignItems:"center", flexDirection:"column"}}
+                           hideShipping={true}/>
               :
               hash === "#addaddress"
                 ?
                 <AddAddress />
-                : ""
+                :
+                  hash.includes("#editaddress")
+            ?
+                      <EditAddress />
+                      :""
 
         }
       </div>

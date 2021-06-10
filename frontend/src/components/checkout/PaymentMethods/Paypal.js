@@ -17,6 +17,7 @@ const Paypal = ({sdkReady, method, changePaymentMethod, amount, cartInfo, addres
   }
 
   const paypalSubmitHandler = (paymentResult) => {
+    console.log(paymentResult)
     if(address === null){
       setIsOpen(true)
       return;
@@ -38,7 +39,6 @@ const Paypal = ({sdkReady, method, changePaymentMethod, amount, cartInfo, addres
   }
   useEffect(() => {
     const paypalButton = document.querySelector(".paypal-button")
-    console.log(paypalButton)
     if(!address && paypalButton){
       paypalButton.addEventListener("click",function(){ setIsOpen(true)})
     }

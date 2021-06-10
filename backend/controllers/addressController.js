@@ -15,6 +15,9 @@ const getAddress = asyncHandler(async (req, res) => {
 // @access  Public
 const getAddressById = asyncHandler(async (req, res) => {
   const address = await Address.findById(req.params.id);
+  if (!address) {
+    res.status(404).json({message: "Address not found"})
+  }
   res.json(address);
 });
 

@@ -2,6 +2,7 @@
   "name": "frontend",
   "proxy": "http://127.0.0.1:5000",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@chec/commerce.js": "^2.6.0",

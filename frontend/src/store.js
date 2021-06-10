@@ -25,7 +25,13 @@ import {
   deleteCartReducer,
   pushCartReducer
 } from './reducers/CartReducers'
-import {getAddressListByUserReducer, getAddressByUserReducer, getCityListReducer, addAddressReducer} from './reducers/AddressReducers'
+import {
+  getAddressListByUserReducer,
+  getAddressByUserReducer,
+  getCityListReducer,
+  addAddressReducer,
+  getAddressByIdReducer, deleteAddressReducer
+} from './reducers/AddressReducers'
 import {
   checkoutPendingReducer, deleteOrderByIdReducer,
   getOrderDetailByIdReducer,
@@ -71,7 +77,9 @@ const reducer = combineReducers({
   updateProduct:updateProductReducer,
   deleteProduct:deleteProductReducer,
   createProduct:createProductReducer,
-  fuzzySearch:fuzzySearchReducer
+  fuzzySearch:fuzzySearchReducer,
+  addressById:getAddressByIdReducer,
+  deleteAddress:deleteAddressReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

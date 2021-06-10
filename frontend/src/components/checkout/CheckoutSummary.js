@@ -51,11 +51,11 @@ const CheckoutSummary = () => {
         dispatch(getAddressByUserAction())
     }
 
-  }, [dispatch,pushLoading])
+  }, [dispatch,pushMessage])
 
   return (
     <>
-      {!window.paypal || payLoading || loading || loading == null
+      {payLoading || loading || loading == null
         ?
         <div className="loader">
             <ClipLoader color={"#A7c080"} size={100} />

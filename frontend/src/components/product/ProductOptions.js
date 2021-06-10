@@ -1,7 +1,7 @@
 import React from 'react'
 import Coupon from '../Coupon'
 
-const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) => {
+const ProductOptions = ({price, rom, ram, quantity, changeQuantity}) => {
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'VND',
@@ -36,16 +36,10 @@ const ProductOptions = ({price, rom, ram, quantity, coupons, changeQuantity}) =>
         </div>
       </div>
       <div className="indicator"/>
-
-      <div className="group-title">Mã giảm giá có thể áp dụng</div>
-      <div className="coupon-group">
-        {coupons.map(c =>
-          <Coupon coupon={c} />
-        )}
-      </div>
-      <div className="indicator"/>
       <div className="quantity-select">
-        <button className="left-btn" onClick={e => changeQuantity(quantity - 1)} disabled={quantity === 1 ? true : false}><i className="fas fa-minus"/></button>
+        <button className="left-btn" onClick={e => changeQuantity(quantity - 1)} disabled={quantity === 1}>
+            <i className="fas fa-minus"/>
+        </button>
         <input value={quantity} />
         <button className="right-btn"
                 onClick={e => changeQuantity(quantity + 1)} > <i className="fas fa-plus"/></button>

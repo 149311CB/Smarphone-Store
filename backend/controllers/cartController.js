@@ -9,11 +9,7 @@ const getCart = asyncHandler(async (req, res) => {
     .populate({
       path: "products",
       populate: {
-        path: "product", select: "name price images coupons",
-        populate: {
-          path: "coupons", select: "name discountType discountAmount discountPercent discountStart activeTime",
-          model: "Coupon"
-        }
+        path: "product", select: "name price images"
       }
     });
   res.json(cart)

@@ -9,11 +9,16 @@
   }
 }
 .users-manage-screen, .orders-screen{
+  h3{
+    font-weight:500;
+    font-size: 0.983rem;
+  }
   font-size: 0.813rem;
   .user-manager{
     padding: 1.2rem;
   }
   table{
+    margin-top: 1.2rem;
     td:last-child{
       @include flex(center,center,row);
       border-top: none;

@@ -18,7 +18,7 @@ router.route("/primary").get(protect, getPrimaryAddressByUserId)
 
 router.route("/:id")
   .get(getAddressById)
-  .delete(deleteAddressById)
+  .delete(protect, deleteAddressById)
   .post(protect, updateAddress);
 router.route("/cities").get(getCityList)
 

@@ -1,11 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCityListAction, addAddressAction} from '../actions/AddressActions'
+import {
+  getCityListAction,
+  addAddressAction,
+  getAddressByUserAction,
+  getAddressListByUserAction
+} from '../actions/AddressActions'
 import ClipLoader from "react-spinners/ClipLoader";
 import {useHistory} from "react-router-dom";
 import {ADD_ADDRESS_RESET} from "../constants/AddressConstants";
 
-const AddAddress = () => {
+const AddAddress = ({grow}) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -35,10 +40,8 @@ const AddAddress = () => {
       }
       if(newAddress){
         dispatch({type:ADD_ADDRESS_RESET})
+          dispatch(getAddressListByUserAction())
           history.goBack()
-        // if(location.pathname === "/checkout"){
-        //   history.push("/checkout#addresslist")
-        // }
       }
   }, [newAddress])
 
@@ -46,7 +49,9 @@ const AddAddress = () => {
     <>
       {loading == null || loading || addLoading
           ?
-          <div className="loader"><ClipLoader color={"#A7c080"} size={100} /></div >
+          <div className="loader" style={{display:"flex",justifyContent:"center", width:"100%"}}>
+            <ClipLoader color={"#A7c080"} size={100} />
+          </div >
           :
         <form className="add-address-form">
           <div className="form-group">

@@ -38,6 +38,7 @@ const AdminOrderDetailsScreen = ({location}) => {
 
   const cancelOrder = () => {
     dispatch(updateOrder("canceled", id))
+    setCancelIsOpen(false)
   }
   const confirmOrder = (status) => {
     dispatch(updateOrder(status, id))
@@ -63,7 +64,9 @@ const AdminOrderDetailsScreen = ({location}) => {
             <div className={"order-body"} >
               {
                 isCancelOpen ?
-                  <ConfirmActionModal action={"hủy đơn hàng"}
+                  <ConfirmActionModal
+                    confirm={true}
+                    action={"hủy đơn hàng"}
                     onConfirm={cancelOrder}
                     onClose={() => setCancelIsOpen(false)}
                     type={"danger"}
@@ -79,6 +82,9 @@ const AdminOrderDetailsScreen = ({location}) => {
                   orderDetails.order.status === "waiting to confirm"
                     ? "Đang chờ xác nhận"
                     :
+                      orderDetails.order.status === "paid"
+                    ? "Đã thanh toán - Đang chờ xác nhận"
+                          :
                     "Đã hủy"
                 }</p>
               <div className={"order-details"}>
@@ -113,7 +119,7 @@ const AdminOrderDetailsScreen = ({location}) => {
                   </thead>
                   <tbody>
                     {
-                      orderDetails.products.map(od => (
+                      orderDetails ? orderDetails.products.map(od => (
                         <tr>
                           <td>
                             <div className={"product-details"}>
@@ -125,15 +131,20 @@ const AdminOrderDetailsScreen = ({location}) => {
                           <td>{od.quantity}</td>
                           <td>{formatter.format(od.quantity * od.product.price)}</td>
                         </tr>
-                      ))
+                      )):""
                     }
                   </tbody>
                 </table>
               </div>
               <div className={"order-summary"}>
                 <div className={"cancel-order"}>
-                  {orderDetails.order.status !== "completed"
+                  {orderDetails.order.status === "completed"
                     ?
+                      ""
+                      :
+                      orderDetails.order.status === "canceled"
+                      ? ""
+                          :
                     <>
                       <button className={"btn primary-btn nm"}
                         style={{marginRight: "0.6rem"}}
@@ -143,7 +154,7 @@ const AdminOrderDetailsScreen = ({location}) => {
                       <button className={"btn danger-btn white nm"}
                         onClick={() => setCancelIsOpen(true)}>Từ chối đơn hàng</button>
                     </>
-                    : ""}
+                    }
                 </div>
                 <div className={"order-total"}>
                   <p>Tạm tính: {formatter.format(calculateOrderTotal())}</p>

@@ -7,6 +7,7 @@ import AdminSidebar from "../../components/accounts/AdminSidebar";
 import ClipLoader from "react-spinners/ClipLoader";
 import ConfirmActionModal from "../../components/modals/ConfirmActionModal";
 import {getWarrantyListAction} from "../../actions/warrantyActions";
+import {CREATE_PRODUCT_RESET} from "../../constants/ProductConstants";
 
 const ACCOUNT_SCREEN_STYLES = {
   display: "flex",
@@ -23,10 +24,10 @@ const AddProduct = ({location}) => {
 
   const {userInfo} = useSelector(state => state.userLogin)
   const {loading, warrantyList} = useSelector(state => state.getWarrantyList)
-  const {loading:createLoading,error:createError,message} = useSelector(state =>state.createProduct)
+  const {loading: createLoading, error: createError, message} = useSelector(state => state.createProduct)
 
   const [name, setName] = useState()
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(0);
   const [model, setModel] = useState("");
   const [manufactor, setManufactor] = useState("");
   const [make, setMake] = useState("");
@@ -46,12 +47,12 @@ const AddProduct = ({location}) => {
   const [localImages, setLocalImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const [warranty, setWarranty] = useState("");
-  console.log(warranty)
+  const [isOpen,setIsOpen] = useState(false)
   const [countInStock, setCountInStock] = useState(0)
 
-  const pushImage=(e)=>{
-        setImages([...images, e.target.value])
-        setLocalImages([...localImages,e.target.value])
+  const pushImage = (e) => {
+    setImages([...images, e.target.value])
+    setLocalImages([...localImages, e.target.value])
   }
 
   const uploadFileHandler = async (e) => {
@@ -79,19 +80,36 @@ const AddProduct = ({location}) => {
   }
   const submitHandler = (e) => {
     e.preventDefault()
-    const createProduct={name,price,model,manufactor,make,backCam,frontCam,
-      display,resolution,size,chipset,gpu,charger,battery,simNumber,rom,ram,
-      warranty,images,countInStock}
+    const createProduct = {
+      name, price, model, manufactor, make, backCam, frontCam,
+      display, resolution, size, chipset, gpu, charger, battery, simNumber, rom, ram,
+      warranty, images, countInStock
+    }
     dispatch(createProductAction(createProduct))
   }
 
   useEffect(() => {
-    dispatch(getWarrantyListAction())
-  }, [dispatch]);
+      if(typeof loading == "undefined" && !warrantyList){
+        dispatch(getWarrantyListAction())
+      }else if(message === "Product created"){
+        dispatch({type:CREATE_PRODUCT_RESET})
+        setIsOpen(true)
+      }
+  }, [dispatch,message]);
 
   return (
     <>
       <div className={"product-details-screen"} style={ACCOUNT_SCREEN_STYLES}>
+        {
+          isOpen &&
+        <ConfirmActionModal
+            action={"Thêm sản phẩm thành công"}
+            onConfirm={() => setIsOpen(false)}
+            onClose={() => setIsOpen(false)}
+            type={"danger"}
+            color={"white"}
+            go={"Hủy"}
+        /> }
         <AdminSidebar active={"products"} />
         {
           loading || loading == null || createLoading
@@ -114,21 +132,23 @@ const AddProduct = ({location}) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
-                  {createError && createError.includes("name") && <div className={"form-error"}>Name is required</div> }
+                  {createError && createError.includes("name") && <div className={"form-error"}>Name is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-price"}>
                     Giá thành
                                   </label>
                   <input id={"product-price"} type={"number"}
+                    min="0"
                     value={price}
                     onChange={e => setPrice(e.target.value)}
                   />
-                  {createError && createError.includes("price") &&  <div className={"form-error"}>Price is required</div> }
+                  {createError && createError.includes("price") && <div className={"form-error"}>Price is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"count-in-stock-input"}>Số lượng</label>
                   <input type={"number"}
+                    min="0"
                     id={"count-in-tock-input"}
                     value={countInStock}
                     onChange={e => setCountInStock(e.target.value)} />
@@ -161,7 +181,7 @@ const AddProduct = ({location}) => {
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
                   />
-                  {createError && createError.includes("model") &&  <div className={"form-error"}>Model is required</div> }
+                  {createError && createError.includes("model") && <div className={"form-error"}>Model is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-manufactor"}>
@@ -171,7 +191,7 @@ const AddProduct = ({location}) => {
                     value={manufactor}
                     onChange={e => setManufactor(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Manufactor is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Manufactor is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-make"}>
@@ -181,7 +201,7 @@ const AddProduct = ({location}) => {
                     value={make}
                     onChange={e => setMake(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Maker is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Maker is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-backcam"}>
@@ -192,7 +212,7 @@ const AddProduct = ({location}) => {
                     style={{width: "50%"}}
                     onChange={e => setBackCam(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Back Camera is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Back Camera is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-frontcam"}>
@@ -203,7 +223,7 @@ const AddProduct = ({location}) => {
                     style={{width: "50%"}}
                     onChange={e => setFrontCam(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Front Camera is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Front Camera is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-display"}>
@@ -213,7 +233,7 @@ const AddProduct = ({location}) => {
                     value={display}
                     onChange={e => setDisplay(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Display is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Display is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-display"}>
@@ -223,17 +243,19 @@ const AddProduct = ({location}) => {
                     value={resolution}
                     onChange={e => setResolution(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Resolution is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Resolution is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-size"}>
                     Kích thước màn hình
                                   </label>
                   <input id={"product-size"} type={"number"}
+                    min="0"
+                    step="any"
                     value={size}
                     onChange={e => setSize(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Size is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Size is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-chipset"}>
@@ -243,7 +265,7 @@ const AddProduct = ({location}) => {
                     value={chipset}
                     onChange={e => setChipset(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Chipset is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Chipset is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-gpu"}>
@@ -253,7 +275,7 @@ const AddProduct = ({location}) => {
                     value={gpu}
                     onChange={e => setGpu(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Gpu is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Gpu is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-charger"}>
@@ -263,7 +285,7 @@ const AddProduct = ({location}) => {
                     value={charger}
                     onChange={e => setCharget(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Charger is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Charger is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-battery"}>
@@ -273,23 +295,25 @@ const AddProduct = ({location}) => {
                     value={battery}
                     onChange={e => setBattery(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Battery is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Battery is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-sim"}>
                     Số lượng sim
                                   </label>
                   <input id={"product-sim"} type={"number"}
+                    min="0"
                     value={simNumber}
                     onChange={e => setSimNumber(e.target.value)}
                   />
-                  {createError && createError.includes("manufactor") &&  <div className={"form-error"}>Sim number is required</div> }
+                  {createError && createError.includes("manufactor") && <div className={"form-error"}>Sim number is required</div>}
                 </div>
                 <div className={"form-group"}>
                   <label htmlFor={"product-rom"}>
                     Rom
                                   </label>
                   <input id={"product-rom"} type={"number"}
+                    min="0"
                     value={rom}
                     onChange={e => setRom(e.target.value)}
                   />
@@ -299,6 +323,7 @@ const AddProduct = ({location}) => {
                     Ram
                                   </label>
                   <input id={"product-ram"} type={"number"}
+                    min="0"
                     value={ram}
                     onChange={e => setRam(e.target.value)}
                   />

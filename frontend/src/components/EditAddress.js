@@ -1,12 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getCityListAction, updateAddressAction} from '../actions/AddressActions'
+import {withRouter} from "react-router-dom"
+import {
+  getAddressByIdAction,
+  getAddressByUserAction,
+  getCityListAction,
+  updateAddressAction
+} from '../actions/AddressActions'
 import ClipLoader from "react-spinners/ClipLoader";
 
-const EditAddress = ({address}) => {
+const EditAddress = ({location}) => {
   const dispatch = useDispatch()
 
   const {loading, error, cities} = useSelector(state => state.cityList)
+  const {address} = useSelector(state => state.addressById)
+  const {hash} = location
+  const id=hash.split("/")[1]
+
   const [city, setCity] = useState(0)
   const [district, setDistrict] = useState(0)
   const [ward, setWard] = useState(0)
@@ -25,8 +35,15 @@ const EditAddress = ({address}) => {
   }
 
   useEffect(() => {
-    dispatch(getCityListAction())
-  }, [])
+      if(typeof loading === "undefined" && typeof cities === "undefined"){
+        dispatch(getCityListAction())
+        dispatch(getAddressByIdAction(id))
+      }else if(cities && cities.length >0){
+        cities.map((c,index) => c.Name === address.city &&
+           setCity(index)
+        )
+      }
+  }, [address,cities])
 
   return (
     <>
@@ -36,7 +53,10 @@ const EditAddress = ({address}) => {
             <label htmlFor={"city"}>Tỉnh/ Thành phố</label>
             <div className="select-group">
               <select id="city" onChange={(e) => setCity(e.target.value)}>
-                {cities.map((c, index) => <option selected={address.city === c.Name ? "selected" : ""} value={index}>{c.Name}</option>)}
+                {cities.map((c, index) =>
+                    <option selected={city === index ? "selected" : ""}
+                            value={index}>{c.Name}</option>)
+                }
               </select>
               <img src="https://149311cbimages.s3.amazonaws.com/down.png" />
             </div>
@@ -46,7 +66,7 @@ const EditAddress = ({address}) => {
             <div className="select-group">
               <select id="district" onChange={e => setDistrict(e.target.value)}>
                 {cities[city].Districts.map((d, index) =>
-                  <option value={index}>{d.Name}</option>
+                  <option selected={address.district === d.Name} value={index}>{d.Name}</option>
                 )}
               </select>
               <img src="https://149311cbimages.s3.amazonaws.com/down.png" />
@@ -88,4 +108,4 @@ const EditAddress = ({address}) => {
   )
 }
 
-export default EditAddress
+export default withRouter(EditAddress)

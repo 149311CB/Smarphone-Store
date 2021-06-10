@@ -79,9 +79,9 @@ const PriceGroup = () => {
       <button onClick={e => filter("both", {min: 5500000, max: 16500000}, e)}>Từ 5.500.000 đến 16.500.000</button>
       <button onClick={e => filter("min", 16500000, e)}>Trên 16.500.000</button>
       <div className="price-input">
-        <input id="min-price" type="number" placeholder="0" readOnly={currentActive != "" ? true : false} />
+        <input id="min-price" type="number" min="0" placeholder="0" readOnly={currentActive != "" ? true : false} />
         <span>-</span>
-        <input id="max-price" type="number" placeholder="0" readOnly={currentActive != "" ? true : false} />
+        <input id="max-price" type="number" min="0" placeholder="0" readOnly={currentActive != "" ? true : false} />
       </div>
       <button id="apply" onClick={e => filterSubmit()} disabled={currentActive != "" ? true : false}>Áp dụng</button>
     </div>

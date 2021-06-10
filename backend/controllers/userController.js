@@ -38,8 +38,11 @@ const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id)
   if (user) {
     user.remove()
-    await Address.deleteMany({user: user._id})
-    await Order.deleteMany({user: user._id})
+    try {
+      await Address.deleteMany({user: user._id})
+      await Order.deleteMany({user: user._id})
+    } catch (error) {
+    }
     res.json({message: 'User Removed'})
   } else {
     res.status(404)

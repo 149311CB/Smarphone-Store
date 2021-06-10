@@ -14,8 +14,14 @@ import {
   GET_ADDRESS_LIST_BY_USER_FAIL,
   UPDATE_ADDRESS_REQUEST,
   UPDATE_ADDRESS_SUCCESS,
-  UPDATE_ADDRESS_FAIL
+  UPDATE_ADDRESS_FAIL,
+  GET_ADDRESS_BY_ID_REQUEST,
+  GET_ADDRESS_BY_ID_SUCCESS,
+  GET_ADDRESS_BY_ID_FAIL,
+  DELETE_ADDRESS_REQUEST, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAIL
 } from '../constants/AddressConstants'
+import {logoutAction} from "./UserActions";
+import {CREATE_ORDER_FAIL} from "../constants/OrderConstants";
 
 export const getAddressListByUserAction = () => async (dispatch, getState) => {
   try {
@@ -134,6 +140,64 @@ export const updateAddressAction = (id, input) => async (dispatch, getState) => 
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    })
+  }
+}
+
+export const getAddressByIdAction=(id) =>async(dispatch,getState) =>{
+  try{
+    dispatch({type:GET_ADDRESS_BY_ID_REQUEST})
+    const {
+      userLogin: {userInfo},
+    } = getState()
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const {data} = await axios.get(`/api/addresses/${id}`,config)
+    dispatch({type:GET_ADDRESS_BY_ID_SUCCESS,address:data})
+  }catch(error){
+    const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logoutAction())
+    }
+    dispatch({
+      type: GET_ADDRESS_BY_ID_FAIL,
+      error: message,
+    })
+  }
+}
+
+export const deleteAddressAction=(id) =>async(dispatch,getState) =>{
+  try{
+      dispatch({type:DELETE_ADDRESS_REQUEST})
+    const {
+      userLogin: {userInfo},
+    } = getState()
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const {data} = await axios.delete(`/api/addresses/${id}`,config)
+      dispatch({type:DELETE_ADDRESS_SUCCESS,message:data})
+  }catch(error){
+    const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logoutAction())
+    }
+    dispatch({
+      type: DELETE_ADDRESS_FAIL,
+      error: message,
     })
   }
 }

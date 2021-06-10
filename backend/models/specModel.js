@@ -7,11 +7,6 @@ const reviewSchema = mongoose.Schema({
 })
 
 const productSchema = mongoose.Schema({
-  id: {
-    type: String,
-    required: false,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,
@@ -82,12 +77,6 @@ const productSchema = mongoose.Schema({
     ref: 'Warranty'
   },
   reviews: [reviewSchema],
-  coupons: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Coupon"
-    }
-  ],
   price: {type: Number, required: true},
   images: [],
   countInStock: {
