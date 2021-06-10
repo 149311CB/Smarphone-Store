@@ -1,0 +1,36 @@
+.product-details-screen{
+  font-size: 0.813rem;
+  .product-manager{
+    padding: 1.2rem;
+  }
+  .form-group{
+    margin-bottom: 1.2rem;
+    label{
+      padding-bottom: 0.6rem;
+    }
+    @include flex(center,flex-start,column);
+  }
+  .upload-image-form{
+    input{
+      width: 50%;
+    }
+    #image-file{
+      border:1px solid $border-color !important;
+      border-radius: 0.3rem;
+    }
+  }
+  .image-list-container{
+    display: flex;
+    grid-gap: 0.3rem;
+    //margin-bottom: 1.2rem;
+    div{
+      width: 130px;
+      border: 1px solid $border-color;
+      padding: 0.3rem;
+      border-radius: 0.3rem;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}

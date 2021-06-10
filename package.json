@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "multer": "^1.4.2"
+  },
+  "name": "smarphone-store",
+  "description": "## Danh sách thành viên",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/149311CB/Smarphone-Store.git"
+  },
+  "author": "Nick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/149311CB/Smarphone-Store/issues"
+  },
+  "homepage": "https://github.com/149311CB/Smarphone-Store#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7"
+  }
+}

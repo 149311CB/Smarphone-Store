@@ -1,0 +1,14 @@
+.products-screen{
+  font-size: 0.813rem;
+  .products-manager{
+    padding: 0.6rem 0.6rem 1.2rem 2.4rem;
+    h3{
+      font-weight:500;
+      font-size: 0.983rem;
+    }
+    .product-table{
+      margin-top: 1.2rem;
+      border:1px solid $border-color;
+    }
+  }
+}

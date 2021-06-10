@@ -1,0 +1,22 @@
+.datetimepicker{
+  @include flex(flex-start,center,row);
+  margin-bottom: 1.5rem;
+  .select-group{
+    position: relative;
+    @include flex(center,center,row);
+    margin-right: 0.6rem;
+select {
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;       /* Remove default arrow */
+   border:none;
+   background: $accent-color;
+   padding: 0.3rem 1.6rem 0.3rem 0.3rem;
+  border-radius: 0.3rem;
+  }
+  img{
+    position: absolute;
+    right: 0;
+  }
+  }
+}

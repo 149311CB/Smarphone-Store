@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 2.03125rem;
+}
+.h2,
+h2 {
+  font-size: 1.625rem;
+}
+.h3,
+h3 {
+  font-size: 1.421875rem;
+}
+.h4,
+h4 {
+  font-size: 1.21875rem;
+}
+.h5,
+h5 {
+  font-size: 1.015625rem;
+}
+.h6,
+h6 {
+  font-size: 0.8125rem;
+}
+
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin grid($repeat, $min, $max, $gap) {
+  display: grid;
+  grid-template-columns: repeat($repeat, minmax($min, $max));
+  grid-gap: $gap;
+}
+
+a {
+  text-decoration: none;
+  color: #458588;
+}
+
+$bg-color:#fafafa;
+$accent-color:#A7C080;
+$text-color:#323d43;
+$accent-disabled:rgba(167, 192, 128,0.5);
+$border-color:rgba(0, 0, 0, 0.125);
+$danger:#CC2414;
+
+body{
+  background-color:  $bg-color;
+}
+
+button{
+  cursor: pointer;
+}
+
+/* MAIN */
+#main-container{
+  @include flex(space-between,stretch,row);
+  width: 90%;
+  margin: 1.2rem auto;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 0px 1.2px rgba(0, 0, 0, 0.1) !important;
+  border-radius:0.3rem;
+}
+
+main {
+  border-radius:0.3rem;
+  @include flex(center,initial,row);
+  background-color: white;
+  min-height: 50vh;
+  width: 100%;
+}
+.loader{
+  margin-top: 5rem;
+}
+
+/* CARD */
+.product-row {
+  @include grid(auto-fill, 200px, 1fr, 1.2rem);
+  padding: 1.2rem;
+}
+
+.card {
+  padding: 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+    color: $text-color;
+    height: 100%;
+  .title {
+    font-size: 0.875rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .card-info{
+    height: 40%;
+    overflow: hidden;
+  }
+  p{
+    color: $danger;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .picture {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    margin-bottom: 0.6rem;
+  }
+}
+
+  .coupon{
+    @include flex(center,center,row);
+    position: relative;
+    overflow: hidden;
+    font-size: 0.813rem;
+  .coupon-value{
+    padding: 0.3rem 1.2rem;
+    border: 1px solid $border-color;
+    border-radius: 0.2rem;
+  }
+  .coupon-value.active{
+    background-color: $accent-color;
+    border: none;
+  }
+   .coupon-ball{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid $border-color;
+    background-color: white;
+    position: absolute;
+  }
+  .coupon-ball-left{
+    left: -7px;
+  }
+  .coupon-ball-right{
+    right: -7px;
+  }
+}
+
+.indicator{
+  border-top: 1px solid $border-color;
+  margin:1.2rem 0;
+}
+
+.noselect{
+-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.form-error{
+  color:rgb(255, 66, 78);
+  font-weight: 500;
+}
+
+.progress-bar{
+  background: $border-color;
+  height: 0.5rem;
+  width: 160px;
+  border-radius: 0.3rem;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  .percent{
+    position: absolute;
+    top:0px;
+    bottom:0px;
+    border-radius: 0.3rem;
+    background-color: #f0bc37;
+  }
+}
+
+.add-rating{
+  .add-rating-header{
+
+    @include flex(space-between,center,row);
+  }
+  .add-rating-product{
+    @include flex(initial,center,row);
+  }
+  button{
+    right: 0.6rem;
+    background:none;
+    border: none;
+    padding: 0.3rem;
+  }
+  button:hover{
+    cursor: pointer;
+  }
+}
+.react-star-container{
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  div:first-child{
+    justify-content: center !important;
+  }
+}
+
+.comment-form-container{
+  min-height: 10rem;
+  textarea{
+    width: 100%;
+    border: 1px solid $border-color;
+    border-radius: 0.3rem;
+    resize: none;
+    outline: currentColor none 0px;
+    padding: 0.6rem;
+  }
+  button{
+    background-color: $accent-color;
+    margin-top: 0.6rem;
+    border-radius: 0.3rem;
+    padding: 0.6rem 0.6rem;
+  }
+}
+
+.btn{
+  border: none;
+  &.nm{
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.2rem;
+  }
+  &.lg{
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.3rem;
+  }
+  &.wide{
+    padding: 0.6rem 2.4rem;
+  }
+}
+.primary-btn{
+  background: $accent-color;
+  color: $text-color;
+  &.dark{
+    background: $text-color;
+    color: $accent-color;
+  }
+}
+.light-btn{
+  border:none;
+  &.transparent{
+    background: white;
+  }
+  &.transparent:hover{
+    background-color: $border-color;
+  }
+}
+.danger-btn{
+  background-color: $danger;
+  &.white{
+    color:white;
+  }
+}
+
+.shipping{
+    font-size: 0.813rem;
+    .shipping-row{
+      @include flex(space-between,center,row);
+      .add-address-btn{
+        background: $accent-color;
+        border: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        color: $text-color;
+      }
+    }
+    margin-bottom: 0.6rem;
+    border: 1px solid $border-color;
+    padding: 0.6rem;
+    border-radius: 0.3rem;
+}
+
+table{
+  border-radius: 0.3rem;
+  border-collapse: collapse;
+  width: 100%;
+  th{
+    border:1px solid $border-color;
+    text-align: start;
+    padding: 0.3rem;
+  }
+  td{
+    border:1px solid $border-color;
+    padding: 0.3rem;
+  }
+}
+
+@import "header";
+@import "sidebar";
+@import "carousel";
+@import "filterbar";
+@import "paginations";
+@import "productDetails";
+@import "login";
+@import "datetimepicker";
+@import "cart";
+@import "checkout";
+@import "addAdress";
+@import "addressList";
+@import "messages";
+@import "checkoutSteps";
+@import "accountSidebar";
+@import "profileScreen";
+@import "orderScreen";
+@import "stripe";
+@import "admin";
+@import "productScreen";
+@import "adminProductDetail";

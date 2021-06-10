@@ -1,0 +1,66 @@
+.login-form,.register-form{
+  font-size: 0.813rem;
+  max-width: 433px;
+  min-width: 313px;
+  width: 37%;
+  margin: 5rem auto;
+  border: 1px solid $border-color;
+  border-radius: 0.3rem;
+  padding: 1.5rem 1.8rem 0 1.8rem;
+  background-color: $text-color;
+  .form-group-container{
+    @include flex(space-between,flex-start,row);
+    .form-group{
+      width: 45%;
+    }
+  }
+  .radio-group-container{
+    @include flex(flex-start,center,row);
+    .radio-group{
+      // border: 1px solid $border-color;
+      margin-right: 0.6rem;
+      @include flex(space-between,center,row);
+      margin-bottom: 1.5rem;
+      label{
+        padding-right: 0.6rem;
+        color: white;
+      }
+      label.dark{
+        color: black !important;
+      }
+    }
+  }
+  .form-group{
+    @include flex(center,flex-start,column);
+    // border:1px solid $border-color;
+    margin-bottom: 1.5rem;
+    label{
+      margin-bottom: 0.6rem;
+      color:white;
+    }
+    label.dark{
+      color:black;
+    }
+    input{
+      width: 100%;
+      padding: 0.6rem;
+    }
+  }
+  button{
+    width: 100%;
+    padding: 0.9rem;
+      border: none;
+      border-radius: 0.3rem;
+      background: $accent-color;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+  }
+  button:hover{
+    cursor: pointer;
+  }
+}
+
+.register-form{
+  margin-top: 2rem;
+}

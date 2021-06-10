@@ -1,0 +1,25 @@
+.account-sidebar, .admin-sidebar{
+  font-size: 0.813rem;
+  background: #E4E4E4;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  width: 300px;
+  .account-options{
+    list-style: none;
+    li{
+      cursor: pointer;
+      border-top-left-radius: 0.3rem;
+      &.active{
+        background: #C4C4C4;
+      }
+      a{
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        color:black;
+      }
+      &.center{
+        border-top-left-radius: 0;
+      }
+    }
+  }
+}
