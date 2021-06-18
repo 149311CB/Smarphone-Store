@@ -6,6 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import {Link, useHistory} from "react-router-dom";
 import AdminSidebar from "../../components/accounts/AdminSidebar";
 import ConfirmActionModal from "../../components/modals/ConfirmActionModal";
+import {DELETE_ORDER_BY_ID_RESET} from "../../constants/OrderConstants";
 
 const ACCOUNT_SCREEN_STYLES = {
   display: "flex",
@@ -41,6 +42,7 @@ const AdminOrderScreen = () => {
     return formatter.format(products.reduce((acc, curr) => acc + curr.product.price * curr.quantity, 0))
   }
   useEffect(() => {
+    dispatch({type:DELETE_ORDER_BY_ID_RESET})
     dispatch(getOrderList())
   }, [dispatch, message]);
 

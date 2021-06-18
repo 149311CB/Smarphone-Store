@@ -15,7 +15,7 @@ const AddAddress = ({grow}) => {
   const history = useHistory()
 
   const {loading, error, cities} = useSelector(state => state.cityList)
-    const {loading:addLoading,error:addError,newAddress} = useSelector(state => state.addAddress)
+  const {loading: addLoading, error: addError, newAddress} = useSelector(state => state.addAddress)
   const [city, setCity] = useState(0)
   const [district, setDistrict] = useState(0)
   const [ward, setWard] = useState(0)
@@ -35,24 +35,24 @@ const AddAddress = ({grow}) => {
   }
 
   useEffect(() => {
-      if(cities == null || cities.length === 0){
-        dispatch(getCityListAction())
-      }
-      if(newAddress){
-        dispatch({type:ADD_ADDRESS_RESET})
-          dispatch(getAddressListByUserAction())
-          history.goBack()
-      }
+    if (cities == null || cities.length === 0) {
+      dispatch(getCityListAction())
+    }
+    if (newAddress) {
+      dispatch({type: ADD_ADDRESS_RESET})
+      dispatch(getAddressListByUserAction())
+      history.goBack()
+    }
   }, [newAddress])
 
   return (
     <>
       {loading == null || loading || addLoading
-          ?
-          <div className="loader" style={{display:"flex",justifyContent:"center", width:"100%"}}>
-            <ClipLoader color={"#A7c080"} size={100} />
-          </div >
-          :
+        ?
+        <div className="loader" style={{display: "flex", justifyContent: "center", width: "100%"}}>
+          <ClipLoader color={"#A7c080"} size={100} />
+        </div >
+        :
         <form className="add-address-form">
           <div className="form-group">
             <label htmlFor={"city"}>Tỉnh/ Thành phố</label>
@@ -64,7 +64,7 @@ const AddAddress = ({grow}) => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor={"district"}>Phường/ Xã</label>
+            <label htmlFor={"district"}>Quận/ Huyện</label>
             <div className="select-group">
               <select id="district" onChange={e => setDistrict(e.target.value)}>
                 {cities[city].Districts.map((d, index) =>
@@ -75,9 +75,9 @@ const AddAddress = ({grow}) => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor={"district"}>Địa chỉ</label>
+            <label htmlFor={"ward"}>Phường/ Xã</label>
             <div className="select-group">
-              <select id="district" onChange={e => setWard(e.target.value)}>
+              <select id="ward" onChange={e => setWard(e.target.value)}>
                 {cities[city]
                   .Districts[district]
                   .Wards.map((d, index) =>
@@ -90,12 +90,12 @@ const AddAddress = ({grow}) => {
           <div className="form-group">
             <label htmlFor={"address-detail"}>
               Địa chỉ chi tiết
-        </label>
+            </label>
             <div>
               <input id="address-detail" type="text" placeholder="Địa chỉ chi tiết" onChange={e => setDetails(e.target.value)} />
             </div>
             {error && error.includes("addressDetails")
-                ? <div className="form-error">Address detail must not be empty</div> : ""}
+              ? <div className="form-error">Address detail must not be empty</div> : ""}
           </div>
           <div className="checkbox-group">
             <input id="isPrimary" type="checkbox"
@@ -103,7 +103,7 @@ const AddAddress = ({grow}) => {
                 e.target.checked ? setPrimary(1) : setPrimary(0)} />
             <label htmlFor="isPrimary" >
               Đặt làm địa chỉ mặc định
-    </label>
+            </label>
           </div>
           <button onClick={e => addAddressHanlder(e)}>Thêm địa chỉ</button>
         </form>

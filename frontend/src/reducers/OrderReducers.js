@@ -13,7 +13,7 @@ import {
   UPDATE_ORDER_STATUS_FAIL,
   UPDATE_ORDER_STATUS_REQUEST,
   UPDATE_ORDER_STATUS_RESET,
-  UPDATE_ORDER_STATUS_SUCCESS
+  UPDATE_ORDER_STATUS_SUCCESS, DELETE_ORDER_BY_ID_RESET
 } from "../constants/OrderConstants";
 import {GET_USER_PROFILE_FAIL, GET_USER_PROFILE_SUCCESS, USER_LOGOUT} from "../constants/UserConstants";
 
@@ -108,6 +108,8 @@ export const deleteOrderByIdReducer = (state = {}, action) => {
       return {loading: false, message: action.message}
     case DELETE_ORDER_BY_ID_FAIL:
       return {loading: false, error: action.error}
+    case DELETE_ORDER_BY_ID_RESET:
+      return {}
     default:
       return state
   }

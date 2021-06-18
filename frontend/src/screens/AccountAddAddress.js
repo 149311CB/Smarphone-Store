@@ -1,6 +1,5 @@
 import React from 'react'
 import AccountSidebar from "../components/accounts/AccountSidebar";
-import AddressList from "../components/AddressList";
 import AddAddress from "../components/AddAddress";
 
 const ACCOUNT_SCREEN_STYLES ={

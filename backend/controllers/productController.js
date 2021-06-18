@@ -14,10 +14,6 @@ const getSpecs = asyncHandler(async (req, res) => {
   const maxram = req.query.maxram ? parseInt(req.query.maxram) : Number.MAX_SAFE_INTEGER;
   const manufactor = req.query.manufactor ? `${req.query.manufactor}` : /.*/;
 
-  /* name: {
-    $regex: req.query.keyword,
-    $options: 'i'
-  } */
   const query = {
     name: keyword,
     price: {$gte: minprice, $lte: maxprice},

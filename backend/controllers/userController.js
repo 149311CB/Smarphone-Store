@@ -1,5 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import Address from '../models/addressModel.js'
+import Order from '../models/orderModel.js'
+import OrderDetail from '../models/orderDetailModel.js'
 import User from '../models/userModel.js'
 import generateToken from '../ultils/generateToken.js'
 
@@ -38,11 +40,14 @@ const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id)
   if (user) {
     user.remove()
-    try {
-      await Address.deleteMany({user: user._id})
-      await Order.deleteMany({user: user._id})
-    } catch (error) {
-    }
+    await Address.deleteMany({user: user._id})
+    const orders = await Order.find({user: user._id})
+    await OrderDetail.deleteMany({order: {$in: orders}})
+    await Order.deleteMany({user: user._id})
+    // const orders = await Order.deleteMany({user: user._id})
+    // console.log(orders)
+    /* const orderDetails = await OrderDetail.deleteMany({order: {$in: orders}})
+    console.log(orderDetails) */
     res.json({message: 'User Removed'})
   } else {
     res.status(404)

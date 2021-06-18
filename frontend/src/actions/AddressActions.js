@@ -21,7 +21,6 @@ import {
   DELETE_ADDRESS_REQUEST, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAIL
 } from '../constants/AddressConstants'
 import {logoutAction} from "./UserActions";
-import {CREATE_ORDER_FAIL} from "../constants/OrderConstants";
 
 export const getAddressListByUserAction = () => async (dispatch, getState) => {
   try {
@@ -120,6 +119,7 @@ export const addAddressAction = (input) => async (dispatch, getState) => {
 }
 
 export const updateAddressAction = (id, input) => async (dispatch, getState) => {
+  console.log(id,input)
   try {
     dispatch({type: UPDATE_ADDRESS_REQUEST})
     const {
@@ -131,7 +131,7 @@ export const updateAddressAction = (id, input) => async (dispatch, getState) => 
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    const {data} = await axios.post(`/api/addresses${id}`, {...input}, config)
+    const {data} = await axios.post(`/api/addresses/${id}`, {...input}, config)
     dispatch({type: UPDATE_ADDRESS_SUCCESS, updatedAddress: data})
   } catch (error) {
     dispatch({

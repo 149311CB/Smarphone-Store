@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import OrderDetail from '../models/orderDetailModel.js'
 
 const orderSchema = mongoose.Schema({
   status: {
@@ -30,11 +31,6 @@ const orderSchema = mongoose.Schema({
     type: Date,
     required: true
   }
-})
-
-orderSchema.pre("deleteMany", function (next) {
-  var order = this
-  order.model("OrderDetail").deleteOne({order: order._id}, next)
 })
 
 const Order = mongoose.model('Order', orderSchema)

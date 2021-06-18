@@ -25,16 +25,12 @@ import {
   UPDATE_USER_BY_ID_SUCCESS,
   UPDATE_USER_BY_ID_FAIL,
 } from '../constants/UserConstants'
-import {addToCart, pushCartToServer} from './CartActions'
 import axios from 'axios'
 import {
-  CREATE_RATING_FAIL,
-  CREATE_RATING_REQUEST, CREATE_RATING_SUCCESS,
   GET_USER_RATING_FAIL,
   GET_USER_RATING_REQUEST,
   GET_USER_RATING_SUCCESS
 } from "../constants/ProductConstants";
-import {pushCartReducer} from "../reducers/CartReducers";
 
 export const userLoginAction = (email, password) => async (dispatch, getState) => {
   try {

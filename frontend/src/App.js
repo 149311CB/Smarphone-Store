@@ -13,7 +13,6 @@ import AddressList from './components/AddressList'
 import CheckoutComplete from "./screens/CheckoutComplete";
 import ProfileScreen from "./screens/ProfileScreen";
 import OrderScreen from "./screens/OrderScreen";
-import Paginations from "./components/Paginations";
 import OrderDetails from "./screens/OrderDetails";
 import UsersManageScreen from "./screens/admin/UsersManageScreen";
 import UserDetailScreen from "./screens/admin/UserDetailScreen";
@@ -25,6 +24,7 @@ import AddProduct from "./screens/admin/AddProduct";
 import AddressScreen from "./screens/AddressScreen";
 import AccountAddAddress from "./screens/AccountAddAddress";
 import AddUser from "./screens/admin/AddUser"
+import EditAddress from "./screens/EditAddress";
 
 function App() {
   return (
@@ -45,19 +45,19 @@ function App() {
           <Route path="/checkout/complete/:id" component={CheckoutComplete} exact />
           <Route path="/account/profile" component={ProfileScreen} exact />
           <Route path="/account/orders" component={OrderScreen} exact />
-          <Route path="/component/pagination" component={Paginations} exact />
           <Route path="/account/orders/:id" component={OrderDetails} exact />
           <Route path="/account/addresses" component={AddressScreen} exact />
+          <Route path="/account/addresses/add" component={AccountAddAddress} exact />
+          <Route path="/account/addresses/edit/:id" component={EditAddress} exact />
           <Route path="/admin" component={UsersManageScreen} exact />
           <Route path="/admin/users" component={UsersManageScreen} exact />
-          <Route path="/admin/users/new" component={AddUser} exact/>
+          <Route path="/admin/users/new" component={AddUser} exact />
           <Route path="/admin/users/details/:id" component={UserDetailScreen} exact />
           <Route path="/admin/orders" component={AdminOrderScreen} exact />
           <Route path="/admin/orders/:id" component={AdminOrderDetailsScreen} exact />
           <Route path="/admin/products" component={AdminProductsScreen} exact />
           <Route path="/admin/products/new" component={AddProduct} exact />
           <Route path="/admin/products/details/:id" component={ProductDetailScreen} exact />
-          <Route path="/account/addresslist/add" component={AccountAddAddress} exact />
         </main>
       </div>
     </Router>

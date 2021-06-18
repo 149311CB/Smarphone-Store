@@ -35,8 +35,8 @@ const ProductContainer = ({ci, formatter}) => {
           <div className="quantity-select">
             <button className="left-btn" onClick={e => reduceHandler(e)} disabled={quantity <=1 ? "disabled":""}>
               <i className="fas fa-minus"/></button>
-            <input id={`quantity-input-${ci.product._id}`} value={quantity}/>
-            <button className="right-btn" onClick={e =>  plusHandler(e)}>
+            <input id={`quantity-input-${ci.product._id}`} value={quantity} readOnly/>
+            <button className="right-btn" onClick={e =>  plusHandler(e)} disabled={quantity >=3 ? "disabled":""}>
               <i className="fas fa-plus"/>
             </button>
           </div>
